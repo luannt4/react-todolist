@@ -1,11 +1,11 @@
-import TodoCourse from './component/course';
+import TodoApp from './component/todo-state';
 import ClockCountDown from './component/Clock';
 
 function App() {
   return (
     <div className="App">
-     <TodoCourse />
-     <ClockCountDown/>
+     <TodoApp />
+     
     </div>
   );
 }

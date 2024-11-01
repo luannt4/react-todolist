@@ -8,7 +8,7 @@ function TodoItem({ todo, toggleComplete, deleteTodo }) {
         onClick={()=> toggleComplete(todo.id)}
         className={`cursor-pointer ${todo.completed ? 'line-through text-gray-500' : ''}`}
       >
-        {todo.task}
+        {todo.text}
       </span>
       <button
         onClick={()=> deleteTodo(todo.id)}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 function TodoInput({ addTodo }) {
-    const [task, setTask] = useState('');
+    const [task, setTask] = useState('');// State để lưu giá trị nhập vào ô input
     
     const handleSubmit = (e) => {
         e.preventDefault();
