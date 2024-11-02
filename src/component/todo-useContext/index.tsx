@@ -1,10 +1,10 @@
 import React, { useReducer, useState, useEffect } from 'react';
-import { useTodoReducer } from "./useTodoReducer";
+import { useTodos  } from "./TodoContext";
 import TodoList from "./TodoList";
 import TodoInput from "./TodoInput";
 
 const TodoApp: React.FC = () => {
-     const { todos, dispatch } = useTodoReducer(); // Set up reducer
+     const { todos, dispatch } = useTodos(); // Set up reducer
     const [currentText, setCurrentText] = useState("");
     const [editingId, setEditingId] = useState<number | null>(null);
     
@@ -28,7 +28,6 @@ const TodoApp: React.FC = () => {
         setEditingId(id);
         setCurrentText(text);
     };
-
 
     return (
       <div className="max-w-md mx-auto p-4 bg-gray-100 rounded shadow">

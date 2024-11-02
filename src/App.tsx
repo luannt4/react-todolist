@@ -1,12 +1,15 @@
 //import TodoApp from './component/todo-ts';
 import ClockCountDown from './component/Clock';
 import TodoCourse from './component/course';
-import TodoApp from './component/todo-reducer';
+import TodoApp from './component/todo-useContext';
+import { TodoProvider } from "./component/todo-useContext/TodoContext";
 
 function App() {
   return (
     <div className="App">
-        <TodoApp />
+        <TodoProvider>
+            <TodoApp />
+        </TodoProvider>
      
     </div>
   );
