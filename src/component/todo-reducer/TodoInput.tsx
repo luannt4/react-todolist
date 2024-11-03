@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 interface TodoInputProps {
   currentText: string;
@@ -13,7 +13,7 @@ const TodoInput: React.FC<TodoInputProps> = ({
     onAddOrUpdateTodo,
     isEditing,
 }) => {
-
+    const inputElement = useRef(null);
     const handleSubmit = (e:any) => {
         e.preventDefault();
         onAddOrUpdateTodo();
