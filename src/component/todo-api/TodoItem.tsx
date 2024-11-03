@@ -7,16 +7,15 @@ import StarIcon from "./star-icon";
 
 interface TodoItemProps {
     product : Product;
+    onEdit: (product: Product) => void;
+    onDelete: (id: number) => void;
 }
 
 
-const TodoItem: React.FC<TodoItemProps> = ({ product,}) => {
+const TodoItem: React.FC<TodoItemProps> = ({ product, onEdit, onDelete }) => {
     const {id, title, description, price } = product;
-    const { dispatch } = useProductContext();
 
-    const handleEdit = () => dispatch({ type: "SET_EDITING_PRODUCT", payload: product });
-    const handleDelete = () => dispatch({ type: "DELETE_PRODUCT", payload: id });
-
+   
     
    return (
     <li className=" gap-2 p-2 border rounded bg-white">
@@ -31,14 +30,14 @@ const TodoItem: React.FC<TodoItemProps> = ({ product,}) => {
         </p>
         <div className="flex gap-3">
                 <button
-                onClick={handleEdit}
+                onClick={() => onEdit(product)}
                 className=" px-2 py-0.5 bg-gray-500 text-white rounded  hover:bg-blue-500"
             >
                 Edit
             </button>
 
             <button  className="px-2 py-0.5 bg-gray-500 text-white rounded  hover:bg-blue-500"
-                onClick={handleDelete} >
+                 onClick={() => onDelete(id)}>
                 Delete
             </button>
         </div>

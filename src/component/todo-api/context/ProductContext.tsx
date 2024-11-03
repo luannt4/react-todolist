@@ -11,6 +11,8 @@ interface ProductContextType {
 const initialState: ProductState = {
   products: [],
   editingProduct: null,
+   isLoading: false,
+   error: null
 };
 
 // Khởi tạo TodoContext

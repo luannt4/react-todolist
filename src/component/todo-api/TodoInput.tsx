@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Product } from "../../type/Todo";
 import { useProductContext  } from "./context/ProductContext";
-import { useUpdateProduct, useAddProduct } from './api';
+import { useUpdateProduct } from "./hooks/useUpdateProduct";
+import { useAddProduct } from "./hooks/useAddProduct";
 
 
 export const ProductForm: React.FC = () => {
-    const { state } = useProductContext();
+    const { state, dispatch } = useProductContext();
+    const addProductMutation = useAddProduct();
+    const updateProductMutation = useUpdateProduct();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState<number | "">("");
     
-    const updateProduct = useUpdateProduct();
-    const addProduct = useAddProduct();
-
-   
    useEffect(() => {
     if (state.editingProduct) {
       setTitle(state.editingProduct.title);
@@ -25,19 +24,26 @@ export const ProductForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        if (state.editingProduct) {
-        await updateProduct.mutateAsync({
+         const newProduct = {
             id: state.editingProduct ? state.editingProduct.id : Date.now(),
-            title: state.editingProduct.title,
-            description: state.editingProduct.description,
-            price: state.editingProduct.price,
-        });
-        } else {
-            await addProduct.mutateAsync({
             title,
             description,
             price: typeof price === "number" ? price : 0,
-        });
+        };
+
+        if (state.editingProduct) {
+            updateProductMutation.mutate(newProduct, {
+                onSuccess: () => {
+                dispatch({ type: "UPDATE_PRODUCT", payload: newProduct });
+                },
+            });
+      
+        } else {
+            addProductMutation.mutate(newProduct, {
+                onSuccess: (addedProduct) => {
+                dispatch({ type: "ADD_PRODUCT", payload: addedProduct });
+                },
+            });
         }
 
         setTitle("");
@@ -45,13 +51,7 @@ export const ProductForm: React.FC = () => {
         setPrice("");
    };
 
-     const handleChange = (    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        /*setFormData((prev) => ({
-        ...prev,
-        [name]: name === 'price' ? Number(value) : value,
-        }));*/
-    };
+    
     
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 mb-4">
