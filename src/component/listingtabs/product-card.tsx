@@ -2,7 +2,7 @@
 import React from "react";
 import { Product } from "../../type/Product";
 import SearchIcon from '../../component/icons/search-icon';
-import {useModalAction} from '../../context/modal/modal.context';
+import {useModal } from '../../context/modal/modal.context';
 
 interface Props {
     product : Product;
@@ -11,9 +11,7 @@ interface Props {
 
 const ProductCard: React.FC<Props> = ({ product }) => {
     const {title, category, price } = product;
-    const {openModal} = useModalAction();
-
-    const handlePopupView = () => openModal('PRODUCT_VIEW', product);
+    const {setModalView } = useModal();
     
     return (
         <li className=" gap-2 p-2 border rounded bg-white">
@@ -29,7 +27,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             <button
                 className="bg-blue-500 text-white flex gap-2 px-4 py-2  rounded-full "
                 aria-label="Quick View Button"
-                onClick={handlePopupView}
+                 onClick={() => setModalView ("PRODUCT_VIEW", product)}
                 >
                 Quick view
             </button>

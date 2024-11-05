@@ -1,20 +1,15 @@
 import Modal from '../modal/modal';
-import {
-  useModalAction,
-  useModalState,
-} from './../../../context/modal/modal.context';
+import {useModal } from './../../../context/modal/modal.context';
 
 import ProductPopup from '../../product/product-popup';
 
 export default function ManagedModal() {
-  const { isOpen, view } = useModalState();
-  const { closeModal } = useModalAction();
+    const { modalView, selectedProduct, closeModal } = useModal();
+    if (!modalView || !selectedProduct) return null;
 
-
-  return (
-    <Modal open={isOpen} onClose={closeModal}>
-      {view === 'PRODUCT_VIEW' && <ProductPopup />}
-      
-    </Modal>
-  );
+    return (
+        <Modal open={!!modalView} onClose={closeModal}>
+            {modalView === 'PRODUCT_VIEW' && <ProductPopup product={selectedProduct}/>}
+        </Modal>
+    );
 }

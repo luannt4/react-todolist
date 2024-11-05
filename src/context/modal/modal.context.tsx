@@ -1,8 +1,8 @@
 'use client';
+import { Product } from "../../type/Product";
+ import React, { createContext, useContext, useReducer } from "react";
 
-import React from 'react';
-
-type MODAL_VIEWS =
+type ModalView  =
   | 'SIGN_UP_VIEW'
   | 'LOGIN_VIEW'
   | 'FORGET_PASSWORD'
@@ -14,79 +14,69 @@ type MODAL_VIEWS =
   | 'CATEGORY_VIEW';
 
 interface State {
-  view?: MODAL_VIEWS;
-  data?: any;
-  isOpen: boolean;
+  modalView?: ModalView ;
+  selectedProduct: any;
 }
+
 type Action =
-  | { type: 'open'; view?: MODAL_VIEWS; payload?: any }
-  | { type: 'close' };
+  | { type: "SET_MODAL_VIEW"; payload: ModalView  }
+  | { type: "SET_SELECTED_PRODUCT"; payload: Product | null }
+  | { type: "CLOSE_MODAL" };
 
 const initialState: State = {
-  view: undefined,
-  isOpen: false,
-  data: null,
+  modalView: undefined,
+  selectedProduct: null,
 };
 
 function modalReducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'open':
-      return {
-        ...state,
-        view: action.view,
-        data: action.payload,
-        isOpen: true,
-      };
-    case 'close':
-      return {
-        ...state,
-        view: undefined,
-        data: [],
-        isOpen: false,
-      };
+    case 'SET_MODAL_VIEW':
+        return {...state,modalView: action.payload};
+    case 'SET_SELECTED_PRODUCT':
+        return {...state, selectedProduct: action.payload};  
+    case 'CLOSE_MODAL':
+        return { ...state,modalView: undefined , selectedProduct: null ,};
     default:
-      throw new Error('Unknown Modal Action!');
+        return state;
   }
 }
 
-const ModalStateContext = React.createContext<State>(initialState);
-ModalStateContext.displayName = 'ModalStateContext';
-const ModalActionContext = React.createContext<
-  React.Dispatch<Action> | undefined
->(undefined);
-ModalActionContext.displayName = 'ModalActionContext';
-
-// Provider component quản lý trạng thái 
-export function ModalProvider({ children }: React.PropsWithChildren<{}>) {
-  const [state, dispatch] = React.useReducer(modalReducer, initialState);
-  return (
-    <ModalStateContext.Provider value={state}>
-      <ModalActionContext.Provider value={dispatch}>
-        {children}
-      </ModalActionContext.Provider>
-    </ModalStateContext.Provider>
-  );
+interface ModalContextType {
+  modalView?: ModalView;
+  selectedProduct: Product;
+  setModalView: (view: ModalView, product: Product) => void;
+  closeModal: () => void;
 }
+const ModalContext =  createContext<ModalContextType | undefined>(undefined);
 
-export function useModalState() {
-  const context = React.useContext(ModalStateContext);
-  if (context === undefined) {
-    throw new Error(`useModalState must be used within a ModalProvider`);
-  }
-  return context;
-}
+export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [state, dispatch] = useReducer(modalReducer, initialState);
 
-export function useModalAction() {
-  const dispatch = React.useContext(ModalActionContext);
-  if (dispatch === undefined) {
-    throw new Error(`useModalAction must be used within a ModalProvider`);
-  }
-  return {
-    openModal(view?: MODAL_VIEWS, payload?: unknown) {
-      dispatch({ type: 'open', view, payload });
-    },
-    closeModal() {
-      dispatch({ type: 'close' });
-    },
+  const setModalView = (view: ModalView, product: Product) => {
+    dispatch({ type: "SET_MODAL_VIEW", payload: view });
+    dispatch({ type: "SET_SELECTED_PRODUCT", payload: product });
   };
-}
+
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL" });
+  };
+
+  return (
+    <ModalContext.Provider
+      value={{
+        modalView: state.modalView,
+        selectedProduct: state.selectedProduct,
+        setModalView,
+        closeModal,
+      }}
+    >
+      {children}
+    </ModalContext.Provider>
+  );
+};
+
+export const useModal = () => {
+  const context = useContext(ModalContext);
+  if (!context) throw new Error("useModal must be used within a ModalProvider");
+  return context;
+};
