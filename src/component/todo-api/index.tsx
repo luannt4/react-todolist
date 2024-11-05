@@ -1,12 +1,6 @@
 import React, { useReducer, useState, useEffect } from 'react';
-import { useProductContext   } from "./context/ProductContext";
 import ProductList from "./TodoList";
 import ProductForm from "./TodoInput";
-import { useQuery } from '@tanstack/react-query';
-import Loading from './Loading';
-import { Product } from "./../../type/Todo";
-
-
 
 const TodoApp: React.FC = () => {
     

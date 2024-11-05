@@ -9,7 +9,7 @@ import { useDeleteProduct } from "./hooks/useDeleteProduct";
 const ProductList: React.FC = () => {
     const { dispatch } = useProductContext();
     const { data: products, isPending, error } = useProducts();
-      const deleteProductMutation = useDeleteProduct();
+    const deleteProductMutation = useDeleteProduct();
 
 
     if (isPending) return <div className="text-center py-4">Loading...</div>;
