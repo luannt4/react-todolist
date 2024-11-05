@@ -1,10 +1,9 @@
 import React, { useState,useMemo,  useEffect, useTransition } from "react";
-import { fetchCategories } from '../../api/fetchAllCategories';
-import { fetchProductsByCategory } from '../../api/fetchCategories-product';
+import { fetchAllCategories } from '../../api/fetchAllCategories';
+import { fetchProductsByCategory } from '../../api/fetchProductsByCategory';
 import { useQuery } from "@tanstack/react-query";
-import {category} from "../../type/Product"
-import ListingTabsList from "./list";
-import ListingTabsContainer from "./container";
+import ListingTabsList from "./listingtabs-list";
+import ListingTabsContainer from "./listingtabs-container";
 
 const Listingtabs: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>("beauty");
@@ -15,10 +14,10 @@ const Listingtabs: React.FC = () => {
         startTransition(() => {setActiveCategory(slug)});
     };
 
-    // fetchCategories với useQuery
+    // Gọi API lấy fetchAllCategories với useQuery
     const { data: categories} = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetchCategories()
+        queryFn: () => fetchAllCategories()
     });
    
     // Gọi API lấy sản phẩm theo danh mục hiện tại với useQuery

@@ -4,8 +4,8 @@ import { Product,category, SearchResponse,QueryOptionsType } from "../type/Produ
 
 const API_URL = "https://dummyjson.com";
 
-// Hàm fetch Categories dữ liệu từ API  'https://dummyjson.com/products/categories'
-export const fetchCategories = async (): Promise<category> => {
+// Hàm fetch Categories dữ liệu từ API 
+export const fetchAllCategories = async (): Promise<category> => {
     const response = await fetch(`${API_URL}/products/categories`);
     if (!response.ok)  throw new Error('Network response was not ok');
     const data = await response.json();
