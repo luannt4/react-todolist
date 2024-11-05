@@ -74,7 +74,6 @@ const FormSearch: React.FC = () => {
                 <div className="text-red-500 text-center py-4">Error: {error.message}</div>
             )}
 
-
                 <ul className="grid grid-cols-4  gap-3">
                     {filteredProducts.map((product) => (
                         <SearchItem

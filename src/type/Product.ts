@@ -11,6 +11,12 @@ export interface Product {
   price: number;
   category: string;
 }
+export interface category {
+  slug: string;
+  name: string;
+  url: string;
+}
+
 export interface SearchResponse {
   products: Product[];
   total: number;

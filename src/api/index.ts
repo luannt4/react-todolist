@@ -1,6 +1,6 @@
 // src/api.ts
 import { useQuery } from '@tanstack/react-query';
-import { Product, SearchResponse,QueryOptionsType } from "./../type/Product";
+import { Product,category, SearchResponse,QueryOptionsType } from "./../type/Product";
 
 const API_URL = "https://dummyjson.com";
 
@@ -16,7 +16,7 @@ export const useProducts = () => {
 };
 
 // Hàm fetch dữ liệu từ API dựa trên từ khóa và danh mục
-export const fetchSearchProducts = async (query: string, category: string): Promise<SearchResponse> => {
+export const fetchSearchProducts = async (query: string, category: string): Promise<category> => {
   const response = await fetch(`${API_URL}/products/search?q=${encodeURIComponent(query)}`);
   if (!response.ok)  throw new Error('Network response was not ok');
   const data = await response.json();
@@ -24,6 +24,8 @@ export const fetchSearchProducts = async (query: string, category: string): Prom
   // Lọc sản phẩm theo danh mục nếu có
   return category ? data.products.filter((p: Product) => p.category === category) : data.products;
 };
+
+
 
 
 export const useSearchQuery = (options: QueryOptionsType) => {

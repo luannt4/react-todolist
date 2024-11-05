@@ -4,6 +4,7 @@ import TodoApp from './component/todo-api';
 import FormSearch from './component/formSearch';
 import { ProductProvider } from "./component/todo-api/context/ProductContext";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Listingtabs from './component/listingtabs';
 const queryClient = new QueryClient();
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
      <QueryClientProvider client={queryClient}>
         <ProductProvider>
             <FormSearch />
-            <TodoApp />
+            <Listingtabs />
             
         </ProductProvider>
      
