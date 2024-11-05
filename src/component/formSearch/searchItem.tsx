@@ -1,6 +1,6 @@
 // src/TodoItem.tsx
 import React from "react";
-import { Product } from "../../type/Todo";
+import { Product } from "../../type/Product";
 
 interface SearchItemProps {
     product : Product;
@@ -8,7 +8,7 @@ interface SearchItemProps {
 
 
 const SearchItem: React.FC<SearchItemProps> = ({ product }) => {
-    const {id, title, description, price } = product;
+    const {id, title, category, price } = product;
 
    return (
     <li className=" gap-2 p-2 border rounded bg-white">
@@ -19,7 +19,7 @@ const SearchItem: React.FC<SearchItemProps> = ({ product }) => {
             ${price}
         </p>
         <p className="text-gray-500 mb-5 line-clamp-2">
-            {description}
+            {category}
         </p>
        
     </li>

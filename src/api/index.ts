@@ -15,13 +15,16 @@ export const useProducts = () => {
   });
 };
 
-
-export const fetchSearchProducts = async (query: string): Promise<SearchResponse> => {
+// Hàm fetch dữ liệu từ API dựa trên từ khóa và danh mục
+export const fetchSearchProducts = async (query: string, category: string): Promise<SearchResponse> => {
   const response = await fetch(`${API_URL}/products/search?q=${encodeURIComponent(query)}`);
   if (!response.ok)  throw new Error('Network response was not ok');
   const data = await response.json();
-  return data.products;
+
+  // Lọc sản phẩm theo danh mục nếu có
+  return category ? data.products.filter((p: Product) => p.category === category) : data.products;
 };
+
 
 export const useSearchQuery = (options: QueryOptionsType) => {
   const searchTerm = options.text;
