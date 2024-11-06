@@ -6,9 +6,13 @@ import Home2Layout from "./layouts/home2/layout";
 import HomePage from "./pages/home";
 import Home2Page from "./pages/home2";
 import ComparePage from "./pages/compare";
+import WishlistPage from "./pages/wishlist";
 import NoPage from "./pages/noPage";
 import BlogsPage from "./pages/blogs";
 import ContactPage from "./pages/contact";
+import CategoriesPage from "./pages/Categories";
+import CategoriesProductPage from "./pages/Category";
+import ProductDetailsPage from "./pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,22 @@ const router = createBrowserRouter([
       {
         path: "compare",
         element: <ComparePage />,
+      },
+      {
+        path: "wishlist",
+        element: <WishlistPage />,
+      },
+      {
+        path: "categories",
+        element: <CategoriesPage />,
+      },
+      {
+        path: "category/:categoryName",
+        element: <CategoriesProductPage />,
+      },
+      {
+        path: "product/:productId",
+        element: <ProductDetailsPage />,
       },
       {
         path: "blogs",
