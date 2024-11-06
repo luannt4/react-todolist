@@ -1,10 +1,15 @@
-import { ModalProvider } from  './modal/modal.context';
-import { ProductProvider } from "./product/product.context";
+import { ModalProvider } from  './modal.context';
+import { ProductProvider } from "./product.context";
+import { CompareProvider } from "./compare.context";
 
 export function ManagedUIContext({ children }: React.PropsWithChildren<{}>) {
     return (
       <ProductProvider>
-          <ModalProvider>{children}</ModalProvider>
+        <CompareProvider>
+          <ModalProvider>
+            {children}
+          </ModalProvider>
+        </CompareProvider>
       </ProductProvider>
     );
   }

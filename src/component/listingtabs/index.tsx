@@ -35,7 +35,7 @@ const Listingtabs: React.FC = () => {
 
 
     return (
-        <div className="mb-8 lg:mb-15 max-w-screen-2xl m-auto">
+        <div className="mb-8 lg:mb-15 ">
             <ListingTabsList className={` py-2.5 rounded bg-white`} categories={categories} onNavClick={handleTabClick} activeTab={activeCategory} />
             
             {isPending && (

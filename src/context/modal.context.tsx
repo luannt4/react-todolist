@@ -1,5 +1,5 @@
 'use client';
-import { Product } from "../../type/Product";
+import { Product } from "../type/Product";
  import React, { createContext, useContext, useReducer } from "react";
 
 type ModalView  =
@@ -14,18 +14,18 @@ type ModalView  =
   | 'CATEGORY_VIEW';
 
 interface State {
-  modalView?: ModalView ;
-  selectedProduct: any;
+  modalView?: ModalView | null;
+  selectedProduct?: Product | null | undefined;
 }
 
 type Action =
   | { type: "SET_MODAL_VIEW"; payload: ModalView  }
-  | { type: "SET_SELECTED_PRODUCT"; payload: Product | null }
+  | { type: "SET_SELECTED_PRODUCT"; payload: Product| null }
   | { type: "CLOSE_MODAL" };
 
 const initialState: State = {
-  modalView: undefined,
-  selectedProduct: null,
+  modalView: null,
+  selectedProduct: undefined,
 };
 
 function modalReducer(state: State, action: Action): State {
@@ -35,31 +35,31 @@ function modalReducer(state: State, action: Action): State {
     case 'SET_SELECTED_PRODUCT':
         return {...state, selectedProduct: action.payload};  
     case 'CLOSE_MODAL':
-        return { ...state,modalView: undefined , selectedProduct: null ,};
+        return { ...state,modalView: null , selectedProduct: null};
     default:
         return state;
   }
 }
 
 interface ModalContextType {
-  modalView?: ModalView;
-  selectedProduct: Product;
+  modalView?: ModalView | null;
+  selectedProduct: Product| null| undefined;
   setModalView: (view: ModalView, product: Product) => void;
   closeModal: () => void;
 }
 const ModalContext =  createContext<ModalContextType | undefined>(undefined);
 
 export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, dispatch] = useReducer(modalReducer, initialState);
+  	const [state, dispatch] = useReducer(modalReducer, initialState);
 
-  const setModalView = (view: ModalView, product: Product) => {
-    dispatch({ type: "SET_MODAL_VIEW", payload: view });
-    dispatch({ type: "SET_SELECTED_PRODUCT", payload: product });
-  };
+  	const setModalView = (view: ModalView, product: Product) => {
+    	dispatch({ type: "SET_MODAL_VIEW", payload: view });
+    	dispatch({ type: "SET_SELECTED_PRODUCT", payload: product });
+  	};
 
-  const closeModal = () => {
-    dispatch({ type: "CLOSE_MODAL" });
-  };
+  	const closeModal = () => {
+    	dispatch({ type: "CLOSE_MODAL" });
+  	};
 
   return (
     <ModalContext.Provider

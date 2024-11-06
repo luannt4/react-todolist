@@ -1,6 +1,6 @@
 // src/TodoContext.tsx
 import React, { createContext, useContext, useReducer,  ReactNode } from "react";
-import productReducer,{ProductAction, ProductState } from "../../component/todo-api/reducers/ProductReducer";
+import productReducer,{ProductAction, ProductState } from "../component/todo-api/reducers/ProductReducer";
 
 
 interface ProductContextType {

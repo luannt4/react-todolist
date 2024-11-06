@@ -1,5 +1,5 @@
 import Modal from '../modal/modal';
-import {useModal } from './../../../context/modal/modal.context';
+import {useModal } from '../../../context/modal.context';
 
 import ProductPopup from '../../product/product-popup';
 

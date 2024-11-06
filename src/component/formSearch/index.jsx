@@ -39,7 +39,7 @@ const FormSearch: React.FC = () => {
       };
 
     return (
-        <div className="max-w-screen-2xl mx-auto p-4 bg-gray-100 rounded shadow mb-10">
+        <div className="p-4 bg-gray-100 rounded bg-white mb-10">
             <form  className="flex flex-row gap-2 mb-4">
                 <label className="block mb-1">Search:</label>
                 <input
