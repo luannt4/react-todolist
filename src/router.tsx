@@ -10,7 +10,7 @@ import WishlistPage from "./pages/wishlist";
 import NoPage from "./pages/noPage";
 import BlogsPage from "./pages/blogs";
 import ContactPage from "./pages/contact";
-import CategoriesPage from "./pages/Categories";
+import CategoriesPage from "./pages/categories";
 import CategoriesProductPage from "./pages/Category";
 import ProductDetailsPage from "./pages/ProductDetails";
 

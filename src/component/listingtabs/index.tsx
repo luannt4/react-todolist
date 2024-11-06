@@ -1,5 +1,5 @@
 import React, { useState,useMemo,  useEffect, useTransition } from "react";
-import { fetchAllCategories } from '../../api/fetchAllCategories';
+import { fetchAllCategories } from '../../api/fetchCategories';
 import { fetchProductsByCategory } from '../../api/fetchProductsByCategory';
 import { useQuery } from "@tanstack/react-query";
 import ListingTabsList from "./listingtabs-list";

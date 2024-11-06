@@ -1,19 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../type/Product";
+import { fetchProductsByCategory } from "../api/fetchProductsByCategory";
 
 const CategoriesProductPage = () => {
-    const { categoryName } = useParams<{ categoryName: string }>();
-    const apiUrl = process.env.REACT_APP_API_URL;
-    const { data: products, isLoading } = useQuery({
-
-    queryKey: ['products', categoryName],
-    queryFn: async () => {
-      const response = await fetch(`${apiUrl}/products/category/${categoryName}`);
-      const data = await response.json();
-      return data.products;
-    }
+    const { categoryName} = useParams<{ categoryName: string }>();
+    const { data: products= [], isLoading } = useQuery({
+        queryKey: ['products', categoryName],
+        queryFn: () => fetchProductsByCategory(categoryName)
   });
+   
 
   if (isLoading) return <div>Loading products...</div>;
 
@@ -21,7 +17,7 @@ const CategoriesProductPage = () => {
     <div>
       <h1 className="text-2xl font-bold mb-6 capitalize">{categoryName}</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {products?.map((product: Product) => (
+        {(products as [])?.map((product: Product) => (
           <Link 
             key={product.id}
             to={`/product/${product.id}`}
