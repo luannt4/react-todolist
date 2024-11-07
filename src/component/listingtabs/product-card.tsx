@@ -21,14 +21,15 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     
     const isInCompare = (productId: number) => compareList.some((product) => product.id === productId);
     const isWishlist = (productId: number) => wishlistList.some((product) => product.id === productId);
-
+    // Create slug from title
+    const slug = product.title.toLowerCase().replace(/\s+/g, '-');
 
     return (
         <li className=" gap-2 p-2 border rounded bg-white">
             <p className={`w-full cursor-pointer font-medium `}>
                 <Link 
                     key={id} 
-                    to={`/product/${id}`}
+                    to={`/product/${id}-${slug}`}
                     className="transition-shadow"
                     >
                     {title}

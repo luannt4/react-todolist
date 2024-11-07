@@ -1,7 +1,4 @@
-import cn from 'classnames';
-import {useState} from "react";
 import ProductCard from './product-card';
-import { Product } from '../../type/Todo';
 
 interface Props{
     className?: string;

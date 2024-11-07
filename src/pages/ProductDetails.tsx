@@ -1,17 +1,29 @@
 import { useParams, Link } from "react-router-dom";
+import React, {useEffect } from 'react';
+
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../type/Product";
 import { fetchProductDetails } from "../api/fetchProductDetails";
 
 const ProductDetailsPage = () => {
-    const { productId } = useParams<{ productId: string }>();
-  
-    const { data: product, isLoading } = useQuery<Product>({
+    const { slug } = useParams<{ slug: string }>();
+
+    // Parse product ID from the slug. Ensure this is done only once.
+    const productId = slug ? parseInt(slug.split('-')[0]) : null;
+    
+    // Use `useQuery` to fetch product details, ensuring a single request
+    const { data: product, isLoading, error } = useQuery<Product>({
         queryKey: ['product', productId],
-        queryFn: () => fetchProductDetails(productId)
+        queryFn: () => fetchProductDetails(productId as number),
+        enabled: !!productId,
+       
     });
    
-
+     // Log productId only once when component mounts
+    useEffect(() => {
+        console.log("Fetched productId:", productId);
+    }, [productId]);
+    
     if (isLoading) return <div>Loading...</div>;
     if (!product) return <div>Product not found</div>;
 

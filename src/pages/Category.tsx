@@ -12,7 +12,6 @@ const CategoriesProductPage = () => {
    
 
   if (isLoading) return <div>Loading products...</div>;
-
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 capitalize">{categoryName}</h1>
@@ -20,7 +19,7 @@ const CategoriesProductPage = () => {
         {(products as [])?.map((product: Product) => (
           <Link 
             key={product.id}
-            to={`/product/${product.id}`}
+            to={`/product/${product.id}-${product.title.toLowerCase().replace(/\s+/g, '-')}`}
             className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
           >
             <img 
