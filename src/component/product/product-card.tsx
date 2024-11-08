@@ -7,6 +7,7 @@ import {useModal } from '../../context/modal.context';
 import {useCompare } from '../../context/compare.context';
 import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'react-icons/io';
 import { useWishlist } from "../../context/wishlist.context";
+import ImageFill from "../ui/image";
 
 interface Props {
     product : Product;
@@ -32,11 +33,13 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                 key={id} 
                 to={`/product/${slug}-${id}`}
                 className="block relative overflow-hidden pb-[100%] bg-slate-100">
-                <img 
-                src={thumbnail} 
-                alt={title}
-                className="group-hover:scale-105 duration-300 absolute w-full h-full object-cover"
-                />
+
+                    <ImageFill src={thumbnail|| 'Product Image'}    alt={title || 'Product Image'}/>
+                    <img 
+                    src={thumbnail} 
+                    alt={title}
+                    className="group-hover:scale-105 duration-300 absolute w-full h-full object-cover"
+                    />
 
             </Link>
             <div className="py-3 px-1.5 ">
