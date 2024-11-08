@@ -1,5 +1,5 @@
 // src/TodoReducer.ts
-import { Product  } from "../../../type/Todo";
+import { Product  } from "../../../types/Todo";
 
 export type ProductAction  =
   | { type: "ADD_PRODUCT"; payload: Product }

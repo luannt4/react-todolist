@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import {useState} from "react";
-import {category} from "../../type/Product"
+import {category} from "../../types/Product"
 
 
 interface Props{

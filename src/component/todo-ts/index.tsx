@@ -1,7 +1,7 @@
 // src/TodoApp.tsx
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
-import { Todo } from "../../type/Todo";
+import { Todo } from "../../types/Todo";
 import TodoInput from "../todo-state/TodoInput";
 
 const TodoApp: React.FC = () => {

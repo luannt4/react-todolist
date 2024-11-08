@@ -1,6 +1,6 @@
 // src/TodoContext.tsx
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
-import { Todo } from "../../type/Todo";
+import { Todo } from "../../types/Todo";
 import { todoReducer } from "./TodoReducer";
 
 

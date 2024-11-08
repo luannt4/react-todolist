@@ -1,18 +1,18 @@
 // router.tsx
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import DefaultLayout from "./layouts/default/layout";
-import Home2Layout from "./layouts/home2/layout";
+import DefaultLayout from "../layouts/default/layout";
+import Home2Layout from "../layouts/home2/layout";
 
-import HomePage from "./pages/home";
-import Home2Page from "./pages/home2";
-import ComparePage from "./pages/compare";
-import WishlistPage from "./pages/wishlist";
-import NoPage from "./pages/noPage";
-import BlogsPage from "./pages/blogs";
-import ContactPage from "./pages/contact";
-import CategoriesPage from "./pages/categories";
-import CategoriesProductPage from "./pages/Category";
-import ProductDetailsPage from "./pages/ProductDetails";
+import HomePage from "../pages/home";
+import Home2Page from "../pages/home2";
+import ComparePage from "../pages/compare";
+import WishlistPage from "../pages/wishlist";
+import NoPage from "../pages/noPage";
+import BlogsPage from "../pages/blogs";
+import ContactPage from "../pages/contact";
+import CategoriesPage from "../pages/Categories";
+import CategoriesProductPage from "../pages/Category";
+import ProductDetailsPage from "../pages/ProductDetails";
 
 const router = createBrowserRouter([
   {

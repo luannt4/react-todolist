@@ -2,7 +2,7 @@
 import React from "react";
 import { useProductContext } from "./context/ProductContext";
 
-import { Product } from "../../type/Todo";
+import { Product } from "../../types/Todo";
 import StarIcon from "./star-icon";
 
 interface TodoItemProps {

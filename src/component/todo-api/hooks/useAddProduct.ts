@@ -1,6 +1,6 @@
 // src/hooks/useAddProduct.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Product } from "../../../type/Todo";
+import { Product } from "../../../types/Todo";
 
 const addProduct = async (product: Omit<Product, "id">) => {
   const response = await fetch("https://dummyjson.com/products/add", {

@@ -2,14 +2,15 @@ import { useParams, Link } from "react-router-dom";
 import React, {useEffect } from 'react';
 
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "../type/Product";
+import { Product } from "../types/Product";
+import {getIdFromSlug} from "../utils/get-id-from-slug";
 import { fetchProductDetails } from "../api/fetchProductDetails";
 
 const ProductDetailsPage = () => {
     const { slug } = useParams<{ slug: string }>();
 
     // Parse product ID from the slug. Ensure this is done only once.
-    const productId = slug ? parseInt(slug.split('-')[0]) : null;
+    const productId = getIdFromSlug(slug as string);
     
     // Use `useQuery` to fetch product details, ensuring a single request
     const { data: product, isLoading, error } = useQuery<Product>({

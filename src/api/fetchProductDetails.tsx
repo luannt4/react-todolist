@@ -1,5 +1,5 @@
 // src/api.ts
-import { Product} from "../type/Product";
+import { Product} from "../types/Product";
 
 // Hàm fetch Categories dữ liệu từ API 
 export const fetchProductDetails = async (productId: number | undefined): Promise<Product> => {

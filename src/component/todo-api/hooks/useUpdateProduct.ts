@@ -1,6 +1,6 @@
 // src/hooks/useUpdateProduct.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Product } from "../../../type/Todo";
+import { Product } from "../../../types/Todo";
 
 const updateProduct = async (product: Product) => {
   const response = await fetch(`https://dummyjson.com/products/${product.id}`, {

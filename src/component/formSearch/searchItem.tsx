@@ -1,6 +1,6 @@
 // src/TodoItem.tsx
 import React from "react";
-import { Product } from "../../type/Product";
+import { Product } from "../../types/Product";
 
 interface SearchItemProps {
     product : Product;

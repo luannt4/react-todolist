@@ -1,5 +1,5 @@
 import React from "react";
-import { Product  } from "../../type/Todo";
+import { Product  } from "../../types/Todo";
 import ProductItem from "./TodoItem";
 import { useProductContext   } from "./context/ProductContext";
 import { useProducts } from './api';

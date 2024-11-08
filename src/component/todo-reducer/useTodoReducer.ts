@@ -1,6 +1,6 @@
 // src/useTodoReducer.ts
 import { useReducer, useEffect } from "react";
-import { Todo } from "../../type/Todo";
+import { Todo } from "../../types/Todo";
 
 // Định nghĩa các action cho useReducer
 type Action =

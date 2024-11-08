@@ -1,6 +1,6 @@
 // src/TodoItem.tsx
 import React from "react";
-import { Todo } from "../../type/Todo";
+import { Todo } from "../../types/Todo";
 import StarIcon from "./star-icon";
 interface TodoItemProps {
     todo : Todo;

@@ -1,5 +1,5 @@
 'use client';
-import { Product } from "../type/Product";
+import { Product } from "../types/Product";
  import React, { createContext, useContext, useReducer } from "react";
 
 type ModalView  =

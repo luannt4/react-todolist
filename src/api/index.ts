@@ -1,6 +1,6 @@
 // src/api.ts
 import { useQuery } from '@tanstack/react-query';
-import { Product,category, SearchResponse,QueryOptionsType } from "./../type/Product";
+import { Product,category, SearchResponse,QueryOptionsType } from "../types/Product";
 
 const API_URL = "https://dummyjson.com";
 

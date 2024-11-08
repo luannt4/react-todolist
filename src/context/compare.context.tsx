@@ -1,6 +1,6 @@
 // ProductContext.tsx
 import React, { createContext, useContext, useReducer,useEffect } from "react";
-import { Product } from "../type/Product";
+import { Product } from "../types/Product";
 import { compareReducer } from "../reducer/CompareReducer";
 
 interface CompareContextType {

@@ -1,4 +1,4 @@
-import ProductCard from './product-card';
+import ProductCard from '../product/product-card';
 
 interface Props{
     className?: string;
@@ -8,7 +8,6 @@ interface Props{
 }
 
 const ListingTabsContainer: React.FC<Props> = ({products, isLoading, error}) => {
-    
     return (
         <ul className="grid grid-cols-4  gap-3 bg-white">
             {products.map((product: any) => (

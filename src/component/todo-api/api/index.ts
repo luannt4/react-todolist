@@ -1,6 +1,6 @@
 // src/api.ts
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Product } from "../../../type/Todo";
+import { Product } from "../../../types/Todo";
 
 const API_URL = "https://dummyjson.com/products";
 

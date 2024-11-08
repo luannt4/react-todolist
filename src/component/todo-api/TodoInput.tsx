@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Product } from "../../type/Todo";
+import { Product } from "../../types/Todo";
 import { useProductContext  } from "./context/ProductContext";
 import { useUpdateProduct } from "./hooks/useUpdateProduct";
 import { useAddProduct } from "./hooks/useAddProduct";

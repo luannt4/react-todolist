@@ -1,5 +1,5 @@
 // src/TodoReducer.ts
-import { Todo } from "../../type/Todo";
+import { Todo } from "../../types/Todo";
 
 type Action =
   | { type: "ADD_TODO"; payload: string }

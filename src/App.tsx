@@ -3,7 +3,7 @@ import { ManagedUIContext } from "./context/ui.context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import ManagedModal from './component/common/modal/managed-modal';
-import { AppRouter } from "./router";
+import { AppRouter } from "./routes/AppRouter";
 
 const queryClient = new QueryClient();
 

@@ -1,11 +1,10 @@
 import Listingtabs from '../component/listingtabs';
-import FormSearch from '../component/formSearch';
 
 const HomePage = () => {
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <FormSearch />
+        <div className="min-h-screen">
+            
             <Listingtabs />
         </div>
     );

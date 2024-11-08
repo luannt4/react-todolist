@@ -1,4 +1,4 @@
-import { Product } from "../type/Product";
+import { Product } from "../types/Product";
 
 type Action =
   | { type: "ADD_TO_WISHLIST"; product: Product }

@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchAllCategories } from "../api/fetchCategories";
 
 const CategoriesPage = () => {
-    
     // Gọi API lấy fetchAllCategories với useQuery
     const {data: categories= [], isLoading } = useQuery({
         queryKey: ['categories'],
@@ -15,9 +14,13 @@ const CategoriesPage = () => {
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {(categories as []).map((category: any, idx: number) => (
-            <div key={category.slug} className=" border rounded-lg hover:bg-gray-50 text-center pointer">
-                <Link to={`/category/${category.slug}`} className="p-4 text-black-500 block hover:text-blue-500">
-                {category.name}
+            <div key={category.slug} className="pointer">
+                <Link to={`/category/${category.slug}`} className="group block">
+                    <div className="pb-[75%] relative overflow-hidden">
+                        <img loading="lazy" className="group-hover:scale-105 duration-300 absolute w-full h-full object-cover"
+                        src={`https://dummyjson.com/image/600x300/f1f5f9?fontFamily=poppins&text=${String(category.name).replace(/ /g, '+')}`}
+                        alt={category.name} />
+                    </div>
                 </Link>
             </div>
             ))}
