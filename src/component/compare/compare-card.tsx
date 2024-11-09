@@ -8,7 +8,7 @@ interface Props {
 }
 
 const CompareCard: React.FC<Props> = ({ product, removeCompare }) => {
-    const {id,title, category, price,thumbnail } = product;
+    const {id,title,  price,thumbnail } = product;
     return (
     <div className="flex items-center  gap-2 border-b">
         <img src={thumbnail} alt={title} className="inline-block w-20"/>

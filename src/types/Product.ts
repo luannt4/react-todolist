@@ -13,7 +13,7 @@ export interface Product {
   category: string;
   thumbnail: string;
 }
-export interface category {
+export interface Category {
   slug: string;
   name: string;
   url: string;
@@ -25,6 +25,9 @@ export interface SearchResponse {
   skip: number;
   limit: number;
 }
+
+
+
 export type QueryOptionsType = {
   text: string;
   category?: string;

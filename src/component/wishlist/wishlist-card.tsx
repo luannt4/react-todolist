@@ -8,7 +8,7 @@ interface Props {
 }
 
 const WishlistCard: React.FC<Props> = ({ product, removeWishlist }) => {
-    const {id,title, category, price,thumbnail } = product;
+    const {id,title,  price,thumbnail } = product;
     return (
     <div className="gap-2 p-2 border rounded bg-white">
         <img src={thumbnail} alt={title} className="inline-block w-20"/>

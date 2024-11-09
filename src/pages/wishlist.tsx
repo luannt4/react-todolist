@@ -3,7 +3,6 @@ import { useWishlist } from '../context/wishlist.context';
 
 const WishlistPage = () => {
   const {wishlistList,removeFromWishlist} = useWishlist();
-  const isWishlist = (productId: number) => wishlistList.some((product) => product.id === productId);
   return (
     <>
 		<h1 className='mb-5'>Wishlist Page</h1>

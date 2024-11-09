@@ -1,9 +1,8 @@
-import { Link, Outlet } from "react-router-dom";
 
 import Logo from "../../component/ui/logo";
 import Container from "../../component/ui/container";
-import HeaderMenutop from '../../component/header/menutop';
-import MainMenu from "../../component/header/mainMenu";
+import HeaderMenutop from './header/menutop';
+import MainMenu from "./header/mainMenu";
 import FormSearch from "../../component/formSearch";
 
 const Header = () => {
@@ -13,7 +12,7 @@ const Header = () => {
             <div className="top-bar  text-sm text-fill-base border-b border-black/10">
                 <Container>
                     <div className="w-full h-11 flex justify-between items-center text-sm">
-                        <text className="hidden md:block truncate">Stote Location: 1234 Heaven Stress, Beverly Hill, Melbourne, USA.</text>
+                        <p className="hidden md:block truncate">Stote Location: 1234 Heaven Stress, Beverly Hill, Melbourne, USA.</p>
                         <HeaderMenutop />
                     </div>
                 </Container>

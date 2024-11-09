@@ -1,13 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
-import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'react-icons/io';
-import {useCompare } from '../../context/compare.context';
-import { useWishlist } from "../../context/wishlist.context";
+import { Link } from "react-router-dom";
+import { IoIosHeart, IoIosSync } from 'react-icons/io';
+import {useCompare } from '../../../context/compare.context';
+import { useWishlist } from "../../../context/wishlist.context";
 import cn from 'classnames';
 
 
 interface MenuProps {
     className?: string;
- }
+}
 
 const HeaderMenutop: React.FC<MenuProps> = ({className }) => {
     const {compareList} = useCompare();
@@ -18,7 +18,7 @@ const HeaderMenutop: React.FC<MenuProps> = ({className }) => {
             'flex flex-shrink-0 smx-auto pace-s-5',
             className
         )}>
-            <nav className=" flex relative  flex transition-all duration-200 ease-in-out  ">
+            <nav className="relative  flex transition-all duration-200 ease-in-out  ">
                 <div className="menuItem group cursor-pointer mx-2 md:mx-3 ">
                     <Link to="/wishlist" className=" py-2 flex gap-1 items-center hover:text-blue-500"> 
                         <IoIosHeart className="h-4 w-4"/>

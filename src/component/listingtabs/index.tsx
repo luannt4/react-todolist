@@ -1,14 +1,17 @@
-import React, { useState,useMemo,  useEffect, useTransition } from "react";
+import React, { useState,   useTransition } from "react";
 import { fetchAllCategories } from '../../api/fetchCategories';
 import { fetchProductsByCategory } from '../../api/fetchProductsByCategory';
 import { useQuery } from "@tanstack/react-query";
 import ListingTabsList from "./listingtabs-list";
 import ListingTabsContainer from "./listingtabs-container";
+import { LIMITS } from "../../settings/limits";
+import { SearchResponse } from "../../types/Product";
 
 const Listingtabs: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>("beauty");
     const [isPending, startTransition] = useTransition();
-
+    const limit = LIMITS.PAGESEARCH_LIMITS;
+    const page : number = 1;
 
     const handleTabClick = (slug:string) => {
         startTransition(() => {setActiveCategory(slug)});
@@ -21,17 +24,18 @@ const Listingtabs: React.FC = () => {
     });
    
     // Gọi API lấy sản phẩm theo danh mục hiện tại với useQuery
-    const { data: products =[]  , isLoading, error } = useQuery({
-        queryKey: ['products',activeCategory],
-        queryFn: () => fetchProductsByCategory(activeCategory),
+    const { data , isLoading, error } = useQuery<SearchResponse>({
+        queryKey: ['products',activeCategory,limit, page],
+        queryFn: () => fetchProductsByCategory(activeCategory,page,limit),
         enabled: !!activeCategory, // Chỉ gọi API khi có danh mục
     });
+     const {products = [] } = data  ?? {};
 
     // Sử dụng useMemo để chỉ lọc lại danh sách khi searchTerm thay đổi
-    const filteredProducts = useMemo(() => {
+    /*const filteredProducts = useMemo(() => {
         if (!products) return [];
         return products;
-    }, [activeCategory, products]);
+    }, [activeCategory, products]);*/
 
 
     return (

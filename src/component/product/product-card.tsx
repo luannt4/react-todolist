@@ -1,8 +1,7 @@
 // src/TodoItem.tsx
 import React from "react";
 import { Product } from "../../types/Product";
-import { useNavigate, Link } from "react-router-dom";
-import SearchIcon from '../../component/icons/search-icon';
+import {  Link } from "react-router-dom";
 import {useModal } from '../../context/modal.context';
 import {useCompare } from '../../context/compare.context';
 import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'react-icons/io';
@@ -32,15 +31,8 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             <Link
                 key={id} 
                 to={`/product/${slug}-${id}`}
-                className="block relative overflow-hidden pb-[100%] bg-slate-100">
-
-                    <ImageFill src={thumbnail|| 'Product Image'}    alt={title || 'Product Image'}/>
-                    <img 
-                    src={thumbnail} 
-                    alt={title}
-                    className="group-hover:scale-105 duration-300 absolute w-full h-full object-cover"
-                    />
-
+                className="block relative overflow-hidden pb-[230px] bg-slate-100">
+                    <ImageFill src={thumbnail|| 'Product Image'} height={"230px"}   alt={title || 'Product Image'}/>
             </Link>
             <div className="py-3 px-1.5 ">
                 <p className="text-gray-500 mb-2 capitalize">
@@ -61,13 +53,13 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                         {title}
                     </Link>
                 </p>
-                <p className="text-gray-500 text-lg mb-5">
+                <div className="text-gray-500 text-lg mb-5">
                     <div className="flex gap-x-2">
                         <div className="text-black dark:text-white">{price}$</div>
                         <div className="line-through text-gray-400">{priceOld}$</div>
                     </div>
                     
-                </p>
+                </div>
                 
                 <div className="flex gap-2">
                 <button

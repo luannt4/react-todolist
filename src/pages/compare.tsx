@@ -3,7 +3,6 @@ import {useCompare } from '../context/compare.context';
 
 const ComparePage = () => {
   const {compareList,removeFromCompare} = useCompare();
-  const isInCompare = (productId: number) => compareList.some((product) => product.id === productId);
   return (
     <>
 		<h1 className='mb-5'>Compare Page</h1>

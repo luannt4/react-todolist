@@ -1,5 +1,5 @@
-import { useParams, Link } from "react-router-dom";
-import React, {useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import {useEffect } from 'react';
 
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../types/Product";
@@ -13,7 +13,7 @@ const ProductDetailsPage = () => {
     const productId = getIdFromSlug(slug as string);
     
     // Use `useQuery` to fetch product details, ensuring a single request
-    const { data: product, isLoading, error } = useQuery<Product>({
+    const { data: product, isLoading } = useQuery<Product>({
         queryKey: ['product', productId],
         queryFn: () => fetchProductDetails(productId as number),
         enabled: !!productId,

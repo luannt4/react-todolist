@@ -1,6 +1,4 @@
 import cn from 'classnames';
-import {useState} from "react";
-import {category} from "../../types/Product"
 
 
 interface Props{
@@ -19,9 +17,7 @@ const ListingTabsList: React.FC<Props> = ({ className = 'mb-12 pb-0.5', categori
             )}
         >
             <h3 className="text-base text-[16px] uppercase text-skin-base font-bold border-0 hover:text-skin-primary lg:basis-[30%]">
-                <a href={"#"}>
-                    Electronic & Digital
-                </a>
+                Electronic & Digital
             </h3>
 
             <div className="ltabs-tabs-wrap flex flex-wrap	 justify-end lg:basis-[70%]">
