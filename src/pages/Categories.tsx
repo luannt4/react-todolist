@@ -30,6 +30,9 @@ const CategoriesPage = () => {
     useEffect(() => {
         // Update `filterData` whenever `data` or `limit` changes
         setfilterCategories(data?.slice(0, limit));
+        if (!data) {
+            throw new Error('Hook must be used within Provider');
+        }
     }, [data, limit]);
 
     if (isLoading) return (

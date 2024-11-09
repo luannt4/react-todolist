@@ -1,5 +1,5 @@
 import React from "react";
-import { ManagedUIContext } from "./context/ui.context";
+import { AppProvider } from "./contexts/AppContextProvider";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import ManagedModal from './component/common/modal/managed-modal';
@@ -10,10 +10,10 @@ const queryClient = new QueryClient();
 const App: React.FC = () => {
   return (
      <QueryClientProvider client={queryClient}>
-        <ManagedUIContext>
+        <AppProvider>
             <AppRouter/>
             <ManagedModal />
-        </ManagedUIContext>
+        </AppProvider>
      
     </QueryClientProvider>
   );

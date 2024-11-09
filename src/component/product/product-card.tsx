@@ -2,10 +2,10 @@
 import React from "react";
 import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
-import {useModal } from '../../context/modal.context';
-import {useCompare } from '../../context/compare.context';
+import {useModal } from '../../contexts';
+import {useCompare } from '../../contexts';
 import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'react-icons/io';
-import { useWishlist } from "../../context/wishlist.context";
+import { useWishlist } from "../../contexts";
 import ImageFill from "../ui/image";
 
 interface Props {

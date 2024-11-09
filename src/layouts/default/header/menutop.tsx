@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IoIosHeart, IoIosSync } from 'react-icons/io';
-import {useCompare } from '../../../context/compare.context';
-import { useWishlist } from "../../../context/wishlist.context";
+import {useCompare } from '../../../contexts';
+import { useWishlist } from "../../../contexts";
 import cn from 'classnames';
 
 

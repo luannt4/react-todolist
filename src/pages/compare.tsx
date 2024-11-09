@@ -1,5 +1,5 @@
 import CompareCard from '../component/compare/compare-card';
-import {useCompare } from '../context/compare.context';
+import {useCompare } from '../contexts';
 
 const ComparePage = () => {
   const {compareList,removeFromCompare} = useCompare();
