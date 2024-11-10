@@ -3,6 +3,7 @@ import { IoIosHeart, IoIosSync } from 'react-icons/io';
 import {useCompare } from '../../../contexts';
 import { useWishlist } from "../../../contexts";
 import cn from 'classnames';
+import { HeaderSettings } from "./settings";
 
 
 interface MenuProps {
@@ -31,9 +32,8 @@ const HeaderMenutop: React.FC<MenuProps> = ({className }) => {
                     Compare({compareList.length})
                 </Link>
                 </div>
-                <div className="menuItem group cursor-pointer mx-2 md:mx-3 ">
-                    <a className="text-fill-base inline-flex items-center py-2 font-normal relative hover:text-blue-500" href="/en">Gift Certificates</a>
-                </div>
+            
+                <HeaderSettings/>
             </nav>
         </div>
     );

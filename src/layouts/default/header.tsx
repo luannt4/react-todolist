@@ -4,11 +4,12 @@ import Container from "../../component/ui/container";
 import HeaderMenutop from './header/menutop';
 import MainMenu from "./header/mainMenu";
 import FormSearch from "../../component/formSearch";
-
+import AccountIcon from '../../component/icons/account-icon';
+import CartIcon from '../../component/icons/cart-icon';
 const Header = () => {
    
     return (
-        <header className="sticky md:top-0 mb-10  w-full  z-40 bg-white/75 dark:bg-black/75 backdrop-blur-sm dark:backdrop-blur-lg">
+        <header className="sticky md:top-0  w-full  z-40 bg-white/75 dark:bg-black/75 ">
             <div className="top-bar  text-sm text-fill-base border-b border-black/10">
                 <Container>
                     <div className="w-full h-11 flex justify-between items-center text-sm">
@@ -23,9 +24,24 @@ const Header = () => {
                     <div className="w-full flex py-4 h-20 justify-between items-center ">
                             <Logo/>
                             <FormSearch />
-                            <div className="flex items-center gap-x-2.5 text-sm">
-                                
-                            
+                            <div className="text-brand-icon-header flex text-sm space-x-5 xl:space-x-10 lg:max-w-[33%]">
+                                <div className=" lg:flex items-center shrink-0 accountButton">
+                                    <div className="cart-button">
+                                        <AccountIcon />
+                                    </div>
+                                    <button className="text-sm font-normal focus:outline-none ms-2" aria-label="Authentication">My Account</button>
+                                     
+                                </div>
+                                <div className="items-center justify-center shrink-0 h-auto focus:outline-none transform lg:flex" aria-label="cart-button">
+                                    <div className="relative flex items-center">
+                                        <div className="flex items-center relative cart-button">
+                                            <CartIcon/>
+                                            <span className="cart-counter-badge  h-[18px] min-w-[18px] rounded-full flex items-center justify-center bg-blue-500 text-white absolute -top-1 left-3 text-[11px]">0</span>
+                                        </div>
+                                        <span className="text-sm font-normal ms-2">My Cart</span>
+                                        </div>
+                                </div>
+
                             </div>
                         </div>
                 </Container>

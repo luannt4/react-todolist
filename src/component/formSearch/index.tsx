@@ -13,7 +13,7 @@ interface Props {
     className?: string;
 }
 
-const FormSearch: React.FC<Props> = ({className= 'md:w-[730px] 2xl:w-[800px]'}) => {
+const FormSearch: React.FC<Props> = ({className= 'md:w-[730px]'}) => {
     const [isSearching, setIsSearching] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [category, setCategory] = useState("");
@@ -62,31 +62,33 @@ const FormSearch: React.FC<Props> = ({className= 'md:w-[730px] 2xl:w-[800px]'}) 
 
     return (
         <div className={cn(
-          'w-ful relative transition-all duration-200 ease-in-out',
+          'w-full relative transition-all duration-200 ease-in-out',
           className
         )}>
             <form onSubmit={handleSubmit}  className="flex flex-row gap-2">
-                <input
-                    type="text"
-                    className="w-full px-3 py-2 border rounded border-black/20"
-                    placeholder="Search products..."
-                    value={searchTerm}
-                    onFocus={handleSearchFocus}
-                    onChange={handleSearchChange}
-                    onBlur={handleBlur}  // Triggered when input loses focus
-                />
-                <select
-                    value={category}
-                    onChange={handleCategoryChange}
-                    className="border rounded border-black/20 px-4 py-2 w-50 "
-                >
-                    <option value="">All Categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="beauty">Beauty</option>
-                    <option value="groceries">Groceries</option>
-                    <option value="kitchen-accessories">Kitchen-accessories</option>
-                    {/* Add more categories as needed */}
-                </select>
+                <div className="w-full  flex flex-row border rounded shadow-inner ">
+                    <input
+                        type="text"
+                        className="bg-transparent w-full px-3 py-2 "
+                        placeholder="Search products..."
+                        value={searchTerm}
+                        onFocus={handleSearchFocus}
+                        onChange={handleSearchChange}
+                        onBlur={handleBlur}  // Triggered when input loses focus
+                    />
+                    <select
+                        value={category}
+                        onChange={handleCategoryChange}
+                        className="bg-transparent px-4 py-2 w-50  border-l "
+                    >
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="groceries">Groceries</option>
+                        <option value="kitchen-accessories">Kitchen-accessories</option>
+                        {/* Add more categories as needed */}
+                    </select>
+                </div>
                 <button type="submit" disabled={isLoading} className="px-4 py-2  w-40 bg-blue-500 text-white rounded hover:bg-blue-600">
                     Search
                 </button>

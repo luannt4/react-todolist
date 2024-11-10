@@ -1,5 +1,5 @@
 // router.tsx
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import DefaultLayout from "../layouts/default/layout";
 import Home2Layout from "../layouts/home2/layout";
 
@@ -14,6 +14,30 @@ import CategoriesPage from "../pages/categories";
 import CategoriesProductPage from "../pages/category";
 import ProductDetailsPage from "../pages/productDetails";
 import SearchPage from "../pages/search";
+import LoginPage from "../pages/auth/login";
+import RegisterPage from "../pages/auth/register";
+import ForgotPasswordPage from "../pages/auth/forgot-password";
+import Dashboard from "../pages/dashboard";
+import { useAuth } from '../contexts';
+import PrivateRoute from "../component/PrivateRoute";
+
+/*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const {  isLoading } = useAuth();
+  const isAuthenticated = !!localStorage.getItem('auth_token');
+   if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+  return isAuthenticated ? <>{children}</> : <Navigate to="/" />;
+};*/
+
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
+    const isAuthenticated = !!localStorage.getItem('auth_token');
+    return !isAuthenticated ? <>{children}</> : <Navigate to="/dashboard" />;
+};
 
 const router = createBrowserRouter([
   {
@@ -22,7 +46,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage /> ,
+      },
+      {
+        path: "dashboard",
+        element: ( <PrivateRoute><Dashboard /></PrivateRoute>),
+      },
+      {
+        path: "login",
+        element: (
+            <PublicRoute>
+                <LoginPage />
+            </PublicRoute>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+            <PublicRoute>
+                <RegisterPage />
+            </PublicRoute>
+        ),
+      },
+       {
+        path: "forgot",
+        element: (
+            <PublicRoute>
+                <ForgotPasswordPage />
+            </PublicRoute>
+        ),
       },
       {
         path: "compare",
@@ -75,6 +127,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const AppRouter: React.FC = () => {
+export const AppRouter: React.FC = ({ children }: React.PropsWithChildren) => {
   return <RouterProvider router={router} />;
 };
