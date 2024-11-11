@@ -6,6 +6,7 @@ import MainMenu from "./header/mainMenu";
 import FormSearch from "../../component/formSearch";
 import AccountIcon from '../../component/icons/account-icon';
 import CartIcon from '../../component/icons/cart-icon';
+import { HeaderMyAccount } from "./header/myAccount";
 const Header = () => {
    
     return (
@@ -25,13 +26,7 @@ const Header = () => {
                             <Logo/>
                             <FormSearch />
                             <div className="text-brand-icon-header flex text-sm space-x-5 xl:space-x-10 lg:max-w-[33%]">
-                                <div className=" lg:flex items-center shrink-0 accountButton">
-                                    <div className="cart-button">
-                                        <AccountIcon />
-                                    </div>
-                                    <button className="text-sm font-normal focus:outline-none ms-2" aria-label="Authentication">My Account</button>
-                                     
-                                </div>
+                                <HeaderMyAccount />
                                 <div className="items-center justify-center shrink-0 h-auto focus:outline-none transform lg:flex" aria-label="cart-button">
                                     <div className="relative flex items-center">
                                         <div className="flex items-center relative cart-button">

@@ -3,25 +3,15 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts';
 import { LoginCredentials } from '../../contexts/auth/types';
+import { Link } from 'react-router-dom';
 
 
 const LoginForm: React.FC = () => {
-    const { login, isLoading } = useAuth();
+    const { login, isLoading, error  } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm<LoginCredentials>();
-    const [loginError, setLoginError] = useState<string | null>(null);
    
-
     const onSubmit = async (data: LoginCredentials) => {
-        try {
-            setLoginError(null);
-            await login(data);
-            if (data.rememberMe) {
-                // In a real app, you might want to set a longer-lasting token
-                localStorage.setItem('rememberMe', 'true');
-            }
-        } catch (error) {
-            setLoginError('Invalid email or password');
-        }
+        await login(data);
     };
 
   return (
@@ -34,9 +24,9 @@ const LoginForm: React.FC = () => {
             password: emilyspass
         </p>
         
-        {loginError && (
+        {error && (
             <div className="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <span className="block sm:inline">{loginError}</span>
+                <span className="block sm:inline">{error}</span>
             </div>
         )}
 
@@ -87,9 +77,9 @@ const LoginForm: React.FC = () => {
                 </div>
 
                 <div className="text-sm">
-                    <a href="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <Link to="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
                         Forgot your password?
-                    </a>
+                    </Link>
                 </div>
             </div>
            
@@ -117,9 +107,9 @@ const LoginForm: React.FC = () => {
             <div className="text-center">
                 <p className="text-sm text-gray-600">
                     Don't have an account?{' '}
-                    <a href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
                         Create an account
-                    </a>
+                    </Link>
                 </p>
             </div>
         </form>

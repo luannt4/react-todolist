@@ -31,8 +31,8 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             <Link
                 key={id} 
                 to={`/product/${slug}-${id}`}
-                className="block relative overflow-hidden pb-[230px] bg-slate-100">
-                    <ImageFill src={thumbnail|| 'Product Image'} height={"230px"}   alt={title || 'Product Image'}/>
+                className="block relative overflow-hidden bg-slate-100">
+                    <ImageFill src={thumbnail|| 'Product Image'} height={230}   alt={title || 'Product Image'}/>
             </Link>
             <div className="py-3 px-1.5 ">
                 <p className="text-gray-500 mb-2 capitalize">

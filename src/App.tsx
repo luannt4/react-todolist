@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 
-import { AppProvider } from "./contexts/AppContextProvider";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-import ManagedModal from './component/common/modal/managed-modal';
-import { AppRouter } from "./routes/AppRouter";
+import { AppRouter } from "./routes";
 
 
 const queryClient = new QueryClient();
@@ -13,11 +10,7 @@ const App: React.FC = () => {
   
   return (
      <QueryClientProvider client={queryClient}>
-        <AppProvider>
-            <AppRouter/>
-            <ManagedModal />
-        </AppProvider>
-     
+        <AppRouter/>
     </QueryClientProvider>
   );
 }

@@ -5,11 +5,12 @@ type AuthAction =
   | { type: 'AUTH_START' }
   | { type: 'AUTH_SUCCESS'; payload: User }
   | { type: 'AUTH_ERROR'; payload: string }
-  | { type: 'LOGOUT' }
-  | { type: 'CLEAR_ERROR' };
+  | { type: 'FORGOT_PASSWORD_SUCCESS'; payload: string }
+  | { type: 'REGISTER_SUCCESS' }
+  | { type: 'LOGOUT' };
 
 export const initialState: AuthState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem('authUser') || 'null'),
   isAuthenticated: false,
   isLoading: false,
   error: null,
@@ -33,10 +34,17 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState => 
         isLoading: false,
         error: action.payload,
       };
+    case 'FORGOT_PASSWORD_SUCCESS':
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
+        };  
+    case 'REGISTER_SUCCESS':
+            return { ...state,isLoading: false, error: null };    
     case 'LOGOUT':
       return initialState;
-    case 'CLEAR_ERROR':
-      return { ...state, error: null };
+    
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts';
+import { Link } from 'react-router-dom';
 
 interface ForgotPasswordFormType {
   email: string;
@@ -56,10 +57,10 @@ export const ForgotPasswordForm: React.FC = () => {
             </div>
              <div className="text-center">
                 <p className="text-sm text-gray-600">
-                Back to{' '}
-                <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                    Sign in now
-                </a>
+                  Back to{' '}
+                  <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                      Sign in now
+                  </Link>
                 </p>
             </div>
         </form>

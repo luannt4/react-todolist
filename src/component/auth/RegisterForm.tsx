@@ -2,6 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts';
 import { RegisterInputs }  from '../../contexts/auth/types';
+import { Link } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const { register: registerUser, isLoading, error } = useAuth();
@@ -99,9 +100,9 @@ export const RegisterForm = () => {
             <div className="text-center">
                 <p className="text-sm text-gray-600">
                 Already have an account?{' '}
-                <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                     Sign in now
-                </a>
+                </Link>
                 </p>
             </div>
         </form>

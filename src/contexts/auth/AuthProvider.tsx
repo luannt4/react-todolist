@@ -1,71 +1,94 @@
-import React, {useReducer, useCallback } from 'react';
+import React, {useReducer, useCallback,useEffect } from 'react';
 import { authReducer, initialState } from './authReducer';
 import { LoginCredentials, RegisterInputs } from './types';
 import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
+    const navigate = useNavigate();
     
+    useEffect(() => {
+        if (state.isAuthenticated && state.user) {
+            localStorage.setItem('authUser', JSON.stringify(state.user));
+        } else {
+            localStorage.removeItem('authUser');
+        }
+    }, [state.isAuthenticated, state.user]);
+
     const login = useCallback(async (credentials: LoginCredentials) => {
         try {
-        dispatch({ type: 'AUTH_START' });
-        const response = await fetch('https://dummyjson.com/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(credentials),
-        });
-        
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.message);
-        
-        dispatch({ type: 'AUTH_SUCCESS', payload: data });
-        localStorage.setItem('auth_token', data.accessToken);
-        window.location.href = '/dashboard';
-
+            dispatch({ type: 'AUTH_START' });
+            const response = await fetch('https://dummyjson.com/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(credentials),
+            });
+            
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message);
+            
+            if (data.username && data.accessToken) {
+                dispatch({ type: 'AUTH_SUCCESS', payload: data });
+                
+                if (credentials.rememberMe) {
+                    localStorage.setItem('authUser', JSON.stringify(data));
+                }
+                navigate('/');
+            } else {
+                dispatch({ type: 'AUTH_ERROR', payload: 'Invalid username or password' });
+            }
         } catch (error) {
-            dispatch({ type: 'AUTH_ERROR', payload: error instanceof Error ? error.message : 'Login failed' });
+            dispatch({ type: 'AUTH_ERROR', payload: 'Login failed' });
         }
     }, []);
 
-  const register = useCallback(async (credentials: RegisterInputs) => {
-    try {
-      dispatch({ type: 'AUTH_START' });
-      const response = await fetch('https://dummyjson.com/users/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) throw new Error(data.message);
-      
-      // After successful registration, login the user
-      await login({
-        username: credentials.username,
-        password: credentials.password
-      });
-    } catch (error) {
-      dispatch({ type: 'AUTH_ERROR', payload: error instanceof Error ? error.message : 'Registration failed' });
-    }
-  }, [login]);
+    const register = async (credentials: RegisterInputs) => {
+        try {
+            dispatch({ type: 'AUTH_START' });
+            const response = await fetch('https://dummyjson.com/users/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(credentials),
+            });
+            
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message);
+            
+            if (data.id) {
+                dispatch({ type: 'REGISTER_SUCCESS' });
+                navigate('/login');
+            } else {
+                dispatch({ type: 'AUTH_ERROR', payload: 'Registration failed' });
+            }
 
-  const logout = useCallback(() => {
-    localStorage.removeItem('auth_token');
-    dispatch({ type: 'LOGOUT' });
-    window.location.href = '/';
-  }, []);
+            // After successful registration, login the user
+            /*await login({
+                username: credentials.username,
+                password: credentials.password,
+                rememberMe: false,
+            });*/
+        } catch (error) {
+            dispatch({ type: 'AUTH_ERROR', payload: 'Registration error' });
+        }
+    };
+
+    const logout = useCallback(() => {
+        localStorage.removeItem('authUser');
+        dispatch({ type: 'LOGOUT' });
+        navigate('/');
+    }, []);
 
   const forgotPassword = useCallback(async (email: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
       // Note: DummyJSON doesn't have a forgot password endpoint
-      // This is a mock implementation
       await new Promise(resolve => setTimeout(resolve, 1000));
-      dispatch({ type: 'AUTH_SUCCESS', payload: { message: 'Reset link sent' } as any });
+      // Mocking a success message for password recovery
+      dispatch({ type: 'FORGOT_PASSWORD_SUCCESS', payload: `Password reset link sent to ${email}` });
     } catch (error) {
-      dispatch({ type: 'AUTH_ERROR', payload: 'Failed to send reset link' });
+      dispatch({ type: 'AUTH_ERROR', payload: 'Failed to send password reset link'  });
     }
   }, []);
 

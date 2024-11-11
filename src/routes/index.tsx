@@ -18,12 +18,13 @@ import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
 import ForgotPasswordPage from "../pages/auth/forgot-password";
 import Dashboard from "../pages/dashboard";
-import { useAuth } from '../contexts';
-import PrivateRoute from "../component/PrivateRoute";
+import {PrivateRoute, PublicRoute} from "../component/PrivateRoute";
+import { AppProvider } from "../contexts/AppContextProvider";
+import ManagedModal from "../component/common/modal/managed-modal";
 
 /*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const {  isLoading } = useAuth();
-  const isAuthenticated = !!localStorage.getItem('auth_token');
+  const isAuthenticated = !!localStorage.getItem('authUser');
    if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -33,24 +34,33 @@ import PrivateRoute from "../component/PrivateRoute";
   }
   return isAuthenticated ? <>{children}</> : <Navigate to="/" />;
 };*/
-
+/*
 const PublicRoute = ({ children }: { children: React.ReactNode }) => {
-    const isAuthenticated = !!localStorage.getItem('auth_token');
+    const isAuthenticated = !!localStorage.getItem('authUser');
     return !isAuthenticated ? <>{children}</> : <Navigate to="/dashboard" />;
-};
+};*/
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DefaultLayout />,
+    element: (
+		<AppProvider>
+			<DefaultLayout />
+			<ManagedModal />
+		</AppProvider>
+	),
     children: [
       {
         path: "/",
-        element: <HomePage /> ,
+        element: <HomePage />,
       },
       {
         path: "dashboard",
-        element: ( <PrivateRoute><Dashboard /></PrivateRoute>),
+        element: ( 
+			<PrivateRoute>
+				<Dashboard />
+        	</PrivateRoute>
+		),
       },
       {
         path: "login",
@@ -69,7 +79,7 @@ const router = createBrowserRouter([
         ),
       },
        {
-        path: "forgot",
+        path: "forgot-password",
         element: (
             <PublicRoute>
                 <ForgotPasswordPage />
@@ -82,7 +92,11 @@ const router = createBrowserRouter([
       },
       {
         path: "wishlist",
-        element: <WishlistPage />,
+        element: ( 
+			<PrivateRoute>
+				<WishlistPage />
+        	</PrivateRoute>
+		),
       },
       {
         path: "categories",

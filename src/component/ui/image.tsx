@@ -1,11 +1,12 @@
 // @ts-ignore
 import LazyLoad from 'react-lazyload';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 interface Props {
     variant?: string;
     className?: string;
-    width?: string;
-    height?: string;
+    width?: number;
+    height?: number;
     src: string;
     alt: string;
   }
@@ -15,18 +16,28 @@ const ImageFill : React.FC<Props>  = ({
     className,
     variant,
     width ,
-    height = 200,
+    height = 100,
     src,
     alt,
     ...props
   }) => {
     return (
         <LazyLoad
+            className={"h-full"}
             height={height}
-            offset={100}
-            placeholder={<div className="bg-gray-300  w-full flex items-center justify-center">Loading...</div>}
+            offset={80}
+            placeholder={<Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
         >
-        <img src={src} alt={alt} className="absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover" />
+           <div className="block w-full box-sizing">
+				<svg
+					className="block max-w-full h-auto"
+					xmlns="http://www.w3.org/2000/svg"
+					width={width}
+					height={height}
+					version="1.1"
+				/>
+			</div>
+        	<img src={src}  className="absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover" />
       </LazyLoad>
     );
 }

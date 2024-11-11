@@ -5,7 +5,7 @@ const ComparePage = () => {
   const {compareList,removeFromCompare} = useCompare();
   return (
     <>
-		<h1 className='mb-5'>Compare Page</h1>
+		<h1 className="text-2xl font-medium mb-6 capitalize">Compare </h1>
 		<div className="grid grid-cols-1 gap-3 ">
 			
 			{compareList.length === 0 && (

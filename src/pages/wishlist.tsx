@@ -5,8 +5,8 @@ const WishlistPage = () => {
   const {wishlistList,removeFromWishlist} = useWishlist();
   return (
     <>
-		<h1 className='mb-5'>Wishlist Page</h1>
-		<div className="grid grid-cols-5 gap-3 ">
+		<h1 className="text-2xl font-medium mb-6 capitalize">Wishlist </h1>
+		<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 			{wishlistList.length === 0 && <p>No products in the Wishlist list.</p>}
 
 			{wishlistList.map((product) => (
