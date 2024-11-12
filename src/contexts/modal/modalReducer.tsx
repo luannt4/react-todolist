@@ -1,23 +1,21 @@
 import { Product, ModalView } from "./types";
 
 type Action =
-  | { type: "SET_MODAL_VIEW"; payload: ModalView  }
-  | { type: "SET_SELECTED_PRODUCT"; payload: Product| null }
+  | { type: "OPEN_MODAL"; view?: ModalView;  payload?: Product| null  }
   | { type: "CLOSE_MODAL" };
 
 interface State {
   modalView?: ModalView | null;
-  selectedProduct?: Product | null | undefined;
+  data?: Product | null | undefined;
 }
 
 export const modalReducer = (state: State, action: Action): State => {
     switch (action.type) {
-        case 'SET_MODAL_VIEW':
-            return {...state,modalView: action.payload};
-        case 'SET_SELECTED_PRODUCT':
-            return {...state, selectedProduct: action.payload};  
+        case 'OPEN_MODAL':
+            return {...state,modalView: action.view, data: action.payload};
+       
         case 'CLOSE_MODAL':
-            return { ...state,modalView: null , selectedProduct: null};
+            return { ...state,modalView: null , data: null};
         default:
             return state;
     }

@@ -12,6 +12,8 @@ export interface Product {
   discountPercentage: number;
   category: string;
   thumbnail: string;
+  stock?: number;
+  availabilityStatus?: string;
 }
 export interface Category {
   slug: string;

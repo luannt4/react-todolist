@@ -1,13 +1,11 @@
-// src/TodoItem.tsx
+
 import React from "react";
-import { Product } from "../../types/Product";
+import { useModal } from "../../contexts";
 
-interface Props {
-    product : Product;
-}
 
-const ProductPopup: React.FC<Props> = ({ product }) => {
-    const {title, category, price,thumbnail } = product;
+const ProductPopup: React.FC = () => {
+    const { data} = useModal();
+    const {title, category, price,thumbnail } = data ?? {};
 
    return (
     <div className="md:w-[600px] lg:w-[940px]  mx-auto p-1 lg:p-0 xl:p-3 bg-white text-center rounded-md">

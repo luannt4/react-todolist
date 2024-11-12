@@ -7,9 +7,13 @@ import FormSearch from "../../component/formSearch";
 import AccountIcon from '../../component/icons/account-icon';
 import CartIcon from '../../component/icons/cart-icon';
 import { HeaderMyAccount } from "./header/myAccount";
+import {useCart } from '../../contexts';
+
 const Header = () => {
-   
+    const {totalItems} = useCart();
+
     return (
+
         <header className="sticky md:top-0  w-full  z-40 bg-white/75 dark:bg-black/75 ">
             <div className="top-bar  text-sm text-fill-base border-b border-black/10">
                 <Container>
@@ -31,9 +35,11 @@ const Header = () => {
                                     <div className="relative flex items-center">
                                         <div className="flex items-center relative cart-button">
                                             <CartIcon/>
-                                            <span className="cart-counter-badge  h-[18px] min-w-[18px] rounded-full flex items-center justify-center bg-blue-500 text-white absolute -top-1 left-3 text-[11px]">0</span>
+                                            <span className="cart-counter-badge  h-[18px] min-w-[18px] rounded-full flex items-center justify-center bg-blue-500 text-white absolute -top-1 left-3 text-[11px]">
+                                                {totalItems}
+                                            </span>
                                         </div>
-                                        <span className="text-sm font-normal ms-2">My Cart</span>
+                                            <span className="text-sm font-normal ms-2">My Cart</span>
                                         </div>
                                 </div>
 

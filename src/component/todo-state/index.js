@@ -33,7 +33,7 @@ function TodoApp() {
             )
         );
     };
-      
+    
     //Thêm hoặc cập nhật To-Do
     const addOrUpdateTodo  = ()=> {
         if (currentText.trim()) {

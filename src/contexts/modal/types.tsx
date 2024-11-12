@@ -9,7 +9,7 @@ export interface Product {
 }
 export interface State {
   modalView?: ModalView | null;
-  selectedProduct?: Product | null | undefined;
+  data?: Product | null | undefined;
 }
 
 export type ModalView  =
@@ -25,7 +25,7 @@ export type ModalView  =
 
 export interface ModalContextType {
   modalView?: ModalView | null;
-  selectedProduct: Product| null| undefined;
-  setModalView: (view: ModalView, product: Product) => void;
+  data: Product| null| undefined;
+  openModal: (view: ModalView, product?: Product) => void;
   closeModal: () => void;
 }
