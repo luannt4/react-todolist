@@ -4,6 +4,7 @@ import { CompareProvider } from "./compare/compareProvider";
 import { WishlistProvider } from './wishlist/wishlistProvider';
 import { AuthProvider } from './auth/AuthProvider';
 import { CartProvider } from './cart/CartProvider';
+import { DrawerProvider } from './drawer/drawerProvider';
 
 
 export function AppProvider({ children }: React.PropsWithChildren) {
@@ -12,11 +13,13 @@ export function AppProvider({ children }: React.PropsWithChildren) {
             <CartProvider>
             <CompareProvider>
             <WishlistProvider>
-            <ModalProvider>
+                <DrawerProvider>
+                <ModalProvider>
                 <AuthProvider>
                 {children}
                 </AuthProvider>
-            </ModalProvider>
+                </ModalProvider>
+                </DrawerProvider>
             </WishlistProvider>
             </CompareProvider>
             </CartProvider>

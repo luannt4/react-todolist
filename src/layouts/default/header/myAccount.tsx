@@ -15,9 +15,8 @@ const links = [
 ]
 
 
-export const HeaderMyAccount: React.FC<Props> = ({className }) => {
+export const MyAccount: React.FC<Props> = ({className }) => {
     // Check if user is authenticated by looking for token
-    const isAuthUser = localStorage.getItem('authUser');
     const { logout, user } = useAuth();
     if (user) return (
         <div className=" lg:flex items-center shrink-0 accountButton">
@@ -38,7 +37,7 @@ export const HeaderMyAccount: React.FC<Props> = ({className }) => {
                     ))}
                     
                     <MenuItem>
-                        <Link onClick={logout} className="flex gap-1 items-center block  truncate py-1 leading-6 hover:text-blue-500" to="/">
+                        <Link onClick={logout} className="flex gap-1 items-center   truncate py-1 leading-6 hover:text-blue-500" to="/">
                             <MdLogout />
                             Logout
                         </Link>

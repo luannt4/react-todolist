@@ -28,7 +28,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     const priceOld = Number(price / (1 - (discountPercentage / 100))).toFixed(2);
 
     const RenderAddToCart: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product ?? {};
+        const {id, stock, availabilityStatus} = product;
         const {isInCart, isInStock} = useCart();
         const outOfStock = isInCart(id) && !isInStock(id);
        
@@ -37,7 +37,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
         if (Number(stock) < 1 || outOfStock) {
             return (
-                <span className="block text-[13px] leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-[13px] items-center justify-center">
+                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-[13px] items-center justify-center">
                     Out Of Stock
                 </span>
             );

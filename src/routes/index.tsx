@@ -1,5 +1,5 @@
 // router.tsx
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "../layouts/default/layout";
 import Home2Layout from "../layouts/home2/layout";
 
@@ -21,6 +21,7 @@ import Dashboard from "../pages/dashboard";
 import {PrivateRoute, PublicRoute} from "../component/PrivateRoute";
 import { AppProvider } from "../contexts/AppContextProvider";
 import ManagedModal from "../component/common/modal/managed-modal";
+import ManagedDrawer from "../component/common/drawer/managed-drawer";
 
 /*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const {  isLoading } = useAuth();
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([
 		<AppProvider>
 			<DefaultLayout />
 			<ManagedModal />
+            <ManagedDrawer/>
 		</AppProvider>
 	),
     children: [
