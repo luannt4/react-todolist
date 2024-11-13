@@ -4,7 +4,7 @@ import Heading from '../ui/heading';
 import Text from '../ui/text';
 const EmptyCart = () => {
   return (
-    <div className="m-auto flex flex-col items-center justify-center -translate-y-20">
+    <div className="m-auto flex flex-col items-center justify-center ">
       <div className="flex mx-auto w-[220px] md:w-auto">
         <IoCartOutline className="text-[120px] text-gray-400" />
       </div>

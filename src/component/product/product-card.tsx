@@ -44,13 +44,13 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         }
         if (availabilityStatus === 'Low Stock') {
             return (
-                <button
+                <Link
                     className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-[13px] items-center justify-center focus:outline-none focus-visible:outline-none"
                     aria-label="Count Button"
-                    onClick={handlePopupView}
+                    to={`/product/${slug}-${id}`}
                 >
                     Product Details
-                </button>
+                </Link>
             );
         }
 

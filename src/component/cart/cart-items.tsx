@@ -50,7 +50,7 @@ const CartItems: React.FC<CartItemProps> = ({  item }) => {
         
         <td className="wi-cart-quantity px-3 sm:px-6">
             <div
-                className="wi-product-quantity w-32 relative ">{item.quantity}
+                className="wi-product-quantity w-32 relative ">
                 <Counter
                     value={quantity}
                     onIncrement={() => addItemToCart(item, 1)}

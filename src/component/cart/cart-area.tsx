@@ -41,7 +41,10 @@ const CartArea = () => {
                 </div>
                
             ) : (
-                <EmptyCart />
+                <div className="mt-40">
+                        <EmptyCart />
+                </div>
+                
             )}
         </div>
         

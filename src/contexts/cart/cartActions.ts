@@ -7,7 +7,6 @@ export function addItemWithQuantity(
   item: Item,
   quantity: number,
 ) {
-    console.log('addItemWithQuantity '); // Kiểm tra số lần gọi hàm
     if (quantity <= 0) throw new Error("cartQuantity can't be zero or less than zero");
     const existingItemIndex = items.findIndex(
         (existingItem) => existingItem.id === item.id,

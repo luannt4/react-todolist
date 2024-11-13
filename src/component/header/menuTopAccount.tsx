@@ -8,10 +8,9 @@ interface Props {
 const links = [
   { href: '/login', label: 'Login' },
   { href: '/register', label: 'Register' },
-  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/cart', label: 'Cart' },
   
 ]
-
 
 export const MenuTopMyAccount: React.FC<Props> = ({className }) => {
     return (

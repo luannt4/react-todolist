@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+//Funcition định dạng số dưới dạng tiền tệ với các đơn vị tiền tệ khác nhau 
 export function formatPrice({
     amount,
     currencyCode,
@@ -42,13 +43,7 @@ export function formatVariantPrice({
 }
 
 // function chuyển đổi current
-export default function usePrice(
-    data?: {
-      amount: number;
-      baseAmount?: number;
-      currencyCode: string;
-    } | null
-  ) {
+export default function usePrice(data?: {amount: number;baseAmount?: number;currencyCode: string;} | null) {
     const { amount, baseAmount, currencyCode } = data ?? {};
     const locale = 'en';
     const value = useMemo(() => {
@@ -58,7 +53,7 @@ export default function usePrice(
         ? formatVariantPrice({ amount, baseAmount, currencyCode, locale })
         : formatPrice({ amount, currencyCode, locale });
     }, [amount, baseAmount, currencyCode]);
-  
+    console.log('value',value === 'string');
     return typeof value === 'string'
       ? { price: value, basePrice: null, discount: null }
       : value;
