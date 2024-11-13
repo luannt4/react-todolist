@@ -53,7 +53,7 @@ export default function usePrice(data?: {amount: number;baseAmount?: number;curr
         ? formatVariantPrice({ amount, baseAmount, currencyCode, locale })
         : formatPrice({ amount, currencyCode, locale });
     }, [amount, baseAmount, currencyCode]);
-    console.log('value',value === 'string');
+   
     return typeof value === 'string'
       ? { price: value, basePrice: null, discount: null }
       : value;

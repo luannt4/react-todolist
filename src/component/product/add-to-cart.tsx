@@ -22,7 +22,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
         toast('Added to the bag', {
             progressClassName: 'fancy-progress-bar',
             position: 'bottom-right',
-            autoClose: 4000,
+            autoClose: 3000,
           });
         addItemToCart(item, 1);
     };

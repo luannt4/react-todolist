@@ -3,12 +3,13 @@ import React from "react";
 import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
 import {useCart, useModal } from '../../contexts';
-import {useCompare } from '../../contexts';
-import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'react-icons/io';
-import { useWishlist } from "../../contexts";
 import ImageFill from "../ui/image";
 import AddToCart from './add-to-cart';
 import CompareButton from "../compare/compare-button";
+import WishlistButton from "../wishlist/wishlist-button";
+import StarIcon from "../icons/star-icon";
+import usePrice from "./use-price";
+
 
 interface Props {
     product : Product;
@@ -16,24 +17,26 @@ interface Props {
 
 
 const ProductCard: React.FC<Props> = ({ product }) => {
-    const {id,title, category, price, discountPercentage, thumbnail } = product;
+    const {id,title, category,  discountPercentage, thumbnail } = product;
     const {openModal } = useModal();
-    const {addToCompare, compareList,removeFromCompare} = useCompare();
-    const {addToWishlist, wishlistList,removeFromWishlist} = useWishlist();
-    
-    const isInCompare = (productId: number) => compareList.some((product) => product.id === productId);
-    const isWishlist = (productId: number) => wishlistList.some((product) => product.id === productId);
+   
 
     // Create slug from title
     const slug = product.title.toLowerCase().replace(/\s+/g, '-');
-    const priceOld = Number(price / (1 - (discountPercentage / 100))).toFixed(2);
+    const priceOld = Number(Number(product?.price / (1 - (discountPercentage / 100))).toFixed(2));
 
+    const {price, basePrice, discount} = usePrice({
+        amount: priceOld ? priceOld : product?.price,
+        baseAmount: product?.price,
+        currencyCode: 'USD'
+    });
+    console.log('basePrice',basePrice);
+    console.log('priceOld',priceOld);
     const RenderAddToCart: React.FC<Props> = ({ product }) => {
         const {id, stock, availabilityStatus} = product;
         const {isInCart, isInStock} = useCart();
         const outOfStock = isInCart(id) && !isInStock(id);
        
-
         if (Number(stock) < 1 || outOfStock) {
             return (
                 <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-[13px] items-center justify-center">
@@ -41,6 +44,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                 </span>
             );
         }
+
         if (availabilityStatus === 'Low Stock') {
             return (
                 <Link
@@ -93,33 +97,35 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                         {title}
                     </Link>
                 </p>
-                <div className="text-gray-500 text-lg mb-5">
-                    <div className="flex gap-x-2">
-                        <div className="text-black dark:text-white">{price}$</div>
-                        <div className="line-through text-gray-400">{priceOld}$</div>
+                <div className="flex text-gray-500 space-x-2 mb-1">
+                    <div className="flex items-center">
+                    {[...Array(5)].map((_, idx) => (
+                        <StarIcon
+                        key={idx}
+                        color={idx < 5 ? '#F3B81F' : '#DFE6ED'}
+                        className="w-3 h-3 mx-px"
+                        />
+                    ))}
                     </div>
-                    
+                    <span className="text-[13px] leading-4">(1 review)</span>
+                </div>
+                <div className="text-gray-500 text-lg mb-5">
+                    <div className="flex gap-x-2 ">
+                        <div className="text-black dark:text-white">{price}</div>
+                        <div className="line-through text-gray-400">{priceOld}</div>
+                    </div>
+                    {basePrice && (
+                    <del className="mx-1  text-gray-400 text-opacity-70">
+                        {basePrice}
+                    </del>
+                    )}
                 </div>
                 
                 <div className="flex gap-2">
-               
                     <RenderAddToCart product={product}/>
-
                     <CompareButton product={product}/>
-
-                    {isWishlist(id) ? (
-                        <button onClick={() => removeFromWishlist(id)} className="bg-slate-500 text-white  px-3 py-3  rounded-full">
-                        <IoIosHeart/>
-                        </button>
-                    ) : (
-                        <button
-                        onClick={() => addToWishlist(product)}
-                        className="bg-slate-500 text-white px-3 py-3  rounded-full"
-                        >
-                        <IoIosHeartEmpty/>
-                        </button>
-                    )}
-            
+                    <WishlistButton product={product}/>
+                
                 </div>
             </div>
             
