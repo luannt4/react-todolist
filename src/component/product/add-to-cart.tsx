@@ -21,12 +21,8 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
         e.preventDefault();
         toast('Added to the bag', {
             progressClassName: 'fancy-progress-bar',
-            position: 'top-right',
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            position: 'bottom-right',
+            autoClose: 4000,
           });
         addItemToCart(item, 1);
     };

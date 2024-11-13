@@ -1,0 +1,34 @@
+/* Toastify */
+.Toastify .fancy-progress-bar {
+  background: rgba(255, 255, 255, 0.95);
+}
+.Toastify .Toastify__toast {
+  background-color: #02b290;
+  font-family: 'Inter', sans-serif;
+}
+div.Toastify__progress-bar--bg {
+    background: none;
+}
+.Toastify .Toastify__toast .Toastify__toast-body,
+.Toastify .Toastify__toast .Toastify__close-button {
+  color: #ffffff;
+}
+.Toastify .Toastify__toast .Toastify__close-button {
+  opacity: 0.7;
+}
+.Toastify .Toastify__toast .Toastify__close-button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .Toastify .Toastify__toast-container--top-left,
+  .Toastify .Toastify__toast-container--top-center,
+  .Toastify .Toastify__toast-container--top-right {
+    top: 66px;
+  }
+  .Toastify .Toastify__toast {
+    margin-left: 16px;
+    margin-right: 16px;
+    border-radius: 5px;
+  }
+}

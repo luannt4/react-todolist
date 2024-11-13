@@ -8,6 +8,7 @@ import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'reac
 import { useWishlist } from "../../contexts";
 import ImageFill from "../ui/image";
 import AddToCart from './add-to-cart';
+import CompareButton from "../compare/compare-button";
 
 interface Props {
     product : Product;
@@ -104,22 +105,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                
                     <RenderAddToCart product={product}/>
 
-                    {isInCompare(id) ? (
-                        <button
-                        onClick={() => removeFromCompare(id)}
-                        className="bg-slate-500 text-white  px-3 py-3  rounded-full"
-                        >
-                        
-                            <IoIosCheckmarkCircle/>
-                        </button>
-                    ) : (
-                        <button
-                        onClick={() => addToCompare(product)}
-                        className="bg-slate-500 text-white px-3 py-3  rounded-full"
-                        >
-                            <IoIosSync/>
-                        </button>
-                    )}
+                    <CompareButton product={product}/>
 
                     {isWishlist(id) ? (
                         <button onClick={() => removeFromWishlist(id)} className="bg-slate-500 text-white  px-3 py-3  rounded-full">
