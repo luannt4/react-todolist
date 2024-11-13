@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../../contexts";
 import { Product } from "../../types/Product";
-
+import { toast } from 'react-toastify';
 interface AddToCartProps {
     product : Product;
 }
@@ -19,6 +19,15 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
 
     const handleAddClick = (e: React.FormEvent) => {
         e.preventDefault();
+        toast('Added to the bag', {
+            progressClassName: 'fancy-progress-bar',
+            position: 'top-right',
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
         addItemToCart(item, 1);
     };
 

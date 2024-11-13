@@ -7,7 +7,7 @@ import {useCompare } from '../../contexts';
 import { IoIosHeart, IoIosHeartEmpty,IoIosSync,IoIosCheckmarkCircle } from 'react-icons/io';
 import { useWishlist } from "../../contexts";
 import ImageFill from "../ui/image";
-import AddToCart from './AddToCart';
+import AddToCart from './add-to-cart';
 
 interface Props {
     product : Product;
@@ -32,8 +32,6 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         const {isInCart, isInStock} = useCart();
         const outOfStock = isInCart(id) && !isInStock(id);
        
-        const handlePopupView = () => openModal ("PRODUCT_VIEW", product);
-        //const handleLoginView = () => openModal ("LOGIN_VIEW");
 
         if (Number(stock) < 1 || outOfStock) {
             return (

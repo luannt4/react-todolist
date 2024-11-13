@@ -24,6 +24,7 @@ import ManagedModal from "../component/common/modal/managed-modal";
 import ManagedDrawer from "../component/common/drawer/managed-drawer";
 import CartPage from "../pages/cart";
 import CheckoutPage from "../pages/checkout";
+import ManagedToaster from "../component/common/toaster/toaster-provider";
 
 /*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const {  isLoading } = useAuth();
@@ -48,9 +49,10 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
 		<AppProvider>
-			<DefaultLayout />
-			<ManagedModal />
-            <ManagedDrawer/>
+			  <DefaultLayout />
+			  <ManagedModal />
+        <ManagedDrawer/>
+        <ManagedToaster/>
 		</AppProvider>
 	),
     children: [
