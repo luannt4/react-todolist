@@ -7,18 +7,20 @@ export function addItemWithQuantity(
   item: Item,
   quantity: number,
 ) {
-  if (quantity <= 0)
-    throw new Error("cartQuantity can't be zero or less than zero");
-  const existingItemIndex = items.findIndex(
-    (existingItem) => existingItem.id === item.id,
-  );
-
-  if (existingItemIndex > -1) {
-    const newItems = [...items];
-    newItems[existingItemIndex].quantity! += quantity;
-    return newItems;
-  }
-  return [...items, { ...item, quantity }];
+    console.log('addItemWithQuantity '); // Kiểm tra số lần gọi hàm
+    if (quantity <= 0) throw new Error("cartQuantity can't be zero or less than zero");
+    const existingItemIndex = items.findIndex(
+        (existingItem) => existingItem.id === item.id,
+    );
+   
+    if (existingItemIndex > -1) {
+        const newItems = [...items];
+        
+        newItems[existingItemIndex].quantity! +=  quantity;
+        return newItems;
+    }
+    
+    return [...items, { ...item, quantity }];
 }
 
 export function removeItemOrQuantity(
@@ -29,7 +31,6 @@ export function removeItemOrQuantity(
   return items.reduce((acc: Item[], item) => {
     if (item.id === id) {
       const newQuantity = item.quantity! - quantity;
-
       return newQuantity > 0
         ? [...acc, { ...item, quantity: newQuantity }]
         : [...acc];
@@ -37,6 +38,7 @@ export function removeItemOrQuantity(
     return [...acc, item];
   }, []);
 }
+
 // Simple CRUD for Item
 export function addItem(items: Item[], item: Item) {
   return [...items, item];

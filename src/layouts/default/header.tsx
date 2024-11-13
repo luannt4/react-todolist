@@ -1,12 +1,12 @@
 
 import Logo from "../../component/ui/logo";
 import Container from "../../component/ui/container";
-import HeaderMenutop from './header/menutop';
-import MainMenu from "./header/mainMenu";
 import FormSearch from "../../component/formSearch";
 
-import { MyAccount } from "./header/myAccount";
 import CartButton from "../../component/cart/cart-button";
+import HeaderMenutop from "../../component/header/menutop";
+import { MyAccount } from "../../component/header/myAccount";
+import MainMenu from "../../component/header/mainMenu";
 
 const Header = () => {
     return (

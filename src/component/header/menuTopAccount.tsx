@@ -13,7 +13,7 @@ const links = [
 ]
 
 
-export const HeaderSettings: React.FC<Props> = ({className }) => {
+export const MenuTopMyAccount: React.FC<Props> = ({className }) => {
     return (
         <Menu>
             <MenuButton className="flex gap-1 justify-center items-center">

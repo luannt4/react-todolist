@@ -1,9 +1,10 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {BsChevronDown} from 'react-icons/bs';
 import { MdLogout } from "react-icons/md";
-import AccountIcon from '../../../component/icons/account-icon';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../contexts';
+import { useAuth, useDrawer } from '../../contexts';
+import AccountIcon from '../icons/account-icon';
+import React from 'react';
 
 interface Props {
     className?: string;
@@ -18,6 +19,7 @@ const links = [
 export const MyAccount: React.FC<Props> = ({className }) => {
     // Check if user is authenticated by looking for token
     const { logout, user } = useAuth();
+    
     if (user) return (
         <div className=" lg:flex items-center shrink-0 accountButton">
             <Menu >
@@ -48,7 +50,7 @@ export const MyAccount: React.FC<Props> = ({className }) => {
     );
     
     return (
-        <Link to={'/login'} className=" lg:flex items-center shrink-0 accountButton">
+        <Link   to={'/login'} className=" lg:flex items-center shrink-0 accountButton">
             <div className="cart-button">
                 <AccountIcon />
             </div>

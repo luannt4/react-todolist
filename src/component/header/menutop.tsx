@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { IoIosHeart, IoIosSync } from 'react-icons/io';
-import {useCompare } from '../../../contexts';
-import { useWishlist } from "../../../contexts";
+
 import cn from 'classnames';
-import { HeaderSettings } from "./settings";
+import { MenuTopMyAccount } from "./menuTopAccount";
+import { useCompare, useWishlist } from "../../contexts";
 
 
 interface MenuProps {
@@ -33,7 +33,7 @@ const HeaderMenutop: React.FC<MenuProps> = ({className }) => {
                 </Link>
                 </div>
             
-                <HeaderSettings/>
+                <MenuTopMyAccount/>
             </nav>
         </div>
     );
