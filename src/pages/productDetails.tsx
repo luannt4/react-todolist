@@ -5,19 +5,17 @@ import { useQuery } from "@tanstack/react-query";
 import { Product } from "../types/Product";
 import {getIdFromSlug} from "../utils/get-id-from-slug";
 import { fetchProductDetails } from "../api/fetchProductDetails";
-import AddToCart from "../component/product/add-to-cart";
-import { IoIosCheckmarkCircle, IoIosHeart, IoIosHeartEmpty, IoIosSync } from "react-icons/io";
 import { useCart, useCompare, useWishlist } from "../contexts";
 import StarIcon from "../component/icons/star-icon";
 import usePrice from "../component/product/use-price";
 import CompareButton from "../component/compare/compare-button";
 import WishlistButton from "../component/wishlist/wishlist-button";
 import Counter from "../component/ui/counter";
-import { generateCartItem } from "../utils/generate-cart-item";
 import Button from "../component/ui/button";
 import CartIcon from "../component/icons/cart-icon";
 import { toast } from "react-toastify";
 import ImageFill from "../component/ui/image";
+
 interface Props {
     product : Product;
 }
