@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import {useEffect } from 'react';
+import {useEffect, useState } from 'react';
 
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../types/Product";
@@ -8,6 +8,16 @@ import { fetchProductDetails } from "../api/fetchProductDetails";
 import AddToCart from "../component/product/add-to-cart";
 import { IoIosCheckmarkCircle, IoIosHeart, IoIosHeartEmpty, IoIosSync } from "react-icons/io";
 import { useCart, useCompare, useWishlist } from "../contexts";
+import StarIcon from "../component/icons/star-icon";
+import usePrice from "../component/product/use-price";
+import CompareButton from "../component/compare/compare-button";
+import WishlistButton from "../component/wishlist/wishlist-button";
+import Counter from "../component/ui/counter";
+import { generateCartItem } from "../utils/generate-cart-item";
+import Button from "../component/ui/button";
+import CartIcon from "../component/icons/cart-icon";
+import { toast } from "react-toastify";
+import ImageFill from "../component/ui/image";
 interface Props {
     product : Product;
 }
@@ -25,95 +35,135 @@ const ProductDetailsPage = () => {
         enabled: !!productId,
        
     });
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const {id,title, category, price :productPrice,  discountPercentage, thumbnail,rating, reviews, description }  = product  ?? {};
+     const { addItemToCart, isInCart, getItemFromCart, isInStock } = useCart();
+   
+    //productPriceOld
+    let productPriceOld: number | undefined; // Declare `productPriceOld` outside the if block
+    if(productPrice !== undefined && discountPercentage !== undefined){
+        productPriceOld = Number(Number(productPrice / (1 - (discountPercentage / 100))).toFixed(2));
+    }
+    
+    const {price, basePrice, discount} = usePrice({
+        amount: productPrice ? productPrice : productPriceOld!, // Uses `productPriceOld` if `productPrice` is undefined
+        baseAmount: productPriceOld,
+        currencyCode: 'USD'
+    });
 
-    const {id ,title, category, price, description, thumbnail } = product  ?? {};
+    // Bỏ qua selectedVariation do API ko có
+    const item = product!;
+    const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
+    const [quantity, setQuantity] = useState(1);
+
+    const  addToCart = () => {
+        
+        // to show btn feedback while product carting
+        setAddToCartLoader(true);
+        setTimeout(() => {
+          setAddToCartLoader(false);
+        }, 1500);
     
-    const {addToCompare, compareList,removeFromCompare} = useCompare();
-    const {addToWishlist, wishlistList,removeFromWishlist} = useWishlist();
-    
-    const isInCompare = (productId: number) => compareList.some((product) => product.id === productId);
-    const isWishlist = (productId: number) => wishlistList.some((product) => product.id === productId);
-    
-     // Log productId only once when component mounts
-    useEffect(() => {
+        //const item = product!;
+        addItemToCart(item, selectedQuantity);
+        toast('Added to the bag', {
+            progressClassName: 'fancy-progress-bar',
+            position: 'bottom-right',
+            autoClose: 3000,
+         });
+    }
+
+    // Log productId only once when component mounts
+    /*useEffect(() => {
         console.log("Fetched productId:", productId);
-    }, [productId]);
+    }, [productId]);*/
     
     if (isLoading) return <div>Loading...</div>;
     if (!product) return <div>Product not found</div>;
 
-    const RenderAddToCart: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product ;
-        const {isInCart, isInStock} = useCart();
-        const outOfStock = isInCart(id) && !isInStock(id);
-       
-
-        if (Number(stock) < 1 || outOfStock) {
-            return (
-                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-[13px] items-center justify-center">
-                    Out Of Stock
-                </span>
-            );
-        }
-       
-        return <AddToCart product={product} />;
-    }
+    
     return (
-        <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <img 
-            src={thumbnail} 
-            alt={title} 
-            className="w-full h-96 object-cover rounded"
-            />
-            <div>
-                <h1 className="text-3xl font-bold mb-4">{title}</h1>
-                <p className="text-xl text-gray-600 mb-4">${price}</p>
-                <Link 
-                        key={category}
-                        to={`/category/${category}`}
-                        className="inline-block bg-gray-100 px-3 py-1 rounded mb-4"
-                        >
-                        {category}
-                </Link>
-                <p className="text-gray-700 mb-4">{description}</p>
-                <div className="flex gap-2">
-               
-                    <RenderAddToCart product={product}/>
-
-                    {isInCompare(product?.id) ? (
-                        <button
-                        onClick={() => removeFromCompare(product?.id)}
-                        className="bg-slate-500 text-white  px-3 py-3  rounded-full"
-                        >
-                        
-                            <IoIosCheckmarkCircle/>
-                        </button>
-                    ) : (
-                        <button
-                        onClick={() => addToCompare(product)}
-                        className="bg-slate-500 text-white px-3 py-3  rounded-full"
-                        >
-                            <IoIosSync/>
-                        </button>
-                    )}
-
-                    {isWishlist(product?.id) ? (
-                        <button onClick={() => removeFromWishlist(product?.id)} className="bg-slate-500 text-white  px-3 py-3  rounded-full">
-                            <IoIosHeart/>
-                        </button>
-                    ) : (
-                        <button
-                        onClick={() => addToWishlist(product)}
-                        className="bg-slate-500 text-white px-3 py-3  rounded-full"
-                        >
-                            <IoIosHeartEmpty/>
-                        </button>
-                    )}
-            
+        <div className="w-full">
+            <div className="grid-cols-10 lg:grid gap-8">
+                <div className="col-span-5 mb-6 overflow-hidden">
+                   
+                    <ImageFill src={thumbnail|| 'Product Image'} height={530}   alt={title || 'Product Image'}/>
                 </div>
+                <div className="col-span-5 shrink-0 ">
+                <h1 className="text-3xl font-bold mb-4">{title}</h1>
+                    <div className="flex text-gray-500 space-x-1 mb-4">
+                        <div className="flex items-center">
+                        {rating !== undefined && [...Array(5)].map((_,idx) => (
+                            <StarIcon
+                            key={idx}
+                            color={idx < rating ? '#F3B81F' : '#DFE6ED'}
+                            className="w-3 h-3 mx-0.5"
+                            />
+                        ))}
+                        </div>
+                        
+                        {reviews !== undefined && (
+                            <span className="text-[13px] leading-4">
+                            ({reviews.length} review)
+                            </span>
+                        )}
+                    </div>
+                    
+                    <div className="text-gray-500 text-3xl  my-8">
+                        <div className="flex gap-x-2 ">
+                            <div className="text-black font-bold">{price}</div>
+                            {basePrice && (
+                            <div className="line-through text-gray-400">
+                                {basePrice}
+                            </div>
+                            )}
+                        </div>
+                        <div className="text-lg text-red-600">Save up to  {discount}</div>
+                    </div>
+                    <Link 
+                            key={category}
+                            to={`/category/${category}`}
+                            className="inline-block bg-gray-100 px-3 py-1 rounded mb-4"
+                            >
+                            {category}
+                    </Link>
+                    <p className="text-gray-700 mb-5">{description}</p>
+                    <div className="pt-4 space-y-7">
+                        <Counter
+                                variant="single"
+                                value={selectedQuantity}
+                                onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
+                                onDecrement={() =>
+                                    setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
+                                }
+                                disabled={
+                                    isInCart(item.id)
+                                    ? getItemFromCart(item.id).quantity + selectedQuantity >=
+                                        Number(item.stock)
+                                    : selectedQuantity >= Number(item.stock)
+                                }
+                        />
+                        <div className="flex gap-2 ">
+                            <Button
+                                onClick={addToCart}
+                                className=" w-64 px-1.5"
+                                loading={addToCartLoader}
+                            >
+                                <CartIcon color="#ffffff" className="mr-3" />
+                                Add To Cart
+                            </Button>
+
+                        
+                            <CompareButton product={product} className="w-14 flex items-center justify-center"/>
+                            <WishlistButton product={product} className="w-14 flex items-center justify-center"/>
+                    
+                        </div>
+                    </div>
+                    
+                </div>
+            
+
             </div>
-        </div>
         </div>
     );
     };

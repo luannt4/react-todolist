@@ -9,6 +9,8 @@ import CompareButton from "../compare/compare-button";
 import WishlistButton from "../wishlist/wishlist-button";
 import StarIcon from "../icons/star-icon";
 import usePrice from "./use-price";
+import Rate from "../ui/rate";
+import CheckIcon from "../icons/check-icon";
 
 
 interface Props {
@@ -17,21 +19,20 @@ interface Props {
 
 
 const ProductCard: React.FC<Props> = ({ product }) => {
-    const {id,title, category,  discountPercentage, thumbnail } = product;
+    const {id,title, category, price :productPrice,  discountPercentage, thumbnail,rating, reviews } = product;
     const {openModal } = useModal();
    
 
     // Create slug from title
     const slug = product.title.toLowerCase().replace(/\s+/g, '-');
-    const priceOld = Number(Number(product?.price / (1 - (discountPercentage / 100))).toFixed(2));
-
+    const productPriceOld = Number(Number(product?.price / (1 - (discountPercentage / 100))).toFixed(2));
+    
     const {price, basePrice, discount} = usePrice({
-        amount: priceOld ? priceOld : product?.price,
-        baseAmount: product?.price,
+        amount: productPrice ? productPrice : productPriceOld,
+        baseAmount: productPriceOld,
         currencyCode: 'USD'
     });
-    console.log('basePrice',basePrice);
-    console.log('priceOld',priceOld);
+    
     const RenderAddToCart: React.FC<Props> = ({ product }) => {
         const {id, stock, availabilityStatus} = product;
         const {isInCart, isInStock} = useCart();
@@ -39,7 +40,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
        
         if (Number(stock) < 1 || outOfStock) {
             return (
-                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-[13px] items-center justify-center">
+                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-sm font-medium items-center justify-center">
                     Out Of Stock
                 </span>
             );
@@ -48,7 +49,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         if (availabilityStatus === 'Low Stock') {
             return (
                 <Link
-                    className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-[13px] items-center justify-center focus:outline-none focus-visible:outline-none"
+                    className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-sm font-medium items-center justify-center focus:outline-none focus-visible:outline-none"
                     aria-label="Count Button"
                     to={`/product/${slug}-${id}`}
                 >
@@ -59,6 +60,27 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
         return <AddToCart product={product} />;
     }
+    const RenderLabelStock: React.FC<Props> = ({ product }) => {
+        const {id, stock, availabilityStatus} = product;
+        const {isInCart, isInStock} = useCart();
+        const outOfStock = isInCart(id) && !isInStock(id);
+        if (Number(stock) < 1 || outOfStock) {
+            return (
+                <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_out out_stock">
+                    <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
+                    <span> Out Of Stock </span>
+                </p>
+            );
+        }
+        return (
+            <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_in in_stock">
+                <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
+                <span> In Stock </span>
+                <span className="text-brand-dark"><b>{stock}</b> products</span>
+            </p>
+        )
+    }
+
     return (
         <div className=" gap-2 p-2 border rounded bg-white group">
             <div className="relative overflow-hidden bg-slate-100 ">
@@ -69,6 +91,14 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                         <ImageFill src={thumbnail|| 'Product Image'} height={230}   alt={title || 'Product Image'}/>
                         
                 </Link>
+
+                {discount && (
+                    <div className="absolute top-2 right-2  z-10">
+                        <span className="text-[10px] font-medium text-white uppercase inline-block bg-red-600 rounded-sm px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
+                            {'On Sale'}
+                        </span>
+                    </div>
+                )}
                 <button
                     className="group-hover:scale-100 group-hover:opacity-100 bg-blue-500 opacity-0 scale-0 transition absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2   text-white flex gap-2 px-4 py-2 font-normal rounded-full text-sm "
                     aria-label="Quick View Button"
@@ -88,7 +118,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                         {category}
                     </Link>
                 </p>
-                <p className={`w-full cursor-pointer font-medium  mb-0.5`}>
+                <p className={`w-full cursor-pointer font-medium  mb-2`}>
                     <Link 
                         key={id} 
                         to={`/product/${slug}-${id}`}
@@ -97,38 +127,44 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                         {title}
                     </Link>
                 </p>
-                <div className="flex text-gray-500 space-x-2 mb-1">
+                <div className="flex text-gray-500 space-x-1 mb-2">
                     <div className="flex items-center">
-                    {[...Array(5)].map((_, idx) => (
+                    {rating !== undefined && [...Array(5)].map((_,idx) => (
                         <StarIcon
                         key={idx}
-                        color={idx < 5 ? '#F3B81F' : '#DFE6ED'}
-                        className="w-3 h-3 mx-px"
+                        color={idx < rating ? '#F3B81F' : '#DFE6ED'}
+                        className="w-3 h-3 mx-0.5"
                         />
                     ))}
                     </div>
-                    <span className="text-[13px] leading-4">(1 review)</span>
-                </div>
-                <div className="text-gray-500 text-lg mb-5">
-                    <div className="flex gap-x-2 ">
-                        <div className="text-black dark:text-white">{price}</div>
-                        <div className="line-through text-gray-400">{priceOld}</div>
-                    </div>
-                    {basePrice && (
-                    <del className="mx-1  text-gray-400 text-opacity-70">
-                        {basePrice}
-                    </del>
+                    
+                    {reviews !== undefined && (
+                        <span className="text-[13px] leading-4">
+                        ({reviews.length} review)
+                        </span>
                     )}
+                </div>
+
+                <div className="text-gray-500 text-lg mb-2">
+                    <div className="flex gap-x-2 ">
+                        <div className="text-black ">{price}</div>
+                        {basePrice && (
+                        <div className="line-through text-gray-400">
+                            {basePrice}
+                        </div>
+                        )}
+                    </div>
+                </div>
+                <div className="mb-5 text-gray-500">
+                    <RenderLabelStock product={product}/>
                 </div>
                 
                 <div className="flex gap-2">
                     <RenderAddToCart product={product}/>
                     <CompareButton product={product}/>
                     <WishlistButton product={product}/>
-                
                 </div>
             </div>
-            
             
         </div>
     );

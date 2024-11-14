@@ -29,6 +29,7 @@ export function formatVariantPrice({
     locale: string;
   }) {
     const hasDiscount = baseAmount > amount;
+   
     const formatDiscount = new Intl.NumberFormat(locale, { style: 'percent' });
     const discount = hasDiscount
       ? formatDiscount.format((baseAmount - amount) / baseAmount)
@@ -47,11 +48,11 @@ export default function usePrice(data?: {amount: number;baseAmount?: number;curr
     const { amount, baseAmount, currencyCode } = data ?? {};
     const locale = 'en';
     const value = useMemo(() => {
-      if (typeof amount !== 'number' || !currencyCode) return '';
-  
-      return baseAmount
-        ? formatVariantPrice({ amount, baseAmount, currencyCode, locale })
-        : formatPrice({ amount, currencyCode, locale });
+        if (typeof amount !== 'number' || !currencyCode) return '';
+       
+        return baseAmount
+            ? formatVariantPrice({ amount, baseAmount, currencyCode, locale })
+            : formatPrice({ amount, currencyCode, locale });
     }, [amount, baseAmount, currencyCode]);
    
     return typeof value === 'string'

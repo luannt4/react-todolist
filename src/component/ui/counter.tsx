@@ -34,7 +34,7 @@ const Counter: React.FC<CounterProps> = ({
         {
           'h-8 md:h-10 bg-brand shadow-counter rounded-3xl':
             variant === 'mercury' || variant === 'cardv2',
-          'rounded-md h-11 md:h-14 bg-[#f3f5f9] w-40 mb-5': variant === 'single',
+          'rounded-md h-11 md:h-14 bg-[#f3f5f9] w-40 mb-5 px-3': variant === 'single',
           'inline-flex': variant === 'cart',
         },
         className
@@ -74,11 +74,11 @@ const Counter: React.FC<CounterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className={cn(
-          'group flex items-center justify-center flex-shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none',
+          'group flex items-center justify-center transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none',
           {
             'w-8 md:w-12 h-8 rounded-2xl text-heading text-white me-1':
               variant === 'mercury' || variant === 'cardv2',
-            '!w-8 !h-8 rounded-full scale-80 lg:scale-100 text-heading hover:bg-fill-four mr-auto  !pr-0 justify-center':
+            '!w-8 !h-8 rounded-full scale-80 lg:scale-100 text-heading hover:bg-fill-four  !pr-0 justify-center':
               variant === 'single',
             '!w-6 !h-6 border text-brand-muted border-border-three hover:bg-brand hover:border-brand rounded-full hover:text-brand-light !pr-0':
               variant === 'cart',

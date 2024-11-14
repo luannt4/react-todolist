@@ -2,12 +2,13 @@ import { IoIosCheckmarkCircle, IoIosSync } from "react-icons/io";
 import { useCompare } from "../../contexts";
 import { Product } from "../../types/Product";
 import { toast } from "react-toastify";
-
+import cn from 'classnames';
 interface Props {
     product : Product;
+    className?: string;
 };
 
-const CompareButton: React.FC<Props> = ({product}) => {
+const CompareButton: React.FC<Props> = ({product,className}) => {
     const {addToCompare, compareList,removeFromCompare} = useCompare();
     const InCompare = (productId: number) => compareList.some((product) => product.id === productId);
     const isInCompare = InCompare(product?.id);
@@ -28,8 +29,7 @@ const CompareButton: React.FC<Props> = ({product}) => {
                     removeFromCompare(product?.id);
                     handleBtnCompare();
                 }}
-                className="bg-slate-500 text-white  px-3 py-3  rounded-full"
-                >
+                className={cn('bg-gray-200 text-gray-600  px-3 py-3  rounded-full hover:bg-blue-500 hover:text-white',className)} >
                 
                     <IoIosCheckmarkCircle/>
                 </button>
@@ -38,7 +38,7 @@ const CompareButton: React.FC<Props> = ({product}) => {
                     addToCompare(product);
                     handleBtnCompare();
                 }}
-                className="bg-slate-500 text-white px-3 py-3  rounded-full"
+                className={cn(' bg-gray-200 text-gray-600 px-3 py-3  rounded-full hover:bg-blue-500 hover:text-white',className)}
                 >
                     <IoIosSync/>
                 </button>

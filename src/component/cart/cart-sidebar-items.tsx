@@ -23,15 +23,12 @@ const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
 
   return (
     <div
-      className={`group w-full h-auto flex justify-start  text-brand-light  relative last:border-b-0`}
+      className={`group w-full h-auto flex justify-start  relative last:border-b-0`}
       title={title}
     >
       <div className="relative flex rounded overflow-hidden shrink-0 cursor-pointer w-[90px]  h-[90px]  border border-border-base">
-        <ImageFill
-          src={thumbnail }
-          height={100}
-          alt={title || 'Product Image'}
-        />
+        <img src={thumbnail}  height={90} className="object-cover" />
+       
         <div
           className="absolute top-0 flex items-center justify-center w-full h-full transition duration-200 ease-in-out bg-black ltr:left-0 rtl:right-0 bg-opacity-30 md:bg-opacity-0 md:group-hover:bg-opacity-30"
           onClick={() => clearItemFromCart(id)}
@@ -43,6 +40,7 @@ const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
 
       <div className="flex items-start justify-between w-full overflow-hidden">
         <div className="pl-3 md:pl-4 ">
+       
           <Link
             to={`/product/${slug}-${id}`}
             className="block leading-5 transition-all font-medium lg:text-15px group-hover:text-blue-500"

@@ -12,7 +12,7 @@ import { LIMITS } from "../settings/limits";
 
 const CategoriesProductPage = () => {
     const [page, setPage] = useState(1);
-    const limit = LIMITS.PAGESEARCH_LIMITS;
+    const limit = LIMITS.PAGECATEGORY_LIMITS;
 
     // Get categoryName query parameters
     const { categoryName} = useParams<{ categoryName: string }>();

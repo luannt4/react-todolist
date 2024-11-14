@@ -28,14 +28,14 @@ const ImageFill : React.FC<Props>  = ({
             offset={80}
             placeholder={<Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
         >
-           <div className="block w-full box-sizing">
-				<svg
-					className="block max-w-full h-auto"
-					xmlns="http://www.w3.org/2000/svg"
-					width={width}
-					height={height}
-					version="1.1"
-				/>
+            <div className="block w-full box-sizing">
+                <svg
+                className="block max-w-full h-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                width={width}
+                height={height}
+                version="1.1"
+                />
 			</div>
         	<img src={src}  className="absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover" />
       </LazyLoad>
