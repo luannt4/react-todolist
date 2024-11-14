@@ -24,8 +24,9 @@ const ImageFill : React.FC<Props>  = ({
     return (
         <LazyLoad
             className={"h-full w-full relative"}
+            once
             height={height}
-            offset={80}
+            offset={100}
             placeholder={<Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
         >
             <div className="block w-full box-sizing">

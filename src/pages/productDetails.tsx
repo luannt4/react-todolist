@@ -54,7 +54,6 @@ const ProductDetailsPage = () => {
     // Bỏ qua selectedVariation do API ko có
     const item = product!;
     const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
-    const [quantity, setQuantity] = useState(1);
 
     const  addToCart = () => {
         
@@ -78,10 +77,18 @@ const ProductDetailsPage = () => {
         console.log("Fetched productId:", productId);
     }, [productId]);*/
     
-    if (isLoading) return <div>Loading...</div>;
-    if (!product) return <div>Product not found</div>;
+    if (isLoading) return (
+        <div className="flex justify-center items-center min-h-[300px] bg-white">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+        </div>
+    );
 
-    
+    if (!product) return (
+        <div className="no-results  min-h-52 flex  justify-center items-center">
+            <h3 className="text-lg ">Not Product found.</h3>
+        </div>
+    );
+
     return (
         <div className="w-full">
             <div className="grid-cols-10 lg:grid gap-8">

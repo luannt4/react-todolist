@@ -60,6 +60,7 @@ const FormSearch: React.FC<Props> = ({className= 'md:w-[730px]'}) => {
         }, 200); // Short delay to allow selection
     };
 
+  
     return (
         <div className={cn(
           'w-full relative transition-all duration-200 ease-in-out',
@@ -97,30 +98,30 @@ const FormSearch: React.FC<Props> = ({className= 'md:w-[730px]'}) => {
             {/* Dropdown showing search results */}
             {searchTerm.length > 2 && isSearching && (
                 <div className="w-full absolute top-[50px] left-0 border  bg-white rounded overflow-hidden shadow-lg z-30">
-                 <Scrollbar className="os-host-flexbox">
-                    <div className="w-full max-h-[380px]">
-                        {/* Loading state */}
-                        {isLoading && <SearchSkeleton/>}
-                        
-                        {/* No results message */}
-                        {filteredProducts?.length === 0  && !isLoading && (
-                            <div className="no-results  min-h-52 flex  justify-center items-center">
-                                <h3 className="text-lg ">Not found! Try with another keyword.</h3>
-                            </div>
-                        )}
+                    <Scrollbar className="os-host-flexbox">
+                        <div className="w-full max-h-[380px]">
+                            {/* Loading state */}
+                            {isLoading && <SearchSkeleton/>}
+                            
+                            {/* No results message */}
+                            {filteredProducts?.length === 0  && !isLoading && (
+                                <div className="no-results  min-h-52 flex  justify-center items-center">
+                                    <h3 className="text-lg ">Not found! Try with another keyword.</h3>
+                                </div>
+                            )}
 
-                        {/*Dropdown showing search results */}
-                        {filteredProducts?.length > 0 && (
-                            filteredProducts?.map((product) => (
-                                <SearchItem
-                                key = {product.id}
-                                product = {product}
-                                />
-                            ))
-                        )}
-                    </div>
-                 </Scrollbar>
-            </div>  
+                            {/*Dropdown showing search results */}
+                            {filteredProducts?.length > 0 && (
+                                filteredProducts?.map((product) => (
+                                    <SearchItem
+                                    key = {product.id}
+                                    product = {product}
+                                    />
+                                ))
+                            )}
+                        </div>
+                    </Scrollbar>
+                </div>  
             )}
                 
         </div>

@@ -4,6 +4,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import 'overlayscrollbars/overlayscrollbars.css';
 type ScrollbarProps = {
   options?: any;
+  onScroll?: any;
   children: React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
@@ -13,6 +14,7 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
   options,
   children,
   style,
+  onScroll,
   className,
   ...props
 }) => {
@@ -26,6 +28,7 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
         ...options,
       }}
       style={style}
+      onScroll={onScroll}
       {...props}
     >
       {children}
