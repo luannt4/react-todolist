@@ -4,13 +4,14 @@ import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
 import {useCart, useModal } from '../../contexts';
 import ImageFill from "../ui/image";
-import AddToCart from './add-to-cart';
+import AddToCart from "../product/add-to-cart";
 import CompareButton from "../compare/compare-button";
 import WishlistButton from "../wishlist/wishlist-button";
 import StarIcon from "../icons/star-icon";
-import usePrice from "./use-price";
+import usePrice from "../product/use-price";
 import Rate from "../ui/rate";
 import CheckIcon from "../icons/check-icon";
+import SearchIcon from "../icons/search-icon";
 
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
 }
 
 
-const ProductCard: React.FC<Props> = ({ product }) => {
+const ProductCardMedium: React.FC<Props> = ({ product }) => {
     const {id,title, category, price :productPrice,  discountPercentage, thumbnail,rating, reviews } = product;
     const {openModal } = useModal();
    
@@ -82,34 +83,34 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     }
 
     return (
-        <div className=" gap-2 p-2 border rounded bg-white group">
-            <div className="relative overflow-hidden bg-slate-100 ">
+        <div className="group flex flex-col xl:flex-row items-center  gap-2 product-card relative  p-2 sm:p-4  h-full rounded bg-white">
+            <div className="relative  product-card-img ">
                 <Link
                     key={id} 
                     to={`/product/${slug}-${id}`}
                     className="block ">
-                        <ImageFill src={thumbnail|| 'Product Image'} height={230}   alt={title || 'Product Image'}/>
+                        <ImageFill src={thumbnail|| 'Product Image'} width={180} height={180}   alt={title || 'Product Image'}/>
                         
                 </Link>
 
                 {discount && (
-                    <div className="absolute top-2 right-2  z-10">
+                    <div className="absolute top-0 left-2  z-10">
                         <span className="text-[10px] font-medium text-white uppercase inline-block bg-red-600 rounded-sm px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
                             {'On Sale'}
                         </span>
                     </div>
                 )}
                 <button
-                    className="group-hover:scale-100 group-hover:opacity-100 bg-blue-500 opacity-0 scale-0 transition absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2   text-white flex gap-2 px-4 py-2 font-normal rounded-full text-sm "
+                    className="group-hover:scale-100 group-hover:opacity-100 bg-white shadow-quickview opacity-0 scale-0 transition absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2   px-4 py-4 rounded-full"
                     aria-label="Quick View Button"
                     onClick={() => openModal ("PRODUCT_VIEW", product)}
                     >
-                    Quick view
+                    <SearchIcon width={20} height={20}  />
                 </button>
             </div>
             
-            <div className="py-3 px-1.5 ">
-                <p className="text-gray-500 mb-2 capitalize">
+            <div className="flex flex-col h-full overflow-hidden relative product-card-content ">
+                <p className="text-sm text-gray-500 mb-2 capitalize">
                     <Link 
                         key={category}
                         to={`/category/${category}`}
@@ -159,15 +160,11 @@ const ProductCard: React.FC<Props> = ({ product }) => {
                     <RenderLabelStock product={product}/>
                 </div>
                 
-                <div className="flex gap-2">
-                    <RenderAddToCart product={product}/>
-                    <CompareButton product={product}/>
-                    <WishlistButton product={product}/>
-                </div>
+             
             </div>
             
         </div>
     );
 }
  
-export default ProductCard;
+export default ProductCardMedium;

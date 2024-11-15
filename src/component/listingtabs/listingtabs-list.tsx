@@ -19,7 +19,7 @@ const ListingTabsList: React.FC<Props> = ({ className = 'mb-12 pb-0.5', categori
             <h3 className="text-base text-[16px] uppercase text-skin-base font-bold border-0 hover:text-skin-primary lg:basis-[30%]">
                 Electronic & Digital
             </h3>
-
+            
             <div className="ltabs-tabs-wrap flex flex-wrap	 justify-end lg:basis-[70%]">
                 <ul key="content" className="flex text-[14px] leading-7 ">
                     {categories?.slice(0, 4)
@@ -40,7 +40,7 @@ const ListingTabsList: React.FC<Props> = ({ className = 'mb-12 pb-0.5', categori
                                         activeTab === category.slug ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
                                     }`}
                                     >
-                                    {category.name} {category.slug}
+                                    {category.name} 
                                     </button>
                                     
                                 </li>

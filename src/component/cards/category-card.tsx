@@ -10,7 +10,7 @@ interface Props {
 }
 
 const CategoryCard: React.FC<Props> = ({ item, href, className,variant}) => {
-    const {name, slug, url} = item ?? {};
+    const {name,total} = item ?? {};
     
     return (
         <Link

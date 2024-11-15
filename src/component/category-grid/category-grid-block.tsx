@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Alert from "../ui/alert";
 import Carousel from "../ui/carousel/carousel";
 import CategoryCard from "../cards/category-card";
+import CategoryGridSkeleton from "./category-grid-skeleton";
 
 
 interface CategoriesProps {
@@ -33,7 +34,7 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
 
     const breakpoints = {
         '1480': {
-            slidesPerView: 6,
+            slidesPerView: 8,
             spaceBetween: 10
         },
         '1280': {
@@ -63,27 +64,38 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                 {error ? (
                     <Alert message={error?.message} className="mb-14 3xl:mx-3.5"/>
                 ) : (
-                    <Carousel
-                        grid={{rows: 1, fill: 'row'}}
-                        breakpoints={breakpoints}
-                        className="shopby-categories"
-                    >
-                        {isLoading && !categories
-                            ? Array.from({length: limit}).map((_, idx) => {
-                                return (
-                                   <>Loading</>
-                                );
-                            })
-                            : categories?.slice(0, limit)?.map((category, idx: number) => (
-                                <SwiperSlide key={`category--key-${idx}`}>
-                                    <CategoryCard
-                                        item={category}
-                                        variant={variant}
-                                        href={`/category/${category.slug}`}
-                                    />
-                                </SwiperSlide>
+                    <>
+                        {/* Loading state */}
+                        {isLoading && (
+                            <div className="grid grid-cols-1 md:grid-cols-8 gap-2">
+                            {Array.from({ length: 8 }).map((_, id) => (
+                                <div className="p-2  rounded bg-white group">
+                                    <CategoryGridSkeleton key={id}/>
+                                </div>
                             ))}
-                    </Carousel>
+                            </div>
+                        )}
+
+                        
+                            <Carousel
+                                grid={{rows: 1, fill: 'row'}}
+                                breakpoints={breakpoints}
+                                className="shopby-categories"
+                            >
+                                {categories?.slice(0, limit)?.map((category, idx: number) => (
+                                        <SwiperSlide key={`category--key-${idx}`}>
+                                            <CategoryCard
+                                                item={category}
+                                                variant={variant}
+                                                href={`/category/${category.slug}`}
+                                            />
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Carousel>
+                       
+                    </>
+                    
                 )}
             </div>
         </div>

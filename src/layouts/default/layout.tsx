@@ -7,10 +7,10 @@ const DefaultLayout: React.FC = () => {
     return (
         <>
             <Header/>
-            <main className="max-w-7xl mx-auto mt-10 min-h-[560px]">
+            <main className="mt-10 min-h-[560px]">
                 <Outlet />
             </main>
-            <div className="bg-gray-800 text-white text-center p-4 mt-20">Footer Content</div>
+            <div className="bg-gray-800 text-white text-center p-6 ">Footer Content</div>
         </>
     );
 };

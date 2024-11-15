@@ -3,12 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { SearchResponse } from "../types/Product";
 
 import { fetchProductsByCategory } from "../api/fetchProductsByCategory";
-import ProductCard from "../component/product/product-card";
+import ProductCard from "../component/cards/product-card";
 import ProductCardSkeleton from "../component/product/product-skeleton";
 import {useState} from "react";
 import {GrNext, GrPrevious} from "react-icons/gr";
 import Pagination from "../component/ui/pagination";
 import { LIMITS } from "../settings/limits";
+import Container from "../component/ui/container";
 
 const CategoriesProductPage = () => {
     const [page, setPage] = useState(1);
@@ -23,6 +24,7 @@ const CategoriesProductPage = () => {
         queryFn: () => fetchProductsByCategory(categoryName,page,limit),
         enabled: !!categoryName, // Chỉ gọi API khi có từ khóa
     });
+    
     const {products = [], total } = data  ?? {};
     
 
@@ -31,10 +33,10 @@ const CategoriesProductPage = () => {
     };
 
     return (
-        <div>
-        <h1 className="text-2xl font-medium mb-6 capitalize">{categoryName}</h1>
+        <Container>
+            <h1 className="text-2xl font-medium mb-6 capitalize">{categoryName}</h1>
         
-        {/* Loading state */}
+            {/* Loading state */}
             {isLoading && (
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {Array.from({ length: 8 }).map((_, id) => (
@@ -73,7 +75,7 @@ const CategoriesProductPage = () => {
                 </div>
             )}
 
-        </div>
+        </Container>
     );
     };
   

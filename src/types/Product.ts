@@ -31,7 +31,10 @@ export interface Category {
   slug: string;
   name: string;
   url: string;
+  total?: number;
 }
+
+
 
 export interface SearchResponse {
   products: Product[];

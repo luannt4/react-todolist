@@ -8,7 +8,7 @@ import { LIMITS } from "../../settings/limits";
 import { SearchResponse } from "../../types/Product";
 
 const Listingtabs: React.FC = () => {
-    const [activeCategory, setActiveCategory] = useState<string>("beauty");
+    const [activeCategory, setActiveCategory] = useState<string>("groceries");
     const [isPending, startTransition] = useTransition();
     const limit = LIMITS.PAGESEARCH_LIMITS;
     const page : number = 1;
@@ -40,7 +40,7 @@ const Listingtabs: React.FC = () => {
 
     return (
         <div className="mb-8 lg:mb-15 ">
-            <ListingTabsList className={` py-2.5 rounded bg-white`} categories={categories} onNavClick={handleTabClick} activeTab={activeCategory} />
+            <ListingTabsList className={`px-5 py-2.5 rounded bg-white`} categories={categories} onNavClick={handleTabClick} activeTab={activeCategory} />
             
             {isPending && (
                 <div className="flex justify-center items-center min-h-[300px] bg-white">
@@ -48,7 +48,7 @@ const Listingtabs: React.FC = () => {
                 </div>
             )}
 
-            <ListingTabsContainer products={products} isLoading={isLoading} error={error} />
+            <ListingTabsContainer products={products} isLoading={isLoading} error={error} variant="medium"/>
         </div>
         
     );

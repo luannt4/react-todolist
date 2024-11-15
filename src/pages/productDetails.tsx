@@ -15,6 +15,7 @@ import Button from "../component/ui/button";
 import CartIcon from "../component/icons/cart-icon";
 import { toast } from "react-toastify";
 import ImageFill from "../component/ui/image";
+import Container from "../component/ui/container";
 
 interface Props {
     product : Product;
@@ -88,7 +89,7 @@ const ProductDetailsPage = () => {
     );
 
     return (
-        <div className="w-full">
+        <Container>
             <div className="grid-cols-10 lg:grid gap-8">
                 <div className="col-span-5 mb-6 overflow-hidden">
                    
@@ -169,7 +170,7 @@ const ProductDetailsPage = () => {
             
 
             </div>
-        </div>
+        </Container>
     );
     };
   

@@ -12,7 +12,7 @@ interface Props {
   }
 
   
-const ImageFill : React.FC<Props>  = ({
+const Image : React.FC<Props>  = ({
     className,
     variant,
     width ,
@@ -42,4 +42,4 @@ const ImageFill : React.FC<Props>  = ({
       </LazyLoad>
     );
 }
-export default ImageFill;
+export default Image;

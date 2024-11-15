@@ -10,7 +10,7 @@ const ProductCardSkeleton: React.FC = () => {
                 <Skeleton  containerClassName='w-full' className="h-52 "/>
                 <div className="space-y-0 w-full">
                     <Skeleton containerClassName="float-left w-[75%]" />
-                    <Skeleton count={3} containerClassName="clear-both float-left w-full" />
+                    <Skeleton count={5} containerClassName="clear-both float-left w-full" />
                 </div>
             </div>
   </SkeletonTheme>

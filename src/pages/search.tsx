@@ -2,12 +2,13 @@ import { useSearchParams } from "react-router-dom";
 import { fetchProductsBySearch } from '../api/fetchProductsBySearch';
 import { useQuery } from "@tanstack/react-query";
 import { SearchResponse ,Product } from "../types/Product";
-import ProductCard from "../component/product/product-card";
+import ProductCard from "../component/cards/product-card";
 import ProductCardSkeleton from "../component/product/product-skeleton";
 import {useState,useEffect} from "react";
 import {GrNext, GrPrevious} from "react-icons/gr";
 import Pagination from "../component/ui/pagination";
 import { LIMITS } from "../settings/limits";
+import Container from "../component/ui/container";
 
 const SearchPage = () => {
     const [page, setPage] = useState(1);
@@ -37,7 +38,7 @@ const SearchPage = () => {
     };
     
     return (
-        <div>
+        <Container>
             <h1 className="text-2xl font-bold mb-6 capitalize">Search Results for "{searchTerm}"</h1>
             {/* Loading state */}
             {isLoading && (
@@ -79,7 +80,7 @@ const SearchPage = () => {
                 </div>
             )}
             
-        </div>
+        </Container>
     );
   };
   

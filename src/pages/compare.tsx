@@ -1,10 +1,11 @@
 import CompareCard from '../component/compare/compare-card';
+import Container from '../component/ui/container';
 import {useCompare } from '../contexts';
 
 const ComparePage = () => {
   const {compareList,removeFromCompare} = useCompare();
   return (
-    <>
+    <Container>
 		<h1 className="text-2xl font-medium mb-6 capitalize">Compare </h1>
 		<div className="grid grid-cols-1 gap-3 ">
 			
@@ -17,7 +18,7 @@ const ComparePage = () => {
 			))}
 		</div>
 		
-    </>
+    </Container>
   );
 };
   
