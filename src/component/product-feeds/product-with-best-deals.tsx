@@ -90,6 +90,8 @@ const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',unique
                             <Carousel
                                 breakpoints={breakpoints}
                                 spaceBetween={6}
+                                prevActivateId={`prevBestdeals`}
+                                nextActivateId={`nextBestdeals`}
                             >
                                 {!isLoading &&  (
                                     <>

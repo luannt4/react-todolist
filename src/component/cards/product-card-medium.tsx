@@ -83,8 +83,8 @@ const ProductCardMedium: React.FC<Props> = ({ product }) => {
     }
 
     return (
-        <div className="group flex flex-col xl:flex-row items-center  gap-2 product-card relative  p-2 sm:p-4  h-full rounded bg-white">
-            <div className="relative  product-card-img ">
+        <div className="group border flex flex-col xl:flex-row items-center  gap-4 product-card relative  p-2 sm:p-4  h-full rounded bg-white">
+            <div className="relative  product-card-img bg-slate-100">
                 <Link
                     key={id} 
                     to={`/product/${slug}-${id}`}

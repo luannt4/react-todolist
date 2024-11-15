@@ -52,7 +52,7 @@ const HomePage = () => {
                         grid={3}
                         className="mb-8 lg:mb-12"
                     />
-                    <PopularProduct className="mb-8 lg:mb-12"/>
+                    <PopularProduct className=""/>
                 </Container>
             </div>
             

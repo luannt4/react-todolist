@@ -26,7 +26,7 @@ const HeroSliderBlock: React.FC<Props> = ({
                     clickable: true,
                 }}
                 navigation={true}
-                autoplay={false}
+                autoplay={true}
                 prevActivateId={`prevActivateId`}
                 nextActivateId={`nextActivateId`}
             >

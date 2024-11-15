@@ -80,7 +80,8 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                             <Carousel
                                 grid={{rows: 1, fill: 'row'}}
                                 breakpoints={breakpoints}
-                                className="shopby-categories"
+                                prevActivateId={`prevCategoryGrid`}
+                                nextActivateId={`nextCategoryGrid`}
                             >
                                 {categories?.slice(0, limit)?.map((category, idx: number) => (
                                         <SwiperSlide key={`category--key-${idx}`}>

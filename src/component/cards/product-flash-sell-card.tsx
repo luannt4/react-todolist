@@ -84,12 +84,12 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
     }
 
     return (
-        <div className="gap-2 p-2  rounded bg-white group">
+        <div className="gap-2 p-2 border rounded bg-white group">
             <div className="relative overflow-hidden ">
                 <Link
                     key={id} 
                     to={`/product/${slug}-${id}`}
-                    className="block group-hover:-translate-y-6 transition-all duration-300">
+                    className="block bg-slate-100 group-hover:-translate-y-6 transition-all duration-300">
                         <ImageFill src={thumbnail|| 'Product Image'} height={230}   alt={title || 'Product Image'}/>
                         
                 </Link>
@@ -110,7 +110,7 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
                 </button>
             </div>
             
-            <div className="relative py-3 mx-1.5 group-hover:-mt-4 group-hover:pb-4 transition-all duration-300">
+            <div className="relative py-3 mx-1 group-hover:-mt-4 group-hover:pb-4 transition-all duration-300">
                 <p className="text-gray-500 mb-2 capitalize hidden">
                     <Link 
                         key={category}

@@ -120,7 +120,8 @@ const ProductsCarousel: React.FC<CarouselProps> = ({
                         spaceBetween={6}
                         grid={{rows: rowCarousel, fill: 'row'}}
                         breakpoints={carouselBreakpoint || breakpoints}
-                        className=""
+                        prevActivateId={`prev${uniqueKey}`}
+                        nextActivateId={`next${uniqueKey}`}
                     >
                         {products?.map((product: any, idx) => (
                             <SwiperSlide key={`${uniqueKey}-${idx}`} className="">

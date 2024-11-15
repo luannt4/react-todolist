@@ -106,21 +106,21 @@ export default function Carousel({
         >
           {prevActivateId.length > 0 ? (
             <div className={prevButtonClasses} id={prevActivateId}>
-              {dir === 'rtl' ? <IoIosArrowForward /> : <IoIosArrowBack />}
+              <IoIosArrowBack />
             </div>
           ) : (
             <div ref={prevRef} className={prevButtonClasses}>
-              {dir === 'rtl' ? <IoIosArrowForward /> : <IoIosArrowBack />}
+              <IoIosArrowBack />
             </div>
           )}
 
           {nextActivateId.length > 0 ? (
             <div className={nextButtonClasses} id={nextActivateId}>
-              {dir === 'rtl' ? <IoIosArrowBack /> : <IoIosArrowForward />}
+              <IoIosArrowForward />
             </div>
           ) : (
             <div ref={nextRef} className={nextButtonClasses}>
-              {dir === 'rtl' ? <IoIosArrowBack /> : <IoIosArrowForward />}
+              <IoIosArrowForward />
             </div>
           )}
         </div>
