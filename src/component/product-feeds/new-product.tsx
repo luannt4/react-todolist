@@ -31,7 +31,7 @@ const NewProduct: FC<Props> = ({
       loading={isLoading}
       error={error?.message}
       limit={LIMITS.BEST_SELLER_PRODUCTS_LIMITS}
-      uniqueKey="best-sellers"
+      uniqueKey="new-product"
       variant={variant}
       className={className}
     />
