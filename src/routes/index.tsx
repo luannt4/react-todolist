@@ -135,7 +135,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: <CheckoutPage />,
+        element: ( 
+          <PrivateRoute>
+            <CheckoutPage />
+          </PrivateRoute>
+      ),
       },
       {
         path: "complete-order",
