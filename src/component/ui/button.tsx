@@ -31,7 +31,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         variant === 'primary',
       'h-12 md:h-14 bg-brand-light text-base border border-border-four tracking-widest px-5  py-4 md:py-3.5 lg:py-4':
         variant === 'border',
-      'h-11 md:h-[50px] bg-brand text-brand-light font-manrope px-5 lg:px-6 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 focus:bg-opacity-70':
+      'h-11 md:h-[50px] bg-blue-500 text-white font-manrope px-5 lg:px-6 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 focus:bg-opacity-70':
         variant === 'formButton',
       'cursor-not-allowed hover:cursor-not-allowed bg-opacity-50 hover:bg-opacity-50':
         disabled,

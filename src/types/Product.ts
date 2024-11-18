@@ -51,3 +51,39 @@ export type QueryOptionsType = {
   status?: string;
   limit?: number;
 };
+
+export type UserAddress = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  address: Address['address'];
+};
+
+interface Address {
+  address: {
+    address: string;
+    city: string;
+    postalCode: string;
+    state: string;
+  };
+}
+export type OrderItem = {
+  id: number | string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+export interface Order {
+  id: string | number;
+  name: string;
+  slug: string;
+  products: OrderItem[];
+  total: number;
+  tracking_number: string;
+  customer: {
+    id: number;
+    email: string;
+  };
+  shipping_fee: number;
+  payment_gateway: string;
+}

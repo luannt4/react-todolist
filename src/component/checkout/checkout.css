@@ -1,0 +1,38 @@
+/* Checkout details page accordion */
+.accordion__panel.collapsed .accordion__content {
+    display: none;
+  }
+  .accordion__panel.expanded .accordion__content {
+    display: block;
+    background-color: #ffffff;
+  }
+  .accordion__panel.collapsed .accordion__button {
+    background-color: #ffffff;
+  }
+  .accordion__panel .accordion__button {
+      background-color: #ffffff;
+  }
+
+
+.StripeElement {
+    box-sizing: border-box;
+    height: 50px;
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background-color: white;
+    -webkit-transition: border 150ms ease;
+    transition: border 150ms ease;
+  }
+  
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }

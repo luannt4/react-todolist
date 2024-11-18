@@ -25,6 +25,7 @@ import ManagedDrawer from "../component/common/drawer/managed-drawer";
 import CartPage from "../pages/cart";
 import CheckoutPage from "../pages/checkout";
 import ManagedToaster from "../component/common/toaster/toaster-provider";
+import CompleteOrderPage from "../pages/complete-order";
 
 /*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const {  isLoading } = useAuth();
@@ -99,9 +100,9 @@ export const router = createBrowserRouter([
       {
         path: "wishlist",
         element: ( 
-			<PrivateRoute>
-				<WishlistPage />
-        	</PrivateRoute>
+			  <PrivateRoute>
+				  <WishlistPage />
+        </PrivateRoute>
 		),
       },
       {
@@ -135,6 +136,10 @@ export const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckoutPage />,
+      },
+      {
+        path: "complete-order",
+        element: <CompleteOrderPage />,
       },
       {
         path: "*",

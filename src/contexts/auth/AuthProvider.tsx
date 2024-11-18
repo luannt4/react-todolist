@@ -9,13 +9,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [state, dispatch] = useReducer(authReducer, initialState);
     const navigate = useNavigate();
     
-    useEffect(() => {
+    /*useEffect(() => {
         if (state.isAuthenticated && state.user) {
             localStorage.setItem('authUser', JSON.stringify(state.user));
         } else {
             localStorage.removeItem('authUser');
         }
-    }, [state.isAuthenticated, state.user]);
+    }, [state.isAuthenticated, state.user]);*/
 
     const login = useCallback(async (credentials: LoginCredentials) => {
         try {
