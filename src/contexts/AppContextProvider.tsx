@@ -1,18 +1,17 @@
 import { ModalProvider } from  './modal/modalProvider';
-import { ProductProvider } from "./store/storeProvider";
-import { CompareProvider } from "./compare/compareProvider";
-import { WishlistProvider } from './wishlist/wishlistProvider';
 import { AuthProvider } from './auth/AuthProvider';
 import { CartProvider } from './cart/CartProvider';
 import { DrawerProvider } from './drawer/drawerProvider';
 
+//React-redux
+import { Provider } from 'react-redux';
+import store from '../store';
+
 
 export function AppProvider({ children }: React.PropsWithChildren) {
     return (
-        <ProductProvider>
+        <Provider store={store}>
             <CartProvider>
-            <CompareProvider>
-            <WishlistProvider>
                 <DrawerProvider>
                 <ModalProvider>
                 <AuthProvider>
@@ -20,10 +19,8 @@ export function AppProvider({ children }: React.PropsWithChildren) {
                 </AuthProvider>
                 </ModalProvider>
                 </DrawerProvider>
-            </WishlistProvider>
-            </CompareProvider>
             </CartProvider>
-        </ProductProvider>
+        </Provider>
       
     );
   }

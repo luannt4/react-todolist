@@ -3,7 +3,7 @@ import { IoIosHeart, IoIosSync } from 'react-icons/io';
 
 import cn from 'classnames';
 import { MenuTopMyAccount } from "./menuTopAccount";
-import { useCompare, useWishlist } from "../../contexts";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
 
 interface MenuProps {
@@ -11,8 +11,8 @@ interface MenuProps {
 }
 
 const HeaderMenutop: React.FC<MenuProps> = ({className }) => {
-    const {compareList} = useCompare();
-    const {wishlistList} = useWishlist();
+    const compareList  = useAppSelector(state => state.compare.compareList);
+    const wishlistList = useAppSelector(state => state.wishlist.items);
 
     return (
         <div className={cn(

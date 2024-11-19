@@ -38,7 +38,7 @@ const WishlistCard: React.FC<Props> = ({ product, removeWishlist }) => {
         </div>
        
         <button
-            onClick={() => removeWishlist(id)}
+            onClick={() => removeWishlist(product.id)}
             className=" bg-blue-500 text-white  gap-2 px-4 py-2  rounded "
         >
                 Remove

@@ -31,23 +31,6 @@ import CompleteOrderPage from "../pages/complete-order";
 import { Provider } from 'react-redux';
 import store from "../component/todo-redux/redux/store";
 
-/*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const {  isLoading } = useAuth();
-  const isAuthenticated = !!localStorage.getItem('authUser');
-   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-  return isAuthenticated ? <>{children}</> : <Navigate to="/" />;
-};*/
-/*
-const PublicRoute = ({ children }: { children: React.ReactNode }) => {
-    const isAuthenticated = !!localStorage.getItem('authUser');
-    return !isAuthenticated ? <>{children}</> : <Navigate to="/dashboard" />;
-};*/
 
 export const router = createBrowserRouter([
   {

@@ -1,15 +1,30 @@
 // src/components/RegisterForm.tsx
-import { useForm } from 'react-hook-form';
+import { useForm,SubmitHandler } from 'react-hook-form';
 import { useAuth } from '../../contexts';
-import { RegisterInputs }  from '../../contexts/auth/types';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { RegisterCredentials } from '../../types/auth.types';
+import { register as registerUser } from '../../features/auth/authSlice';
+
+interface RegisterFormInputs extends RegisterCredentials {
+  confirmPassword: string;
+}
 
 export const RegisterForm = () => {
-  const { register: registerUser, isLoading, error } = useAuth();
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterInputs>();
+  const dispatch = useAppDispatch();
+  const { isLoading, error } = useAppSelector((state) => state.auth);
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormInputs>({
+    defaultValues: {
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  });
 
-  const onSubmit = async (data: RegisterInputs) => {
-    await registerUser(data);
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
+    const { confirmPassword, ...credentials } = data;
+    await dispatch(registerUser(data));
   };
 
   return (
@@ -97,6 +112,7 @@ export const RegisterForm = () => {
                 {isLoading ? 'Creating account...' : 'Register'}
                 </button>
             </div>
+            
             <div className="text-center">
                 <p className="text-sm text-gray-600">
                 Already have an account?{' '}

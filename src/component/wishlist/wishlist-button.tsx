@@ -1,8 +1,9 @@
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { useWishlist } from "../../contexts";
 import { Product } from "../../types/Product";
 import { toast } from "react-toastify";
 import cn from 'classnames';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { addToWishlist, removeFromWishlist } from "../../features/wishlist/wishlistSlice";
 
 interface Props {
     product : Product;
@@ -10,7 +11,8 @@ interface Props {
 };
 
 const WishlistButton: React.FC<Props> = ({product, className}) => {
-    const {addToWishlist, wishlistList,removeFromWishlist} = useWishlist();
+    const wishlistList = useAppSelector(state => state.wishlist.items);
+    const dispatch = useAppDispatch();
     
     const isWishlist = (productId: number) => wishlistList.some((product) => product.id === productId);
     const btnWishlist = isWishlist(product?.id);
@@ -22,11 +24,12 @@ const WishlistButton: React.FC<Props> = ({product, className}) => {
             autoClose: 3000,
         });
     };
+    
     return (
         <>
             {btnWishlist ? (
                 <button onClick={() => {
-                    removeFromWishlist(product?.id);
+                    dispatch(removeFromWishlist(product?.id));
                     handleBtnWishlist();
                 }} 
                     className={cn('bg-gray-200 text-gray-600  px-3 py-3  rounded-full hover:bg-blue-500 hover:text-white',className)}>
@@ -35,7 +38,7 @@ const WishlistButton: React.FC<Props> = ({product, className}) => {
             ) : (
                 <button
                 onClick={() => {
-                    addToWishlist(product);
+                    dispatch(addToWishlist(product));
                     handleBtnWishlist();
                 }}
                 className={cn('bg-gray-200 text-gray-600 px-3 py-3  rounded-full hover:bg-blue-500 hover:text-white',className)}>

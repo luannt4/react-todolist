@@ -1,23 +1,25 @@
 // src/components/LoginForm.tsx
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../contexts';
 import { LoginCredentials } from '../../contexts/auth/types';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { login } from '../../features/auth/authSlice';
 
 
 const LoginForm: React.FC = () => {
-    const { login, isLoading, error  } = useAuth();
+    const dispatch = useAppDispatch();
+    const { isLoading, error } = useAppSelector((state) => state.auth);
     const { register, handleSubmit, formState: { errors } } = useForm<LoginCredentials>();
    
     const onSubmit = async (data: LoginCredentials) => {
-        await login(data);
+        await dispatch(login({ username: data.username, password: data.password }));
     };
 
   return (
     <div className="max-w-md m-auto w-full space-y-8 bg-white p-8 rounded border shadow-md">
         <h2 className="mt-3 mb-0 text-center text-2xl font-medium tracking-tight text-gray-900">
-            Sign in to your account
+            Sign in to your account demo
         </h2>
         <p className='text-center text-sm'>
             username: emilys <br></br>
@@ -37,7 +39,12 @@ const LoginForm: React.FC = () => {
                 <input
                     id="username"
                     {...register('username', { 
-                        required: 'Username is required' })
+                        required: 'Username is required',
+                        minLength: {
+                            value: 3,
+                            message: "Username must be at least 3 characters"
+                          }
+                     })
                     }
                     className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Username"
@@ -53,7 +60,12 @@ const LoginForm: React.FC = () => {
                     id="password"
                     type="password"
                     {...register('password', { 
-                        required: 'Password is required' })
+                        required: 'Password is required',
+                        minLength: {
+                            value: 6,
+                            message: "Password must be at least 6 characters"
+                        }
+                     })
                     }
                     className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Password"

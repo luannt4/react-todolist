@@ -2,6 +2,7 @@
 import React from "react";
 import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
+
 interface Props {
     product : Product;
     removeCompare: (id: number) => void;
@@ -35,7 +36,7 @@ const CompareCard: React.FC<Props> = ({ product, removeCompare }) => {
         </div>
        
         <button
-                onClick={() => removeCompare(id)}
+               onClick={() => removeCompare(id)}
                 className=" bg-blue-500 text-white  gap-2 px-4 py-2  rounded "
         >
                 Remove
