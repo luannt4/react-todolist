@@ -27,6 +27,10 @@ import CheckoutPage from "../pages/checkout";
 import ManagedToaster from "../component/common/toaster/toaster-provider";
 import CompleteOrderPage from "../pages/complete-order";
 
+//React-redux
+import { Provider } from 'react-redux';
+import store from "../component/todo-redux/redux/store";
+
 /*const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const {  isLoading } = useAuth();
   const isAuthenticated = !!localStorage.getItem('authUser');
@@ -127,7 +131,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: <ContactPage />,
+        element: (
+          <Provider store={store}>
+              <ContactPage />
+          </Provider>
+        ),
       },
       {
         path: "cart",
