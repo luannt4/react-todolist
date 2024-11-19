@@ -10,7 +10,7 @@ import MainMenu from "../../component/header/mainMenu";
 
 const Header = () => {
     return (
-        <header className="sticky md:top-0  w-full  z-40 bg-white/75 dark:bg-black/75 ">
+        <header className="sticky md:top-0  w-full backdrop-blur-sm z-40 bg-white/75">
             <div className="top-bar  text-sm text-fill-base border-b border-black/10">
                 <Container>
                     <div className="w-full h-11 flex justify-between items-center text-sm">
