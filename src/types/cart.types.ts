@@ -1,27 +1,14 @@
-//import { Product } from '../types/Product';
+import { Product } from './Product';
 
-export interface Product {
-  id: number ;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  category: string;
-  thumbnail: string;
-  stock: number;
-  availabilityStatus?: string;
-  rating?:number;
-  //reviews?:Review[];
-}
-
-export interface Item {
+export interface Item  {
   id: string | number;
+  title: string;
   price: number;
-  quantity?: number;
-  stock?: number;
+  quantity: number;
+  stock: number;
   [key: string]: any;
 }  
-export interface CartItem extends Product {
+export interface CartItem extends Item {
     quantity: number;
 }
   
@@ -29,7 +16,8 @@ export interface CartState {
   items: CartItem[];
   total: number;
   isEmpty: boolean;
+  totalItems: number;
   isInStock: boolean;
-  isInCart: (id: number) => boolean;
+  isInCart:  boolean;
 }
   

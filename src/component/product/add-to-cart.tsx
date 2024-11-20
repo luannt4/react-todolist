@@ -2,7 +2,7 @@ import React from "react";
 import { Product } from "../../types/Product";
 import { toast } from 'react-toastify';
 import { useAppDispatch } from "../../hooks";
-import { ADD_ITEM } from "src/features/cart/cartSlice";
+import { ADD_ITEM } from "../../features/cart/cartSlice";
 interface AddToCartProps {
     product : Product;
 }
@@ -19,9 +19,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     } = useCart();*/
 
     const item = product ?? {};
-
     const isInStock = item.stock > 0 ;
-
     const outOfStock =  !isInStock;
 
     const handleAddToCart = (e: React.FormEvent) => {

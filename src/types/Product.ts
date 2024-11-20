@@ -14,7 +14,7 @@ export interface Product {
   thumbnail: string;
   stock: number;
   availabilityStatus?: string;
-  quantity?: number;
+  quantity: number;
   rating?:number;
   reviews?:Review[];
 }

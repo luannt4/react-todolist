@@ -1,5 +1,5 @@
 // src/services/cart.service.ts
-import { Product } from '../types/cart.types';
+import { Product } from '../types/Product';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;

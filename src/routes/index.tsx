@@ -38,9 +38,9 @@ export const router = createBrowserRouter([
     element: (
 		<AppProvider>
 			  <DefaultLayout />
-			  <ManagedModal />
-        <ManagedDrawer/>
-        <ManagedToaster/>
+			    <ManagedModal />
+                <ManagedDrawer/>
+                <ManagedToaster/>
 		</AppProvider>
 	),
     children: [
