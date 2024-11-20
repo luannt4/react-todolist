@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { fetchUserAddress } from "../../api/fetchUserAddress";
 import { UserAddress } from "../../types/Product";
-import LoginForm from "../auth/LoginForm";
-import { useAuth } from "../../contexts";
+import { useAppSelector } from "../../hooks";
 
 const AddressPage: React.FC = () => {
-	const { logout, user } = useAuth();
+	const { isLoggedIn, user } = useAppSelector((state) => state.auth);
 	const userId = user?.id;
 	const { data, isLoading, isError} = useQuery<UserAddress>({
         queryKey: ['userAddress', userId],
@@ -15,7 +13,7 @@ const AddressPage: React.FC = () => {
     });
     return (
         <>
-			{user &&  (
+			{isLoggedIn &&  (
 				<div className="border-border-base border-2 relative p-5  rounded-md w-96">
 					<h2 className="text-sm  font-semibold mb-4">Home</h2>
 					<div className="space-y-2 text-sm">

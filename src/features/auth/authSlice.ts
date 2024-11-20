@@ -1,14 +1,12 @@
 // src/features/auth/authSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { User, LoginCredentials, RegisterCredentials, AuthState } from '../../types/auth.types';
-import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 export const login = createAsyncThunk<User,Omit<LoginCredentials, 'rememberMe'>,{ rejectValue: string }>(
   'auth/login',
   async ({ username, password }, { rejectWithValue }) => {
     try {
-        const navigate = useNavigate();
       const response = await fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -22,7 +20,6 @@ export const login = createAsyncThunk<User,Omit<LoginCredentials, 'rememberMe'>,
       }
 
       localStorage.setItem('authUser', JSON.stringify(data));
-      navigate('/');
       return data;
     } catch (error) {
       return rejectWithValue((error as Error).message);
@@ -52,6 +49,21 @@ export const register = createAsyncThunk<User,RegisterCredentials,{ rejectValue:
   }
 );
 
+export const forgotPassword = createAsyncThunk(
+    'auth/forgotPassword',
+    async (email: string, { rejectWithValue }) => {
+        try {
+          const response = await axios.post('https://dummyjson.com/users/add', {
+            email,
+            message: 'Simulated password reset request',
+          });
+          return response.data;
+
+        } catch (error: any) {
+          return rejectWithValue(error.response?.data?.message || 'Something went wrong');
+        }
+      }
+);
 
 const storedUser = localStorage.getItem('authUser');
 const user: User | null = storedUser ? JSON.parse(storedUser) : null;
@@ -61,6 +73,7 @@ const initialState: AuthState = {
     isLoading: false,
     error: null,
     isLoggedIn: !!user,
+    success: false,
 };
 
 const authSlice = createSlice({
@@ -71,6 +84,7 @@ const authSlice = createSlice({
         localStorage.removeItem('authUser');
         state.user = null;
         state.isLoggedIn = false;
+        state.success = false;
       },
       clearError: (state) => {
         state.error = null;
@@ -79,28 +93,41 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
       builder
         .addCase(login.pending, (state) => {
-          state.isLoading = true;
-          state.error = null;
+            state.isLoading = true;
+            state.error = null;
         })
         .addCase(login.fulfilled, (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
-          state.user = action.payload;
-          state.isLoggedIn = true;
+            state.isLoading = false;
+            state.user = action.payload;
+            state.isLoggedIn = true;
         })
         .addCase(login.rejected, (state, action) => {
-          state.isLoading = false;
-          state.error = action.payload ?? 'An error occurred';
+            state.isLoading = false;
+            state.error = action.payload ?? 'An error occurred';
         })
         .addCase(register.pending, (state) => {
-          state.isLoading = true;
-          state.error = null;
+            state.isLoading = true;
+            state.error = null;
         })
         .addCase(register.fulfilled, (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
+            state.isLoading = false;
         })
         .addCase(register.rejected, (state, action) => {
-          state.isLoading = false;
-          state.error = action.payload ?? 'An error occurred';
+            state.isLoading = false;
+            state.error = action.payload ?? 'An error occurred';
+        })
+        .addCase(forgotPassword.pending, (state) => {
+            state.isLoading = true;
+            state.error = null;
+            
+        })
+        .addCase(forgotPassword.fulfilled, (state) => {
+            state.isLoading = false;
+            state.success = true;
+        })
+        .addCase(forgotPassword.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error =  action.payload as string;
         });
     },
   });

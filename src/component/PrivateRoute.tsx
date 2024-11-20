@@ -7,7 +7,6 @@ interface PrivateRouteProps {
 
 export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   // Check if user is authenticated by looking for token
-  //const { isAuthenticated } = useAuth();
   const isAuthenticated = !!localStorage.getItem('authUser');
   // If not authenticated, redirect to login
   if (!isAuthenticated ) {
@@ -21,7 +20,6 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
 
 
 export const PublicRoute = ({ children }: { children: React.ReactNode }) => {
-  //const { isAuthenticated } = useAuth();
   const isAuthenticated = !!localStorage.getItem('authUser');
   return !isAuthenticated  ? <>{children}</> : <Navigate to="/" />;
 };

@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { forgotPassword, logout } from '../../features/auth/authSlice';
 
 interface ForgotPasswordFormType {
   email: string;
 }
 
 export const ForgotPasswordForm: React.FC = () => {
-  const { forgotPassword, isLoading, error } = useAuth();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { isLoading, error, success } = useAppSelector((state) => state.auth);
   const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormType>();
 
+  useEffect(() => {
+    if (success) {
+        dispatch(logout()); // Reset success state
+        navigate('/login');
+    }
+    return () => {
+      dispatch(logout());
+    };
+  }, [success, navigate, dispatch]);
+
+
   const onSubmit = async (data: ForgotPasswordFormType) => {
-    await forgotPassword(data.email);
+    dispatch(forgotPassword(data.email));
   };
 
   return (

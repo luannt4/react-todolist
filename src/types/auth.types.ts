@@ -18,6 +18,7 @@ export interface User {
     username: string;
     email: string;
     password: string;
+    confirmPassword: string;
   }
   
   export interface AuthState {
@@ -25,4 +26,5 @@ export interface User {
     isLoading: boolean;
     error: string | null;
     isLoggedIn: boolean;
+    success: boolean;
   }

@@ -5,15 +5,22 @@ import { LoginCredentials } from '../../contexts/auth/types';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { login } from '../../features/auth/authSlice';
-
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm: React.FC = () => {
     const dispatch = useAppDispatch();
     const { isLoading, error } = useAppSelector((state) => state.auth);
     const { register, handleSubmit, formState: { errors } } = useForm<LoginCredentials>();
-   
+    const navigate = useNavigate();
+
     const onSubmit = async (data: LoginCredentials) => {
-        await dispatch(login({ username: data.username, password: data.password }));
+        const result = await dispatch(login({ username: data.username, password: data.password }));
+        if (login.fulfilled.match(result)) {
+            if (data.rememberMe) {
+                localStorage.setItem('authUser', JSON.stringify(data));
+            }
+            navigate('/');
+        }
     };
 
   return (

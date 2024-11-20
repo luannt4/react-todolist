@@ -1,30 +1,27 @@
 // src/components/RegisterForm.tsx
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { useAuth } from '../../contexts';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { RegisterCredentials } from '../../types/auth.types';
 import { register as registerUser } from '../../features/auth/authSlice';
 
-interface RegisterFormInputs extends RegisterCredentials {
-  confirmPassword: string;
-}
+
 
 export const RegisterForm = () => {
   const dispatch = useAppDispatch();
   const { isLoading, error } = useAppSelector((state) => state.auth);
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormInputs>({
-    defaultValues: {
-      username: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    }
-  });
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterCredentials>();
 
-  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
-    const { confirmPassword, ...credentials } = data;
+  const navigate = useNavigate();
+  const password = watch("password");
+  const onSubmit: SubmitHandler<RegisterCredentials> = async (data) => {
     await dispatch(registerUser(data));
+    const result = await dispatch(registerUser(data));
+
+    if (registerUser.fulfilled.match(result)) {
+        navigate('/login');
+    }
   };
 
   return (
@@ -100,6 +97,22 @@ export const RegisterForm = () => {
               />
               {errors.password && (
                 <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+              )}
+            </div>
+            <div className="mb-4">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+              <input
+                id="confirmPassword"
+                type="password"
+                {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: value => 
+                    value === password || "The passwords do not match"
+                })}
+                className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+              {errors.confirmPassword && (
+                <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
               )}
             </div>
 

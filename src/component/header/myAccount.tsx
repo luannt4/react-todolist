@@ -22,6 +22,9 @@ export const MyAccount: React.FC<Props> = ({className }) => {
     // Check if user is authenticated by looking for token
     const { isLoggedIn, user } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     if (isLoggedIn) return (
         <div className=" lg:flex items-center shrink-0 accountButton">
@@ -42,7 +45,7 @@ export const MyAccount: React.FC<Props> = ({className }) => {
                     ))}
                     
                     <MenuItem>
-                        <Link onClick={() => dispatch(logout())} className="flex gap-1 items-center   truncate py-1 leading-6 hover:text-blue-500" to="/">
+                        <Link onClick={handleLogout} className="flex gap-1 items-center   truncate py-1 leading-6 hover:text-blue-500" to="/">
                             <MdLogout />
                             Logout
                         </Link>
