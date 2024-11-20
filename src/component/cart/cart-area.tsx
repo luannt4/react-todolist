@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 
 const CartArea:React.FC = () => {
     const dispatch = useAppDispatch();
-    const { items, total, isEmpty, loading, error } = useAppSelector(
+    const { items, total, isEmpty } = useAppSelector(
         (state) => state.cart
     );
       
@@ -20,17 +20,6 @@ const CartArea:React.FC = () => {
         <div className="wi-cart-area pb-20">
             <h1 className="text-2xl font-medium mb-6 capitalize">Shopping Cart</h1>
 
-            {loading && (
-                    <div className="flex justify-center items-center min-h-screen">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-                    </div>
-            )}
-
-            {error && (
-                <div className="flex justify-center items-center min-h-screen">
-                    <div className="text-red-500">{error}</div>
-                </div>
-            )}
           
 
             {!isEmpty ? (

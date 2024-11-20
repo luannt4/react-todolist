@@ -6,24 +6,13 @@ import {
   calculateTotal,
  } from './cartActions';
 
-const STORAGE_KEY = 'shopy-cart';
 
-
-const loadCartFromStorage = (): CartItem[] => {
-    const storedCart = localStorage.getItem(STORAGE_KEY);
-    return storedCart ? JSON.parse(storedCart) : [];
-};
-  
-const saveCartToStorage = (items: CartItem[]): void => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-};
-  
 const initialState: CartState = {
-    items: loadCartFromStorage(),
-    total: calculateTotal(loadCartFromStorage()),
-    isEmpty: loadCartFromStorage().length === 0,
-    loading: false,
-    error: null,
+    items: [],
+    total: 0,
+    isEmpty: true,
+    isInStock: true,
+    isInCart: (id: number) => false,
 };
   
 
@@ -31,131 +20,57 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItemWithQuantity: (
-          state,
-          action: PayloadAction<{ product: Product; quantity: number }>
-        ) => {
-          
-          
-          const { product, quantity } = action.payload;
-          const existingItem = state.items.find(item => item.id === product.id);
-    
-          if (existingItem) {
-            existingItem.quantity = Math.min(
-                existingItem.quantity + quantity,
-                product.stock
-            );
+      ADD_ITEM: (state, action: PayloadAction<Product>) => {
+        const existingItem = state.items.find(item => item.id === action.payload.id);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          state.items.push({ ...action.payload, quantity: 1 });
+        }
+        state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        state.isEmpty = state.items.length === 0;
+      },
+      ADD_ITEM_WITH_QUANTITY: (state, action: PayloadAction<{ product: Product; quantity: number }>) => {
+        const { product, quantity } = action.payload;
+        const existingItem = state.items.find(item => item.id === product.id);
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          state.items.push({ ...product, quantity });
+        }
+        state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        state.isEmpty = state.items.length === 0;
+      },
+      REMOVE_ITEM_OR_QUANTITY: (state, action: PayloadAction<{ id: number; quantity?: number }>) => {
+        const { id, quantity } = action.payload;
+        const itemIndex = state.items.findIndex(item => item.id === id);
+        
+        if (itemIndex > -1) {
+          if (quantity && state.items[itemIndex].quantity > quantity) {
+            state.items[itemIndex].quantity -= quantity;
           } else {
-            state.items.push({ ...product, quantity: Math.min(quantity, product.stock) });
+            state.items.splice(itemIndex, 1);
           }
-    
-          state.total = calculateTotal(state.items);
-          state.isEmpty = state.items.length === 0;
-          saveCartToStorage(state.items);
-        },
-    
-        removeItemOrQuantity: (
-          state,
-          action: PayloadAction<{ productId: number; quantity?: number }>
-        ) => {
-          const { productId, quantity } = action.payload;
-          const itemIndex = state.items.findIndex(item => item.id === productId);
-    
-          if (itemIndex > -1) {
-            if (quantity && state.items[itemIndex].quantity > quantity) {
-              state.items[itemIndex].quantity -= quantity;
-            } else {
-              state.items.splice(itemIndex, 1);
-            }
-    
-            state.total = calculateTotal(state.items);
-            state.isEmpty = state.items.length === 0;
-            saveCartToStorage(state.items);
-          }
-        },
-    
-        addItem: (state, action: PayloadAction<Product>) => {
-          // Ensure `state.items` is always an array
-          if (!Array.isArray(state.items)) {
-            state.items = [];
-          }
-          const existingItem = state.items.find(item => item.id === action.payload.id);
-    
-          if (existingItem) {
-            existingItem.quantity = Math.min(existingItem.quantity + 1, action.payload.stock);
-          } else {
-            state.items.push({ ...action.payload, quantity: 1 });
-          }
-    
-          state.total = calculateTotal(state.items);
-          state.isEmpty = state.items.length === 0;
-          saveCartToStorage(state.items);
-        },
-    
-        updateItem: (
-          state,
-          action: PayloadAction<{ productId: number; quantity: number }>
-        ) => {
-          const { productId, quantity } = action.payload;
-          const item = state.items.find(item => item.id === productId);
-    
-          if (item) {
-            item.quantity = Math.min(quantity, item.stock);
-            state.total = calculateTotal(state.items);
-            state.isEmpty = state.items.length === 0;
-            saveCartToStorage(state.items);
-          }
-        },
-    
-        removeItem: (state, action: PayloadAction<number>) => {
-          state.items = state.items.filter(item => item.id !== action.payload);
-          state.total = calculateTotal(state.items);
-          state.isEmpty = state.items.length === 0;
-          saveCartToStorage(state.items);
-        },
-    
-        clearCart: (state) => {
-          state.items = [];
-          state.total = 0;
-          state.isEmpty = true;
-          saveCartToStorage(state.items);
-        },
-    },
-    extraReducers: (builder) => {
-      builder
-        .addCase(fetchProductAndAddToCart.pending, (state) => {
-          state.loading = true;
-          state.error = null;
-        })
-        .addCase(fetchProductAndAddToCart.fulfilled, (state, action) => {
-          state.loading = false;
-          const product = action.payload;
-          const existingItem = state.items.find(item => item.id === product.id);
-  
-          if (existingItem) {
-            existingItem.quantity = Math.min(existingItem.quantity + 1, product.stock);
-          } else {
-            state.items.push({ ...product, quantity: 1 });
-          }
-  
-          state.total = calculateTotal(state.items);
-          state.isEmpty = state.items.length === 0;
-          saveCartToStorage(state.items);
-        })
-        .addCase(fetchProductAndAddToCart.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.payload as string;
-        });
+        }
+        state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        state.isEmpty = state.items.length === 0;
+      },
+      UPDATE_ITEM: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
+        const { id, quantity } = action.payload;
+        const item = state.items.find(item => item.id === id);
+        if (item) {
+          item.quantity = quantity;
+        }
+        state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        state.isEmpty = state.items.length === 0;
+      },
+      REMOVE_ITEM: (state, action: PayloadAction<number>) => {
+        state.items = state.items.filter(item => item.id !== action.payload);
+        state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        state.isEmpty = state.items.length === 0;
+      },
     },
   });
   
-  export const {
-    addItemWithQuantity,
-    removeItemOrQuantity,
-    addItem,
-    updateItem,
-    removeItem,
-    clearCart,
-  } = cartSlice.actions;
-  
+export const { ADD_ITEM, ADD_ITEM_WITH_QUANTITY, REMOVE_ITEM_OR_QUANTITY, UPDATE_ITEM, REMOVE_ITEM } = cartSlice.actions;
 export default cartSlice.reducer;

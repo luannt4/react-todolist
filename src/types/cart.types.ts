@@ -26,10 +26,10 @@ export interface CartItem extends Product {
 }
   
 export interface CartState {
-    items: CartItem[];
-    total: number;
-    isEmpty: boolean;
-    loading: boolean;
-    error: string | null;
+  items: CartItem[];
+  total: number;
+  isEmpty: boolean;
+  isInStock: boolean;
+  isInCart: (id: number) => boolean;
 }
   

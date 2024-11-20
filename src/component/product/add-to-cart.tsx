@@ -2,7 +2,7 @@ import React from "react";
 import { Product } from "../../types/Product";
 import { toast } from 'react-toastify';
 import { useAppDispatch } from "../../hooks";
-import { addItem } from "src/features/cart/cartSlice";
+import { ADD_ITEM } from "src/features/cart/cartSlice";
 interface AddToCartProps {
     product : Product;
 }
@@ -33,7 +33,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
         });
         
         if (isInStock) {
-            dispatch(addItem(item));
+            dispatch(ADD_ITEM(item));
         }
     };
 
