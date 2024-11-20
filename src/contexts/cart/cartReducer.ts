@@ -41,7 +41,7 @@ const generateFinalState = (state: CartState, items: Item[]) => {
       total: calculateTotal(items),
       isEmpty: totalUniqueItems === 0,
     };
-  };
+};
 
 export const cartReducer = (state: CartState, action: Action): CartState => {
   switch (action.type) {

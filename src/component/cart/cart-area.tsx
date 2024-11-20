@@ -1,18 +1,38 @@
-import { useCart } from "../../contexts";
 import usePrice from "../product/use-price";
 import CartItems from "./cart-items";
 import CartSummary from "./cart-summary";
 import EmptyCart from "./empty-cart";
+import { useAppSelector, useAppDispatch } from '../../hooks';
 
-const CartArea = () => {
-    const { items, total, isEmpty, resetCart } = useCart();
+
+
+const CartArea:React.FC = () => {
+    const dispatch = useAppDispatch();
+    const { items, total, isEmpty, loading, error } = useAppSelector(
+        (state) => state.cart
+    );
+      
     const { price: cartTotal } = usePrice({
         amount: total,
         currencyCode: 'USD',
       });
     return (
         <div className="wi-cart-area pb-20">
-            <h1 className="text-2xl font-medium mb-6 capitalize">Cart page</h1>
+            <h1 className="text-2xl font-medium mb-6 capitalize">Shopping Cart</h1>
+
+            {loading && (
+                    <div className="flex justify-center items-center min-h-screen">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                    </div>
+            )}
+
+            {error && (
+                <div className="flex justify-center items-center min-h-screen">
+                    <div className="text-red-500">{error}</div>
+                </div>
+            )}
+          
+
             {!isEmpty ? (
                 <div className="flex flex-col xl:flex-row gap-8 2xl:gap-10">
                     <div className="w-full xl:basis-9/12 ">
@@ -42,9 +62,8 @@ const CartArea = () => {
                
             ) : (
                 <div className="mt-40">
-                        <EmptyCart />
+                    <EmptyCart />
                 </div>
-                
             )}
         </div>
         

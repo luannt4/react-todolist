@@ -9,14 +9,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [savedCart, SetSavedCart] = useLocalStorage(`shopy-cart`,JSON.stringify(initialState));
     const [state, dispatch] = useReducer(cartReducer,JSON.parse(savedCart!));
 
-    useEffect(() => {
+    /*useEffect(() => {
         SetSavedCart(JSON.stringify(state));
-    }, [state, SetSavedCart]);
+    }, [state, SetSavedCart]);*/
 
     const addItemToCart = (item: Item, quantity: number) => dispatch({ type: 'ADD_ITEM_WITH_QUANTITY', item, quantity });
 
     const removeItemFromCart = (id: Item['id']) => dispatch({ type: 'REMOVE_ITEM_OR_QUANTITY', id });
-    const clearItemFromCart = (id: Item['id']) => dispatch({ type: 'REMOVE_ITEM', id });
+    const clearItemFromCart  = (id: Item['id']) => dispatch({ type: 'REMOVE_ITEM', id });
     const isInCart = useCallback(
         (id: Item['id']) => !!getItem(state.items, id),
         [state.items],

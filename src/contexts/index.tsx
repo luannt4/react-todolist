@@ -9,5 +9,4 @@ export { useWishlist } from "./useWishlist";
 export { useModal } from "./useModal";
 export { useProductContext } from "./useStore";
 export { useAuth } from "./useAuth";
-export { useCart } from "./useCart";
 export { useDrawer } from "./useDrawer";

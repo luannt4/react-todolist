@@ -12,7 +12,7 @@ export interface Product {
   discountPercentage: number;
   category: string;
   thumbnail: string;
-  stock?: number;
+  stock: number;
   availabilityStatus?: string;
   quantity?: number;
   rating?:number;

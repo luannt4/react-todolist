@@ -1,37 +1,47 @@
 import React from "react";
-import { useCart } from "../../contexts";
 import { Product } from "../../types/Product";
 import { toast } from 'react-toastify';
+import { useAppDispatch } from "../../hooks";
+import { addItem } from "src/features/cart/cartSlice";
 interface AddToCartProps {
     product : Product;
 }
 
 const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
-    const {
+    const dispatch = useAppDispatch();
+    //const cartItems = useAppSelector((state) => state.cart.items);
+    
+    
+    /*const {
         addItemToCart,
         isInStock,
         isInCart,
-    } = useCart();
+    } = useCart();*/
 
     const item = product ?? {};
-    
-    const outOfStock = isInCart(item?.id) && !isInStock(item.id);
 
-    const handleAddClick = (e: React.FormEvent) => {
+    const isInStock = item.stock > 0 ;
+
+    const outOfStock =  !isInStock;
+
+    const handleAddToCart = (e: React.FormEvent) => {
         e.preventDefault();
         toast('Added to the bag', {
             progressClassName: 'fancy-progress-bar',
             position: 'bottom-right',
             autoClose: 3000,
-          });
-        addItemToCart(item, 1);
+        });
+        
+        if (isInStock) {
+            dispatch(addItem(item));
+        }
     };
 
     return (
         <button
         className="px-5 py-2 bg-blue-500  text-white rounded-full text-sm font-medium  focus:outline-none focus-visible:outline-none"
         aria-label="Count Button"
-        onClick={handleAddClick}
+        onClick={handleAddToCart}
         disabled={outOfStock}
         >
             Add To Cart

@@ -2,7 +2,7 @@
 import React from "react";
 import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
-import {useCart, useModal } from '../../contexts';
+import { useModal } from '../../contexts';
 import ImageFill from "../ui/image";
 import AddToCart from "../product/add-to-cart";
 import CompareButton from "../compare/compare-button";
@@ -37,51 +37,11 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
     
     const RenderAddToCart: React.FC<Props> = ({ product }) => {
         const {id, stock, availabilityStatus} = product;
-        const {isInCart, isInStock} = useCart();
-        const outOfStock = isInCart(id) && !isInStock(id);
-       
-        if (Number(stock) < 1 || outOfStock) {
-            return (
-                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-sm font-medium items-center justify-center">
-                    Out Of Stock
-                </span>
-            );
-        }
-
-        if (availabilityStatus === 'Low Stock') {
-            return (
-                <Link
-                    className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-sm font-medium items-center justify-center focus:outline-none focus-visible:outline-none"
-                    aria-label="Count Button"
-                    to={`/product/${slug}-${id}`}
-                >
-                    Product Details
-                </Link>
-            );
-        }
+      
 
         return <AddToCart product={product} />;
     }
-    const RenderLabelStock: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product;
-        const {isInCart, isInStock} = useCart();
-        const outOfStock = isInCart(id) && !isInStock(id);
-        if (Number(stock) < 1 || outOfStock) {
-            return (
-                <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_out out_stock">
-                    <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
-                    <span> Out Of Stock </span>
-                </p>
-            );
-        }
-        return (
-            <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_in in_stock">
-                <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
-                <span> In Stock </span>
-                <span className="text-brand-dark"><b>{stock}</b> products</span>
-            </p>
-        )
-    }
+   
 
     return (
         <div className="gap-2 p-2 border rounded bg-white group">
@@ -157,9 +117,7 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
                         )}
                     </div>
                 </div>
-                <div className="mb-7 text-gray-500">
-                    <RenderLabelStock product={product}/>
-                </div>
+               
                 
                 <div className="w-full absolute -bottom-12 opacity-1 left-0 right-0 transition-all duration-300 group-hover:-bottom-1 group-hover:opacity-100">
                     <div className="space-x-1">

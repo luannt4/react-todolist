@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { IoIosHeart, IoIosSync } from 'react-icons/io';
 
 import cn from 'classnames';
-import { MenuTopMyAccount } from "./menuTopAccount";
+import { MenuTopMyAccount } from "./menuAccount";
 import { useAppSelector } from "../../hooks/useAppSelector";
 
 
