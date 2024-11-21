@@ -13,7 +13,6 @@ import {
 import 'swiper/css/autoplay';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-import { Swiper as SwiperTypes } from 'swiper/types';
 import { getDirection } from '../../../utils/get-direction';
 
 type CarouselPropsType = {

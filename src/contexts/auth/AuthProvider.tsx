@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         } catch (error) {
             dispatch({ type: 'AUTH_ERROR', payload: 'Login failed' });
         }
-    }, []);
+    }, [navigate]);
 
     const register = async (credentials: RegisterInputs) => {
         try {
@@ -76,7 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.removeItem('authUser');
         dispatch({ type: 'LOGOUT' });
         navigate('/');
-    }, []);
+    }, [navigate]);
 
   const forgotPassword = useCallback(async (email: string) => {
     try {

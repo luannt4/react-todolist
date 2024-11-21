@@ -2,7 +2,6 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {BsChevronDown} from 'react-icons/bs';
 import { MdLogout } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { useAuth, useDrawer } from '../../contexts';
 import AccountIcon from '../icons/account-icon';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';

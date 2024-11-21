@@ -6,6 +6,16 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": "./",  // Set the baseUrl to your source folder
+    "paths": {
+      "@pages/*": ["src/pages/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@store/*": ["src/store/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@settings/*": ["src/settings/*"],
+      "@utils/*": ["src/utils/*"],
+      "@types/*": ["src/types/*"],
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +30,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"], // Ensure the src folder is included
+  "exclude": ["node_modules"] // Exclude unnecessary directories
 }

@@ -1,6 +1,6 @@
 // /redux/todoSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { loadFromLocalStorage, saveToLocalStorage } from '../../../utils/localStorageUtil';
+import { loadFromLocalStorage } from '../../../utils/localStorageUtil';
 
 export interface Todo {
   id: string;

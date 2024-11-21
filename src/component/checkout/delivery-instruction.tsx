@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import TextArea from '../ui/form/text-area';
-import Text from '../ui/text';
 
 interface ContactFormValues {
   instructionNote: string;
@@ -13,7 +12,7 @@ const DeliveryNotes: React.FC<{ data?: any; }> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+
   } = useForm<ContactFormValues>({
     defaultValues: {
       instructionNote: data || '',

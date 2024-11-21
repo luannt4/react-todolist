@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "../layouts/default/layout";
 import Home2Layout from "../layouts/home2/layout";
 
-import HomePage from "../pages/home";
 import Home2Page from "../pages/home2";
 import ComparePage from "../pages/compare";
 import WishlistPage from "../pages/wishlist";
@@ -26,6 +25,7 @@ import CartPage from "../pages/cart";
 import CheckoutPage from "../pages/checkout";
 import ManagedToaster from "../component/common/toaster/toaster-provider";
 import CompleteOrderPage from "../pages/complete-order";
+import HomePage from "../pages/home";
 
 
 export const router = createBrowserRouter([

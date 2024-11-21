@@ -1,4 +1,4 @@
-import React, {  useReducer,useEffect } from "react";
+import React, {  useReducer } from "react";
 import { Product, ModalView, State } from "./types";
 import { ModalContext } from "./modalContext";
 import { modalReducer } from "./modalReducer";

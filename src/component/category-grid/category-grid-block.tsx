@@ -3,7 +3,6 @@
 import React from "react";
 
 import {SwiperSlide} from 'swiper/react';
-import { LIMITS } from "../../settings/limits";
 import { fetchAllCategories } from '../../api/fetchCategories';
 import { useQuery } from "@tanstack/react-query";
 import Alert from "../ui/alert";

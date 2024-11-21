@@ -1,5 +1,5 @@
 // src/components/LoginForm.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { LoginCredentials } from '../../contexts/auth/types';
 import { Link } from 'react-router-dom';

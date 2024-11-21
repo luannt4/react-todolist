@@ -6,7 +6,7 @@ import { useAppSelector } from "../../hooks";
 const AddressPage: React.FC = () => {
 	const { isLoggedIn, user } = useAppSelector((state) => state.auth);
 	const userId = user?.id;
-	const { data, isLoading, isError} = useQuery<UserAddress>({
+	const { data} = useQuery<UserAddress>({
         queryKey: ['userAddress', userId],
         queryFn: () => fetchUserAddress(userId!),
         enabled: !!userId, // Chỉ gọi API khi có từ khóa

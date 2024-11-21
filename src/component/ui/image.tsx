@@ -1,6 +1,6 @@
 // @ts-ignore
 import LazyLoad from 'react-lazyload';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 interface Props {
     variant?: string;
@@ -19,7 +19,6 @@ const Image : React.FC<Props>  = ({
     height = 100,
     src,
     alt,
-    ...props
   }) => {
     return (
         <LazyLoad
@@ -38,7 +37,7 @@ const Image : React.FC<Props>  = ({
                 version="1.1"
                 />
 			</div>
-        	<img src={src}  className="absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover" />
+        	<img src={src} alt={alt}  className="absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover" />
       </LazyLoad>
     );
 }

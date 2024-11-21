@@ -1,6 +1,6 @@
 // /components/TodoList.tsx
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../todo-redux/redux/store';
 import TodoItem from "./TodoItem";
 

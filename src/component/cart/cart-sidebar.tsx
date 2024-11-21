@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import {  useDrawer } from "../../contexts";
-import DeleteIcon from "../icons/delete-icon";
 import Heading from "../ui/heading";
-import Text from "../ui/text";
 import usePrice from "../product/use-price";
 import cn from 'classnames';
 import EmptyCart from "./empty-cart";
 import Scrollbar from "../ui/scrollbar";
-import CartItem from "./cart-sidebar-items";
 import CloseIcon from "../icons/close-icon";
 import CartSideBarItems from "./cart-sidebar-items";
 import { useAppSelector } from "../../hooks";

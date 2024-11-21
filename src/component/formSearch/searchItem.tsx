@@ -14,7 +14,7 @@ const SearchItem: React.FC<SearchItemProps> = ({ product }) => {
     // Create slug from title
     const slug = product.title.toLowerCase().replace(/\s+/g, '-');
     const productPriceOld = Number(Number(product?.price / (1 - (discountPercentage / 100))).toFixed(2));
-    const {price, basePrice, discount} = usePrice({
+    const {price, basePrice} = usePrice({
         amount: productPrice ? productPrice : productPriceOld,
         baseAmount: productPriceOld,
         currencyCode: 'USD'

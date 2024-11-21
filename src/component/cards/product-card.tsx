@@ -9,7 +9,6 @@ import CompareButton from "../compare/compare-button";
 import WishlistButton from "../wishlist/wishlist-button";
 import StarIcon from "../icons/star-icon";
 import usePrice from "../product/use-price";
-import Rate from "../ui/rate";
 import CheckIcon from "../icons/check-icon";
 import SearchIcon from "../icons/search-icon";
 
@@ -65,7 +64,7 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
     }
     
     const RenderLabelStock: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product;
+        const { stock} = product;
         const isInStock = product.stock > 0 ;
         const outOfStock =  !isInStock;
         if (Number(stock) < 1 || outOfStock) {

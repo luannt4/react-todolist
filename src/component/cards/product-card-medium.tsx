@@ -4,12 +4,9 @@ import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
 import { useModal } from '../../contexts';
 import ImageFill from "../ui/image";
-import AddToCart from "../product/add-to-cart";
-import CompareButton from "../compare/compare-button";
-import WishlistButton from "../wishlist/wishlist-button";
+
 import StarIcon from "../icons/star-icon";
 import usePrice from "../product/use-price";
-import Rate from "../ui/rate";
 import CheckIcon from "../icons/check-icon";
 import SearchIcon from "../icons/search-icon";
 
@@ -34,36 +31,10 @@ const ProductCardMedium: React.FC<Props> = ({ product }) => {
         currencyCode: 'USD'
     });
     
-    const RenderAddToCart: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product;
-        const isInStock = product.stock > 0 ;
-        const outOfStock =  !isInStock;
-
-        if (Number(stock) < 1 || outOfStock) {
-            return (
-                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-sm font-medium items-center justify-center">
-                    Out Of Stock
-                </span>
-            );
-        }
-
-        if (availabilityStatus === 'Low Stock') {
-            return (
-                <Link
-                    className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-sm font-medium items-center justify-center focus:outline-none focus-visible:outline-none"
-                    aria-label="Count Button"
-                    to={`/product/${slug}-${id}`}
-                >
-                    Product Details
-                </Link>
-            );
-        }
-
-        return <AddToCart product={product} />;
-    }
+    
     
     const RenderLabelStock: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product;
+        const { stock} = product;
         const isInStock = product.stock > 0 ;
         const outOfStock =  !isInStock;
         if (Number(stock) < 1 || outOfStock) {

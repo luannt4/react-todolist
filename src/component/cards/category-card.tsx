@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import ImageFill from '../ui/image';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const CategoryCard: React.FC<Props> = ({ item, href, className,variant}) => {
-    const {name,total} = item ?? {};
+    const {name} = item ?? {};
     
     return (
         <Link

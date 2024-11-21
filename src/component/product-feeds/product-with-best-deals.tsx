@@ -36,7 +36,7 @@ const breakpoints = {
 const backgroundThumbnail = 'https://dummyjson.com/image/465x395?fontSize=20' ;
 
 const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',uniqueKey='product-deal',}) => {
-    const [activeCategory, setActiveCategory] = useState<string>("groceries");
+    const [activeCategory] = useState<string>("groceries");
     const page : number = 1;
     const limit = LIMITS.BESTDEALS_PRODUCTS_LIMITS;
 
@@ -47,7 +47,7 @@ const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',unique
         enabled: !!activeCategory, // Chỉ gọi API khi có danh mục
     });
    
-    const {products = [], total } = data  ?? {};
+    const {products = [] } = data  ?? {};
 
     return (
         <div className={`mb-12 lg:mb-12 ${className}`}>

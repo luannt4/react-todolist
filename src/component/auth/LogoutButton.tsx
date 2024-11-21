@@ -1,14 +1,11 @@
-import { useNavigate } from 'react-router-dom';
 import { logout } from '../../features/auth/authSlice';
 import { useAppDispatch } from '../../hooks';
 
 
 export const LogoutButton = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    //navigate('/');
     dispatch(logout());
   };
   return (

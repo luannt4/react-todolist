@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import usePrice from '../product/use-price';
-import ImageFill from '../ui/image';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { REMOVE_ITEM } from '../../features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 
 
 type CartItemProps = {
@@ -12,8 +11,7 @@ type CartItemProps = {
 
 const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
     const dispatch = useAppDispatch();
-    const { items, total, isEmpty } = useAppSelector((state) => state.cart);
-    const {id,title, category, quantity, discountPercentage, thumbnail } = item ?? {};
+    const {id,title, category, quantity,  thumbnail } = item ?? {};
     
     const { price: totalPrice } = usePrice({
         amount: item?.price,
@@ -33,7 +31,7 @@ const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
       title={title}
     >
       <div className="relative flex rounded overflow-hidden shrink-0 cursor-pointer w-[90px]  h-[90px]  border border-border-base">
-            <img src={thumbnail}  height={90} className="object-cover" />
+            <img src={thumbnail} alt={title}  height={90} className="object-cover" />
        
             <div
             className="absolute top-0 flex items-center justify-center w-full h-full transition duration-200 ease-in-out bg-black ltr:left-0 rtl:right-0 bg-opacity-30 md:bg-opacity-0 md:group-hover:bg-opacity-30"

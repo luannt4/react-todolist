@@ -1,6 +1,5 @@
 // src/components/RegisterForm.tsx
 import { useForm,SubmitHandler } from 'react-hook-form';
-import { useAuth } from '../../contexts';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { RegisterCredentials } from '../../types/auth.types';

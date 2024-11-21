@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../contexts';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { forgotPassword, logout } from '../../features/auth/authSlice';

@@ -9,7 +9,7 @@ interface Props {
     orderId?: number;
 }
 const CompleteOrderArea: React.FC<Props> = ({orderId= 1}) => {
-    const { data, isLoading, isError} = useQuery<Order>({
+    const { data, isLoading} = useQuery<Order>({
         queryKey: ['order', orderId],
         queryFn: () => fetchOrder(orderId),
         enabled: !!orderId, // Chỉ gọi API khi có từ khóa
