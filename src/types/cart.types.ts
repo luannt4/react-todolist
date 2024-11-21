@@ -8,7 +8,7 @@ export interface Item  {
   stock: number;
   [key: string]: any;
 }  
-export interface CartItem extends Item {
+export interface CartItem extends Product {
     quantity: number;
 }
   
@@ -18,6 +18,6 @@ export interface CartState {
   isEmpty: boolean;
   totalItems: number;
   isInStock: boolean;
-  isInCart:  boolean;
+  isInCart: (productId: number) => boolean;
 }
   

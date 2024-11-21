@@ -20,7 +20,7 @@ const WishlistButton: React.FC<Props> = ({product, className}) => {
         const toastStatus = btnWishlist === true ? 'Remove from favorite list' : 'Added to favorite list';
         toast(toastStatus, {
             progressClassName: 'fancy-progress-bar',
-            position: 'bottom-right',
+            position: 'top-right',
             autoClose: 3000,
         });
     };

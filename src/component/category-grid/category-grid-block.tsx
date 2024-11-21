@@ -69,31 +69,31 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                         {isLoading && (
                             <div className="grid grid-cols-1 md:grid-cols-8 gap-2">
                             {Array.from({ length: 8 }).map((_, id) => (
-                                <div className="p-2  rounded bg-white group">
-                                    <CategoryGridSkeleton key={id}/>
+                                <div key={id} className="p-2  rounded bg-white group">
+                                    <CategoryGridSkeleton />
                                 </div>
                             ))}
                             </div>
                         )}
 
                         
-                            <Carousel
-                                grid={{rows: 1, fill: 'row'}}
-                                breakpoints={breakpoints}
-                                prevActivateId={`prevCategoryGrid`}
-                                nextActivateId={`nextCategoryGrid`}
-                            >
-                                {categories?.slice(0, limit)?.map((category, idx: number) => (
-                                        <SwiperSlide key={`category--key-${idx}`}>
-                                            <CategoryCard
-                                                item={category}
-                                                variant={variant}
-                                                href={`/category/${category.slug}`}
-                                            />
-                                        </SwiperSlide>
-                                    ))
-                                }
-                            </Carousel>
+                        <Carousel
+                            grid={{rows: 1, fill: 'row'}}
+                            breakpoints={breakpoints}
+                            prevActivateId={`prevCategoryGrid`}
+                            nextActivateId={`nextCategoryGrid`}
+                        >
+                            {categories?.slice(0, limit)?.map((category, idx: number) => (
+                                    <SwiperSlide key={`category--key-${idx}`}>
+                                        <CategoryCard
+                                            item={category}
+                                            variant={variant}
+                                            href={`/category/${category.slug}`}
+                                        />
+                                    </SwiperSlide>
+                                ))
+                            }
+                        </Carousel>
                        
                     </>
                     

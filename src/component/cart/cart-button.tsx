@@ -1,7 +1,7 @@
 import {  useDrawer } from "../../contexts";
 import CartIcon from '../../component/icons/cart-icon';
 import cn from 'classnames';
-import { useAppSelector } from "src/hooks";
+import { useAppSelector } from "../../hooks";
 
 interface Props {
     className?: string;

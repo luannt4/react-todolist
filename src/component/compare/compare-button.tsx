@@ -21,7 +21,7 @@ const CompareButton: React.FC<Props> = ({product,className}) => {
         const toastStatus = isInCompare === true ? 'Remove from compares list' : 'Added to compares list';
         toast(toastStatus, {
             progressClassName: 'fancy-progress-bar',
-            position: 'bottom-right',
+            position: 'top-right',
             autoClose: 3000,
         });
     };

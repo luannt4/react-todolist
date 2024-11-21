@@ -38,10 +38,52 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
     
     const RenderAddToCart: React.FC<Props> = ({ product }) => {
         const {id, stock, availabilityStatus} = product;
-       
+        const isInStock = product.stock > 0 ;
+        const outOfStock =  !isInStock;
+
+        if (Number(stock) < 1 || outOfStock) {
+            return (
+                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-sm font-medium items-center justify-center">
+                    Out Of Stock
+                </span>
+            );
+        }
+
+        if (availabilityStatus === 'Low Stock') {
+            return (
+                <Link
+                    className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-sm font-medium items-center justify-center focus:outline-none focus-visible:outline-none"
+                    aria-label="Count Button"
+                    to={`/product/${slug}-${id}`}
+                >
+                    Product Details
+                </Link>
+            );
+        }
+
         return <AddToCart product={product} />;
     }
-   
+    
+    const RenderLabelStock: React.FC<Props> = ({ product }) => {
+        const {id, stock, availabilityStatus} = product;
+        const isInStock = product.stock > 0 ;
+        const outOfStock =  !isInStock;
+        if (Number(stock) < 1 || outOfStock) {
+            return (
+                <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_out out_stock">
+                    <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
+                    <span> Out Of Stock </span>
+                </p>
+            );
+        }
+        return (
+            <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_in in_stock">
+                <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
+                <span> In Stock </span>
+                <span className="text-brand-dark"><b>{stock}</b> products</span>
+            </p>
+        )
+    }
 
     return (
         <div className=" gap-2 p-2 border rounded bg-white group">
@@ -118,6 +160,9 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
                     </div>
                 </div>
                 
+                <div className="mb-5 text-gray-500">
+                    <RenderLabelStock product={product}/>
+                </div>
                 
                 <div className="flex gap-2">
                     <RenderAddToCart product={product}/>

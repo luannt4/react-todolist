@@ -12,7 +12,6 @@ import {
     homeGridHero2 as gridHero2,
 } from '../settings/banner';
 
-import BestSellerProduct from '../component/product-feeds/new-product';
 import PopularProduct from '../component/product-feeds/popular-product';
 import NewProduct from '../component/product-feeds/new-product';
 const HomePage = () => {

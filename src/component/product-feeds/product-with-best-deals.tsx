@@ -35,7 +35,7 @@ const breakpoints = {
 };
 const backgroundThumbnail = 'https://dummyjson.com/image/465x395?fontSize=20' ;
 
-const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',uniqueKey,}) => {
+const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',uniqueKey='product-deal',}) => {
     const [activeCategory, setActiveCategory] = useState<string>("groceries");
     const page : number = 1;
     const limit = LIMITS.BESTDEALS_PRODUCTS_LIMITS;
@@ -80,8 +80,8 @@ const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',unique
                             {isLoading && (
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                                 {Array.from({ length: 4 }).map((_, id) => (
-                                    <div className="p-2  rounded bg-white group">
-                                        <ProductCardSkeleton key={id}/>
+                                    <div key={id} className="p-2  rounded bg-white group">
+                                        <ProductCardSkeleton />
                                     </div>
                                 ))}
                                 </div>
@@ -93,16 +93,12 @@ const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',unique
                                 prevActivateId={`prevBestdeals`}
                                 nextActivateId={`nextBestdeals`}
                             >
-                                {!isLoading &&  (
-                                    <>
-                                        {products?.map((product: any, idx) => (
-                                            <SwiperSlide key={`${uniqueKey}-${idx}`}>
-                                                <ProductFlashSellCard
-                                                    key={`popular-product-${product.id}`} product={product} date={Date.now() + 4000000 * 60}/>
-                                            </SwiperSlide>
-                                        ))}
-                                    </>
-                                )}
+                                {products?.map((product: any, idx) => (
+                                    <SwiperSlide key={`${uniqueKey}-${idx}`}>
+                                        <ProductFlashSellCard
+                                            key={`popular-product-${product.id}`} product={product} date={Date.now() + 4000000 * 60}/>
+                                    </SwiperSlide>
+                                ))}
                             </Carousel>
                         </div>
     

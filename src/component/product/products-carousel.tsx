@@ -109,8 +109,8 @@ const ProductsCarousel: React.FC<CarouselProps> = ({
                     {loading && (
                         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                         {Array.from({ length: 5 }).map((_, id) => (
-                            <div className="p-2  rounded bg-white group">
-                                <ProductCardSkeleton key={id}/>
+                            <div key={id} className="p-2  rounded bg-white group">
+                                <ProductCardSkeleton />
                             </div>
                         ))}
                         </div>

@@ -12,12 +12,6 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     //const cartItems = useAppSelector((state) => state.cart.items);
     
     
-    /*const {
-        addItemToCart,
-        isInStock,
-        isInCart,
-    } = useCart();*/
-
     const item = product ?? {};
     const isInStock = item.stock > 0 ;
     const outOfStock =  !isInStock;
@@ -26,7 +20,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
         e.preventDefault();
         toast('Added to the bag', {
             progressClassName: 'fancy-progress-bar',
-            position: 'bottom-right',
+            position: 'top-right',
             autoClose: 3000,
         });
         
