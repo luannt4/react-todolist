@@ -10,20 +10,15 @@ const initialState: CartState = {
     total: 0,
     isEmpty: true,
     totalItems: 0,
-    isInStock: true,
-    isInCart: () => false,
 };
   
 const calculateTotals = (state: CartState) => {
     const total         = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const totalItems    = state.items.reduce((total, item) => total + item.quantity, 0);
-    const isInCart      = ( productId: number): boolean => state.items.some(item => item.id === productId);
 
     state.total         = total;
     state.totalItems    = totalItems;
     state.isEmpty       = state.items.length === 0;
-    state.isInStock     = state.items.every(item => item.quantity <= item.stock);
-    state.isInCart      = isInCart;
    
 };
 
@@ -71,8 +66,7 @@ const cartSlice = createSlice({
 
 // Selector for checking if product is in cart and its quantity
 export const selectCartItemDetails = createSelector(
-    [(state: RootState) => state.cart.items, (_state: RootState, productId: number) => productId],
-    (cartItems, productId) => {
+    [(state: RootState) => state.cart.items, (_state: RootState, productId: number) => productId],(cartItems, productId) => {
       const cartItem = cartItems.find(item => item.id === productId);
       return {
         isInCart: !!cartItem,

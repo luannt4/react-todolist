@@ -62,7 +62,7 @@ const ProductDetailsPage = () => {
         if (product) {
             // Check if adding would exceed stock
             const totalQuantity = cartItemDetails.quantity + selectedQuantity;
-            if (totalQuantity <= product.stock) {
+            if (totalQuantity < product.stock) {
                 // to show btn feedback while product carting
                 setAddToCartLoader(true);
                 setTimeout(() => {

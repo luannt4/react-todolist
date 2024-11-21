@@ -1,32 +1,39 @@
 import React from "react";
 import { Product } from "../../types/Product";
 import { toast } from 'react-toastify';
-import { useAppDispatch } from "../../hooks";
-import { ADD_ITEM } from "../../features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { ADD_ITEM, selectCartItemDetails } from "../../features/cart/cartSlice";
 interface AddToCartProps {
     product : Product;
 }
 
 const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     const dispatch = useAppDispatch();
-    //const cartItems = useAppSelector((state) => state.cart.items);
-    
-    
-    const item = product ?? {};
-    const isInStock = item.stock > 0 ;
-    const outOfStock =  !isInStock;
+
+     // Use the new selector to get cart item details
+     const cartItemDetails = useAppSelector((state) => 
+        selectCartItemDetails(state, Number(product.id))
+    );
 
     const handleAddToCart = (e: React.FormEvent) => {
-        e.preventDefault();
-        toast('Added to the bag', {
-            progressClassName: 'fancy-progress-bar',
-            position: 'top-right',
-            autoClose: 3000,
-        });
-        
-        if (isInStock) {
-            dispatch(ADD_ITEM(item));
+        // Check if adding would exceed stock
+        const totalQuantity = cartItemDetails.quantity;
+        if (totalQuantity < product.stock) {
+            dispatch(ADD_ITEM(product));
+            toast('Added to the bag', {
+                progressClassName: 'fancy-progress-bar',
+                position: 'top-right',
+                autoClose: 3000,
+            });
+        } else {
+            // Optional: Show an error message about exceeding stock
+            toast(`Cannot add more than ${product.stock} items to cart`, {
+                progressClassName: 'fancy-progress-bar',
+                position: 'top-right',
+                autoClose: 3000,
+            });
         }
+    
     };
 
     return (
@@ -34,7 +41,6 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
         className="px-5 py-2 bg-blue-500  text-white rounded-full text-sm font-medium  focus:outline-none focus-visible:outline-none"
         aria-label="Count Button"
         onClick={handleAddToCart}
-        disabled={outOfStock}
         >
             Add To Cart
         </button>

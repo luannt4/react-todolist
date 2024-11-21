@@ -18,10 +18,8 @@ interface Props {
     variant?: string;
 }
 
-
-
 const ProductCard: React.FC<Props> = ({ product, variant }) => {
-    const {id,title, category, price :productPrice,  discountPercentage, thumbnail,rating, reviews } = product;
+    const {id,title, category, price :productPrice,  discountPercentage, availabilityStatus, thumbnail,rating, reviews } = product;
     const {openModal } = useModal();
    
 
@@ -48,7 +46,7 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
             );
         }
 
-        if (availabilityStatus === 'Low Stock') {
+        /*if (availabilityStatus === 'Low Stock') {
             return (
                 <Link
                     className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-sm font-medium items-center justify-center focus:outline-none focus-visible:outline-none"
@@ -58,7 +56,7 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
                     Product Details
                 </Link>
             );
-        }
+        }*/
 
         return <AddToCart product={product} />;
     }
@@ -78,8 +76,8 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
         return (
             <p className="font-medium flex items-center space-x-1 text-[12px] text-skin-label_in in_stock">
                 <CheckIcon fill={"text-skin-label_in"} opacity="1"/>
-                <span> In Stock </span>
-                <span className="text-brand-dark"><b>{stock}</b> products</span>
+                <span> {availabilityStatus} </span>
+                <span className="text-brand-dark"><b>{stock}</b> products </span>
             </p>
         )
     }
