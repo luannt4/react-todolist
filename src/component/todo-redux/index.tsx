@@ -1,6 +1,6 @@
 // src/TodoApp.tsx
 import React, { useState } from "react";
-import TodoList from "./TodoList";
+import UserList from "./TodoList";
 import TodoForm from "./TodoForm";
 
 const TodoRedux: React.FC = () => {
@@ -16,8 +16,7 @@ const TodoRedux: React.FC = () => {
     return (
     <div className="max-w-lg mx-auto p-4 bg-gray-100 rounded shadow">
         <h1 className="text-2xl font-bold mb-4 text-center">Todo List - Redux Toolkit</h1>
-        <TodoForm editingTodo={editingTodo} onSave={handleSave}/>
-        <TodoList onEdit={handleEdit}/>
+        <UserList/>
     </div>
   );
 }

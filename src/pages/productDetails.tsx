@@ -15,7 +15,7 @@ import CartIcon from "../component/icons/cart-icon";
 import { toast } from "react-toastify";
 import ImageFill from "../component/ui/image";
 import Container from "../component/ui/container";
-import { ADD_ITEM_WITH_QUANTITY, selectCartItemDetails } from "../features/cart/cartSlice";
+import { ADD_ITEM, selectCartItemDetails } from "../features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 
 
@@ -69,7 +69,7 @@ const ProductDetailsPage = () => {
                     setAddToCartLoader(false);
                 }, 1500);
             
-                dispatch(ADD_ITEM_WITH_QUANTITY({ product, quantity: selectedQuantity }));
+                dispatch(ADD_ITEM({ product, quantity: selectedQuantity }));
                 toast('Added to the bag', {
                     progressClassName: 'fancy-progress-bar',
                     position: 'top-right',

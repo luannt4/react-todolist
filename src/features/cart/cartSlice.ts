@@ -2,7 +2,6 @@
 import { createSlice,  PayloadAction, createSelector } from '@reduxjs/toolkit';
 import { CartState,  CartItem } from '../../types/cart.types';
 import { RootState } from '../../store';
-import { Product } from '../../types/Product';
 
 
 const initialState: CartState = {
@@ -26,7 +25,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
      reducers: {
-        ADD_ITEM_WITH_QUANTITY(state, action: PayloadAction<{product: Product, quantity: number}>) {
+        ADD_ITEM(state, action: PayloadAction<{product: CartItem, quantity: number}>) {
             const { product, quantity } = action.payload;
             const existingItem = state.items.find((item) => item.id === product.id);
             if (existingItem) {
@@ -37,15 +36,6 @@ const cartSlice = createSlice({
             calculateTotals(state);
         },
        
-        ADD_ITEM: (state, action: PayloadAction<CartItem>) => {
-            const existingItem = state.items.find((item) => item.id === action.payload.id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                state.items.push({ ...action.payload, quantity: 1 });
-            }
-            calculateTotals(state);
-        },
         REMOVE_ITEM(state, action: PayloadAction<number>) {
             state.items = state.items.filter((item) => item.id !== action.payload);
             calculateTotals(state);
@@ -77,7 +67,6 @@ export const selectCartItemDetails = createSelector(
 );
 
 export const { 
-  ADD_ITEM_WITH_QUANTITY, 
   ADD_ITEM, 
   REMOVE_ITEM, 
   UPDATE_ITEM, 

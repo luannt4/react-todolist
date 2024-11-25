@@ -27,6 +27,9 @@ import ManagedToaster from "../component/common/toaster/toaster-provider";
 import CompleteOrderPage from "../pages/complete-order";
 import HomePage from "../pages/home";
 
+//React-redux
+import { Provider } from 'react-redux';
+import store from "../component/todo-redux/redux/store";
 
 export const router = createBrowserRouter([
   {
@@ -111,7 +114,9 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: (
+          <Provider store={store}>
               <ContactPage />
+          </Provider>
         ),
       },
       {

@@ -1,7 +1,7 @@
 // /components/TodoForm.tsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo, editTodo } from '../todo-redux/redux/todoSlice';
+import { addTodo, editTodo } from './redux/userSlice';
 
 interface TodoFormProps {
     editingTodo?: { id: string; text: string };

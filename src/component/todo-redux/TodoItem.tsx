@@ -1,7 +1,7 @@
 // src/TodoItem.tsx
 import React from "react";
 import {  useDispatch } from 'react-redux';
-import { deleteTodo ,toggleEdit,Todo } from '../todo-redux/redux/todoSlice';
+import { deleteTodo ,toggleEdit,Todo } from './redux/userSlice';
 
 
 interface TodoItemProps {
