@@ -89,7 +89,13 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
                     key={id} 
                     to={`/product/${slug}-${id}`}
                     className="block ">
-                        <ImageFill src={thumbnail|| 'Product Image'} height={230}   alt={title || 'Product Image'}/>
+
+                        <ImageFill 
+                            src={thumbnail} 
+                            height={230}   
+                            alt={title} 
+                            
+                        />
                         
                 </Link>
 

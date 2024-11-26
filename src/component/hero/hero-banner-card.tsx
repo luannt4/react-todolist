@@ -1,7 +1,7 @@
 'use client';
 
 import cn from 'classnames';
-
+import ImageFill from "../ui/image";
 import useWindowSize from '../../utils/use-window-size';
 import { Link } from 'react-router-dom';
 
@@ -27,80 +27,87 @@ export default function HeroBannerCard({
     const {title, description, image} = banner;
     const selectedImage = getImage(width!, image);
     return heroContentCard ? (
-        <div
-            className={cn(
-                'w-full bg-no-repeat bg-cover bg-center flex items-center rounded',
-                {'min-h-[320px] md:min-h-[367px]':variant === 'slider',
-                },
-                {
-                    'bg-fill-thumbnail': variant !== 'antique',
-                },
-                className
-            )}
-            style={{
-                backgroundImage: `url('${selectedImage.url}')`,
-                backgroundPosition: 'center center'
-            }}
-        >
+        <>
+            <ImageFill 
+                    src={selectedImage.url} 
+                    height={375}   
+                    alt={title} 
+                    
+                />
+
             <div
                 className={cn(
-                    'sm:absolute inset-0 m-[15px] md:mt-[30px] xl:mt-[50px] w-full',
+                    'sm:absolute inset-0  w-full flex items-center rounded overflow-hidden',
+                    {'min-h-[320px] md:min-h-[367px]':variant === 'slider',
+                    },
                     {
-                        'mx-auto max-w-[480px] md:max-w-[580px] xl:max-w-[700px]': variant === 'slider',
-                        'mx-auto max-w-[480px] md:max-w-[580px] xl:max-w-[600px]': variant === 'antique',
-                        'lg:px-20 max-w-[480px] md:max-w-[580px] xl:max-w-[700px]': variant === 'slider-4',
-                    }
+                        'bg-fill-thumbnail': variant !== 'antique',
+                    },
+                    className
                 )}
             >
-                <div className={cn(
-                         'text-left ',
-                         {
-                             'md:w-8/12 lg:w-6/12': variant === 'slider',
-                             'text-left': variant === 'slider-4',
-                         }
-                     )}
+            
+                <div
+                    className={cn(
+                        ' w-full',
+                        {
+                            'mx-auto max-w-[480px] md:max-w-[580px] xl:max-w-[700px]': variant === 'slider',
+                            'mx-auto max-w-[480px] md:max-w-[580px] xl:max-w-[600px]': variant === 'antique',
+                            'lg:px-20 max-w-[480px] md:max-w-[580px] xl:max-w-[700px]': variant === 'slider-4',
+                        }
+                    )}
                 >
-                    <p
-                        className={cn(
-                            'text-[12px] leading-7 uppercase font-bold ',
+                    <div className={cn(
+                            'text-left ',
                             {
-                                'text-brand-light ': variant === 'default',
-                                'text-brand-light': variant === 'slider',
-                                '': variant === 'antique',
+                                'md:w-8/12 lg:w-6/12': variant === 'slider',
+                                'text-left': variant === 'slider-4',
                             }
                         )}
                     >
-                        {description}
-                    </p>
-                    <h2
-                        className={cn('text-4xl md:text-4xl font-semibold mt-2 leading-8', {
-                            'xl:text-5xl 2xl:text-[36px] text-brand-light leading-snug md:leading-tight xl:leading-[1.3em] mb-3 md:mb-4 xl:mb-3 ':
-                                variant !== 'antique',
-                            'text-brand-light 2xl:text-[36px]':
-                                variant === 'default',
-                            'text-brand-dark 2xl:text-[36px] ':
-                                variant === 'antique',
-                        })}
-                    >
-                        {title}
-                    </h2>
-                    
-                    
-                    {banner.btnText && (
-                        <Link
-                            to={`${banner.btnUrl}`}
-                            
-                            className={cn(' h-[44px] mt-5 md:mt-12 text-base inline-flex items-center justify-center transition duration-300 rounded px-10 py-2 font-semibold ', {
-                                'text-white bg-blue-500  hover:bg-blue-600 ': variant !== 'antique',
-                                'text-brand-light bg-brand hover:text-white hover:bg-brand-dark ': variant === 'antique',
+                        <p
+                            className={cn(
+                                'text-[12px] leading-7 uppercase font-bold ',
+                                {
+                                    'text-brand-light ': variant === 'default',
+                                    'text-brand-light': variant === 'slider',
+                                    '': variant === 'antique',
+                                }
+                            )}
+                        >
+                            {description}
+                        </p>
+                        <h2
+                            className={cn('text-4xl md:text-4xl font-semibold mt-2 leading-8', {
+                                'xl:text-5xl 2xl:text-[36px] text-brand-light leading-snug md:leading-tight xl:leading-[1.3em] mb-3 md:mb-4 xl:mb-3 ':
+                                    variant !== 'antique',
+                                'text-brand-light 2xl:text-[36px]':
+                                    variant === 'default',
+                                'text-brand-dark 2xl:text-[36px] ':
+                                    variant === 'antique',
                             })}
                         >
-                            {banner.btnText}
-                        </Link>
-                    )}
+                            {title}
+                        </h2>
+                        
+                        
+                        {banner.btnText && (
+                            <Link
+                                to={`${banner.btnUrl}`}
+                                
+                                className={cn(' h-[44px] mt-5 md:mt-12 text-base inline-flex items-center justify-center transition duration-300 rounded px-10 py-2 font-semibold ', {
+                                    'text-white bg-blue-500  hover:bg-blue-600 ': variant !== 'antique',
+                                    'text-brand-light bg-brand hover:text-white hover:bg-brand-dark ': variant === 'antique',
+                                })}
+                            >
+                                {banner.btnText}
+                            </Link>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+        
     ) : (
         <Link to={`${banner.btnUrl}`}>
             <div

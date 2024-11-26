@@ -33,7 +33,7 @@ const BannerCard: React.FC<BannerProps> = ({banner,className,variant = 'default'
             >
                 <div className="relative inline-block overflow-hidden w-full box-sizing">
                     
-                    <ImageFill src={selectedImage.url|| 'Product Image'} height={selectedImage.height}   alt={title || 'Product Image'}/>
+                    <ImageFill src={selectedImage.url} height={selectedImage.height}   alt={title}/>
                     
                 </div>
                 {effectActive && (

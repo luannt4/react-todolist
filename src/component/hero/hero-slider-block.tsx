@@ -13,12 +13,12 @@ interface Props {
 }
 
 const HeroSliderBlock: React.FC<Props> = ({
-                                              heroBanner,
-                                              variant='slider',
-                                              className = 'mb-7',
-                                              contentClassName = 'px-5 py-10 xl:py-24',
-                                              showHeroContent = true,
-                                          }) => {
+        heroBanner,
+        variant='slider',
+        className = 'mb-7',
+        contentClassName = 'px-5 py-10 xl:py-24',
+        showHeroContent = true,
+    }) => {
     return (
         <div className={`${className}`}>
             <Carousel
@@ -26,7 +26,7 @@ const HeroSliderBlock: React.FC<Props> = ({
                     clickable: true,
                 }}
                 navigation={true}
-                autoplay={true}
+                autoplay={false}
                 prevActivateId={`prevActivateId`}
                 nextActivateId={`nextActivateId`}
             >

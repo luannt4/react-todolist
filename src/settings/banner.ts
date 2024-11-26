@@ -7,10 +7,10 @@ export const homeHeroSlider = [
         btnUrl: '/categories',
         image: {
             mobile: {
-                url: 'https://dummyjson.com/image/918x375?fontSize=20',
+                url: 'https://dummyjson.com/image/918x375?type=webp&fontSize=20',
             },
             desktop: {
-                url: 'https://dummyjson.com/image/918x375?fontSize=20',
+                url: 'https://dummyjson.com/image/918x375?type=webp&fontSize=20',
             },
         },
     },
@@ -22,10 +22,10 @@ export const homeHeroSlider = [
         btnUrl: '/categories',
         image: {
             mobile: {
-                url: 'https://dummyjson.com/image/918x375?fontSize=20',
+                url: 'https://dummyjson.com/image/918x375?type=webp&fontSize=20',
             },
             desktop: {
-                url: 'https://dummyjson.com/image/918x375?fontSize=20',
+                url: 'https://dummyjson.com/image/918x375?type=webp&fontSize=20',
             },
         },
     },
@@ -37,10 +37,10 @@ export const homeHeroSlider = [
         btnUrl: '/categories',
         image: {
             mobile: {
-                url: 'https://dummyjson.com/image/918x375?fontSize=20',
+                url: 'https://dummyjson.com/image/918x375?type=webp&fontSize=20',
             },
             desktop: {
-                url: 'https://dummyjson.com/image/918x375?fontSize=20',
+                url: 'https://dummyjson.com/image/918x375?type=webp&fontSize=20',
             },
         },
     },

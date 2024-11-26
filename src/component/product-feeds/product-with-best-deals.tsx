@@ -72,7 +72,7 @@ const ProductWithBestDeals: React.FC<ProductFeedProps> = ({className = '',unique
                                 src={backgroundThumbnail}
                                 alt={'Product Image'}
                                 width={430}
-                                height={355}
+                                height={400}
                             />
                         </div>
                         <div className="bestdeals-main-content w-[calc(100%_-_430px)]">

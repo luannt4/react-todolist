@@ -24,7 +24,7 @@ const HomePage = () => {
                         heroBanner={heroSlider}
                         showHeroContent={true}
                         className={`xl:col-span-8 mb-5 xl:mb-12`}
-                        contentClassName="p-7 sm:py-18 xl:py-16 sm:px-16 xl:px-24 md:min-h-[270px] xl:min-h-[375px] rounded"
+                        contentClassName="p-7 sm:py-18 xl:py-10 sm:px-16 xl:px-24 md:min-h-[270px] xl:min-h-[375px] rounded"
                     />
                     <BannerGrid
                         data={gridSlider}

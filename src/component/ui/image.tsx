@@ -1,44 +1,68 @@
-// @ts-ignore
-import LazyLoad from 'react-lazyload';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
+
 interface Props {
     variant?: string;
     className?: string;
     width?: number;
     height?: number;
-    src: string;
-    alt: string;
+    src: string;// Base image source (e.g., "/images/image.jpg")
+    alt: string;// Alternative text
+    breakpoints?: number[]; // Array of breakpoints (e.g., [480, 768, 1200])
+    extension?: string;  // Image file extension (default: "jpg")
   }
 
   
 const Image : React.FC<Props>  = ({
     className,
     variant,
-    width ,
+    width = '100%',
     height = 100,
     src,
     alt,
+    breakpoints = [480, 768, 1200], // Default breakpoints
+    extension = 'png',             // Default extension
   }) => {
+    const { ref, inView } = useInView({
+        triggerOnce: true, // Load only once when visible
+        threshold: 0.1,    // Trigger when 10% is visible
+      });
+
+    const [isLoaded, setIsLoaded] = useState(false);  
+    
+    // Generate responsive srcSet using DummyJSON CDN pattern
+    const srcSet = breakpoints
+    .map((bp) => `${src}?width=${bp} ${bp}w`)
+    .join(', ');
+
     return (
-        <LazyLoad
-            className={"h-full w-full relative"}
-            once
-            height={height}
-            offset={100}
-            placeholder={<Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
-        >
-            <div className="block w-full box-sizing">
-                <svg
-                className="block max-w-full h-auto"
-                xmlns="http://www.w3.org/2000/svg"
-                width={width}
-                height={height}
-                version="1.1"
+        <div style={{ width, height, position: 'relative' }} ref={ref}>
+            {/* Placeholder Skeleton */}
+            {!isLoaded && <Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
+            
+             {/* Lazy Loaded Image */}
+            {inView && (
+                <img
+                    src={src} // Default large image
+                    /*srcSet={srcSet}*/    // Responsive sources
+                    sizes="(max-width: 768px) 100vw, 100vw" // Responsive size hints
+                    alt={alt}
+                    width={width}      // Pass width to the image
+                    height={height}    // Pass height to the image
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        display: isLoaded ? 'block' : 'none',
+                    }}
+                    onLoad={() => setIsLoaded(true)} // Hide skeleton when image is loaded
                 />
-			</div>
-        	<img src={src} alt={alt}  className="absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover" />
-      </LazyLoad>
-    );
+            )}
+        </div>
+        
+    );  
+
+   
 }
 export default Image;
