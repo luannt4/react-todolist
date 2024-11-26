@@ -10,6 +10,7 @@ import {GrNext, GrPrevious} from "react-icons/gr";
 import Pagination from "../component/ui/pagination";
 import { LIMITS } from "../settings/limits";
 import Container from "../component/ui/container";
+import Breadcrumb from "../component/ui/breadcrumb";
 
 const CategoriesProductPage = () => {
     const [page, setPage] = useState(1);
@@ -34,6 +35,7 @@ const CategoriesProductPage = () => {
 
     return (
         <Container>
+             <Breadcrumb />
             <h1 className="text-2xl font-medium mb-6 capitalize">{categoryName}</h1>
         
             {/* Loading state */}

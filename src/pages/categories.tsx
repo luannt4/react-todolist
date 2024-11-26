@@ -7,6 +7,7 @@ import {GrNext, GrPrevious} from "react-icons/gr";
 import Pagination from "../component/ui/pagination";
 import { Category } from "../types/Product";
 import Container from "../component/ui/container";
+import Breadcrumb from "../component/ui/breadcrumb";
 
 const CategoriesPage = () => {
     const [page, setPage] = useState(1);
@@ -44,6 +45,7 @@ const CategoriesPage = () => {
   
     return (
         <Container>
+             <Breadcrumb />
             <h1 className="text-2xl font-bold mb-6 capitalize">Categories</h1>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {filterCategories?.map((category: any, idx: number) => (

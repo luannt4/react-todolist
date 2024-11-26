@@ -17,6 +17,7 @@ import ImageFill from "../component/ui/image";
 import Container from "../component/ui/container";
 import { ADD_ITEM, selectCartItemDetails } from "../features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
+import Breadcrumb from "../component/ui/breadcrumb";
 
 
 const ProductDetailsPage = () => {
@@ -103,6 +104,7 @@ const ProductDetailsPage = () => {
 
     return (
         <Container>
+            <Breadcrumb />
             <div className="grid-cols-10 lg:grid gap-8">
                 <div className="col-span-5 mb-6 overflow-hidden">
                    
