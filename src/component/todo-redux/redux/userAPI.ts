@@ -4,7 +4,7 @@ const BASE_URL = 'https://dummyjson.com/users';
 
 export const userAPI = {
   fetchUsers: async () => {
-    const response = await fetch(`${BASE_URL}?limit=100`);
+    const response = await fetch(`${BASE_URL}?limit=10`);
     const data = await response.json();
     return data.users;
   },
