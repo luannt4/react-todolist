@@ -50,7 +50,7 @@ const CategoriesPage = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {filterCategories?.map((category: any, idx: number) => (
                 <div key={category.slug} className="pointer">
-                    <Link to={`/category/${category.slug}`} className="group block">
+                    <Link to={`/categories/${category.slug}`} className="group block">
                         <div className="pb-[75%] relative overflow-hidden">
                             <img loading="lazy" className="group-hover:scale-105 duration-300 absolute w-full h-full object-cover"
                             src={`https://dummyjson.com/image/600x300/f1f5f9?fontFamily=poppins&text=${String(category.name).replace(/ /g, '+')}`}

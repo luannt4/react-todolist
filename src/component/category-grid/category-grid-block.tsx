@@ -9,6 +9,7 @@ import Alert from "../ui/alert";
 import Carousel from "../ui/carousel/carousel";
 import CategoryCard from "../cards/category-card";
 import CategoryGridSkeleton from "./category-grid-skeleton";
+import { ROUTES } from "../../utils/routes";
 
 
 interface CategoriesProps {
@@ -74,7 +75,6 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                             ))}
                             </div>
                         )}
-
                         
                         <Carousel
                             grid={{rows: 1, fill: 'row'}}
@@ -87,7 +87,7 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                                         <CategoryCard
                                             item={category}
                                             variant={variant}
-                                            href={`/category/${category.slug}`}
+                                            href={`${ROUTES.CATEGORIES}/${category.slug}`}
                                         />
                                     </SwiperSlide>
                                 ))

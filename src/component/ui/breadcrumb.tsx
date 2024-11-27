@@ -70,14 +70,13 @@ const Breadcrumb: React.FC<{ separator?: string }> = ({
   return (
     <BreadcrumbItems separator={separator}>
       <ActiveLink
-        legacyBehavior
         href={`${ROUTES.HOME}`}
-        activeClassName="font-semibold text-heading"
+        activeClassName="font-semibold text-heading "
       >
-        <a className="inline-flex ">
-          <IoHomeOutline className="ltr:mr-1.5 rtl:ml-1.5 text-brand-dark text-15px" />
+        <span className="flex items-center hover:text-blue-500">
+          <IoHomeOutline className="mr-1.5 text-brand-dark text-15px" />
           Home
-        </a>
+        </span>
       </ActiveLink>
 
       {breadcrumbs?.map((breadcrumb: any) => (
@@ -85,11 +84,10 @@ const Breadcrumb: React.FC<{ separator?: string }> = ({
            href={`${breadcrumb.href}`}
           activeClassName="text-heading"
           key={breadcrumb.href}
-          legacyBehavior
         >
-          <a className="capitalize">
+          <span className="capitalize hover:text-blue-500">
             {convertBreadcrumbTitle(breadcrumb.breadcrumb)}
-          </a>
+          </span>
         </ActiveLink>
       ))}
     </BreadcrumbItems>

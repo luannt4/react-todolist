@@ -11,6 +11,7 @@ import StarIcon from "../icons/star-icon";
 import usePrice from "../product/use-price";
 import CheckIcon from "../icons/check-icon";
 import SearchIcon from "../icons/search-icon";
+import { ROUTES } from "../../utils/routes";
 
 
 interface Props {
@@ -116,7 +117,7 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
                 <p className="text-gray-500 mb-2 capitalize hidden">
                     <Link 
                         key={category}
-                        to={`/category/${category}`}
+                        to={`${ROUTES.CATEGORIES}/${category}`}
                         className="transition-shadow"
                         >
                         {category}
@@ -125,7 +126,7 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
                 <p className={`w-full cursor-pointer font-medium  mb-2`}>
                     <Link 
                         key={id} 
-                        to={`/product/${slug}-${id}`}
+                        to={`${ROUTES.CATEGORIES}/${category}/${slug}-${id}`}
                         className="group-hover:text-blue-500"
                         >
                         {title}

@@ -30,6 +30,7 @@ import HomePage from "../pages/home";
 //React-redux
 import { Provider } from 'react-redux';
 import store from "../component/todo-redux/redux/store";
+import CompareBotomPanel from "../component/compare/compare-bottomPanel";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
 			    <ManagedModal />
           <ManagedDrawer/>
           <ManagedToaster/>
+          <CompareBotomPanel/>
 		</AppProvider>
 	),
     children: [
@@ -96,11 +98,11 @@ export const router = createBrowserRouter([
         element: <CategoriesPage />,
       },
       {
-        path: "category/:categoryName",
+        path: "categories/:categoryName",
         element: <CategoriesProductPage />,
       },
       {
-        path: "product/:slug",
+        path: "categories/:categoryName/:slug",
         element: <ProductDetailsPage />,
       },
       {

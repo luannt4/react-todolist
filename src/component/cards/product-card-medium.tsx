@@ -9,6 +9,7 @@ import StarIcon from "../icons/star-icon";
 import usePrice from "../product/use-price";
 import CheckIcon from "../icons/check-icon";
 import SearchIcon from "../icons/search-icon";
+import { ROUTES } from "../../utils/routes";
 
 
 interface Props {
@@ -60,7 +61,7 @@ const ProductCardMedium: React.FC<Props> = ({ product }) => {
             <div className="relative  product-card-img bg-slate-100">
                 <Link
                     key={id} 
-                    to={`/product/${slug}-${id}`}
+                    to={`${ROUTES.CATEGORIES}/${category}/${slug}-${id}`}
                     className="block ">
                         <ImageFill src={thumbnail|| 'Product Image'} width={180} height={180}   alt={title || 'Product Image'}/>
                         
@@ -86,7 +87,7 @@ const ProductCardMedium: React.FC<Props> = ({ product }) => {
                 <p className="text-sm text-gray-500 mb-2 capitalize">
                     <Link 
                         key={category}
-                        to={`/category/${category}`}
+                        to={`${ROUTES.CATEGORIES}/${category}`}
                         className="transition-shadow"
                         >
                         {category}
@@ -95,7 +96,7 @@ const ProductCardMedium: React.FC<Props> = ({ product }) => {
                 <p className={`w-full cursor-pointer font-medium  mb-2`}>
                     <Link 
                         key={id} 
-                        to={`/product/${slug}-${id}`}
+                        to={`${ROUTES.CATEGORIES}/${category}/${slug}-${id}`}
                         className="group-hover:text-blue-500"
                         >
                         {title}

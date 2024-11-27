@@ -16,10 +16,10 @@ export default function useBreadcrumb() {
   const pathname = useLocation().pathname; // Access the current location
  
   const [breadcrumbs, setBreadcrumbs] = useState<any>(null);
-  console.log('breadcrumbs',breadcrumbs);
   useEffect(() => {
     if (pathname) {
       const linkPath = pathname.split('/');
+      console.log('linkPath',linkPath);
       linkPath.shift();
 
       const pathArray = linkPath.map((path, i) => {
