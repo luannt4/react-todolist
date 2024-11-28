@@ -28,7 +28,7 @@ const CompareBotomPanel: React.FC = () => {
   
     return (
         <>
-        {compareList.length && (
+        {compareList.length > 0 && (
             <div className='fixed bottom-0 w-full backdrop-blur-sm z-40 bg-black/75'>
                 <Container>
                     <button onClick={heandleToggleCompare} className="c-compare-toggle flex justify-center items-center p-2 text-center absolute start-1/2 -translate-x-1/2" data-comp-data-layer="" type="button" aria-expanded="true">

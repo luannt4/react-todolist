@@ -2,6 +2,7 @@ import React from "react";
 import {  Outlet } from "react-router-dom";
 import Header from "./header";
 import useCart from "../../hooks/useCart";
+import BackToTopButton from "../../component/ui/back-to-top";
 
 const DefaultLayout: React.FC = () => {
     useCart();
@@ -12,6 +13,7 @@ const DefaultLayout: React.FC = () => {
                 <Outlet />
             </main>
             <div className="bg-gray-800 text-white text-center p-6 ">Footer Content</div>
+            <BackToTopButton/>
         </>
     );
 };

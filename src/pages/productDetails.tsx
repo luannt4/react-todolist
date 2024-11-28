@@ -18,11 +18,11 @@ import Container from "../component/ui/container";
 import { ADD_ITEM, selectCartItemDetails } from "../features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import Breadcrumb from "../component/ui/breadcrumb";
+import {ROUTES} from "../utils/routes";
 
 
 const ProductDetailsPage = () => {
     const dispatch = useAppDispatch();
-    
     
     const { slug } = useParams<{ slug: string }>();
 
@@ -143,7 +143,7 @@ const ProductDetailsPage = () => {
                     </div>
                     <Link 
                             key={category}
-                            to={`/category/${category}`}
+                            to={`${ROUTES.CATEGORIES}/${category}`}
                             className="inline-block bg-gray-100 px-3 py-1 rounded mb-4"
                             >
                             {category}

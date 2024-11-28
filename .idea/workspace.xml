@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/features/auth/auth.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/auth/authAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/auth/authSelectors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/auth/authThunks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/auth/ForgotPasswordForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/ForgotPasswordForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/auth/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/RegisterForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/common/modal/managed-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/modal/managed-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/compare/compare-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/compare/compare-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/compare/compare-cardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/compare/compare-cardPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/header/myAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/header/myAccount.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/modal/modalProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/modal/modalProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/modal/modalReducer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/modal/modalReducer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/modal/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/modal/types.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/ui/back-to-top.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/compare/compare-bottomPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/compare/compare-bottomPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/default/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/productDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/productDetails.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "redux",
-    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/features/auth",
+    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/component/ui",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,6 +49,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/component/ui" />
       <recent name="$PROJECT_DIR$/src/features/auth" />
     </key>
   </component>
@@ -80,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732760299630</updated>
-      <workItem from="1732760301978" duration="13189000" />
+      <workItem from="1732760301978" duration="14623000" />
     </task>
     <servers />
   </component>
