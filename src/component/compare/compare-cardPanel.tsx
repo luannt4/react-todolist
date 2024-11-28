@@ -18,17 +18,17 @@ const CompareCardPanel: React.FC<Props> = ({ product, removeCompare }) => {
     const priceOld = Number(price / (1 - (discountPercentage / 100))).toFixed(2);
     return (
     <div className="bg-white rounded-lg group flex items-center  gap-4 p-4 relative">
-         <button
+         <div
                 onClick={() => removeCompare(id)}
-                className="absolute rounded p-3 top-0 right-0 z-10"
+                className="absolute rounded p-3 top-0 right-0 z-10 cursor-pointer "
             >
                 <CloseIcon className="w-4 h-4"/>
-        </button>
+        </div>
         <div className="c-product-item__img">
             <Image src={thumbnail|| 'Product Image'} width={64} height={64}   alt={title || 'Product Image'}/>
         </div>
         <div className="c-product-item w-full pr-5">
-            <p className={`w-full cursor-pointer mb-1`}>
+            <p className={`w-full mb-1`}>
                 <Link 
                     key={id} 
                     to={`/product/${slug}-${id}`}

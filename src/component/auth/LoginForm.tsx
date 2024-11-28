@@ -4,18 +4,21 @@ import { useForm } from 'react-hook-form';
 import { LoginCredentials } from '../../contexts/auth/types';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { login } from '../../features/auth/authSlice';
+import { loginAsync } from '../../features/auth/authThunks';
 import { useNavigate } from 'react-router-dom';
+import {selectAuthError, selectAuthLoading} from "../../features/auth/authSelectors";
 
 const LoginForm: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { isLoading, error } = useAppSelector((state) => state.auth);
+    const isLoading = useAppSelector(selectAuthLoading);
+    const error = useAppSelector(selectAuthError);
+
     const { register, handleSubmit, formState: { errors } } = useForm<LoginCredentials>();
     const navigate = useNavigate();
 
     const onSubmit = async (data: LoginCredentials) => {
-        const result = await dispatch(login({ username: data.username, password: data.password }));
-        if (login.fulfilled.match(result)) {
+        const result = await dispatch(loginAsync({ username: data.username, password: data.password }));
+        if (loginAsync.fulfilled.match(result)) {
             if (data.rememberMe) {
                 localStorage.setItem('authUser', JSON.stringify(data));
             }

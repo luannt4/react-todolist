@@ -2,8 +2,8 @@ import { IoIosCheckmarkCircle, IoIosSync } from "react-icons/io";
 import { removeFromCompare, addToCompare } from '../../features/compare/compareSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { Product } from "../../types/Product";
-import { toast } from "react-toastify";
 import cn from 'classnames';
+import { useModal } from "../../contexts";
 
 interface Props {
     product : Product;
@@ -13,17 +13,19 @@ interface Props {
 const CompareButton: React.FC<Props> = ({product,className}) => {
     const compareList = useAppSelector(state => state.compare.compareList);
     const dispatch = useAppDispatch();
-    
+    const {openAlert } = useModal();
+
     const InCompare = (productId: number) => compareList.some((product) => product.id === productId);
     const isInCompare = InCompare(product?.id);
-    
-    const handleBtnCompare = () => {
-        const toastStatus = isInCompare === true ? 'Remove from compares list' : 'Added to compares list';
-        toast(toastStatus, {
-            progressClassName: 'fancy-progress-bar',
-            position: 'top-right',
-            autoClose: 3000,
-        });
+    const LimitCompare = 4;
+   
+    const handleAddToCompare = () => {
+        if(compareList.length < LimitCompare){
+            dispatch(addToCompare(product));
+        }else{
+            openAlert ("ALERT_VIEW", `You have ${LimitCompare} products ready to compare`)
+        }
+        
     };
     
 
@@ -38,9 +40,7 @@ const CompareButton: React.FC<Props> = ({product,className}) => {
                     <IoIosCheckmarkCircle/>
                 </button>
             ) : (
-                <button onClick={() => {
-                    dispatch(addToCompare(product));
-                }}
+                <button onClick={handleAddToCompare}
                 className={cn(' bg-gray-200 text-gray-600 px-3 py-3  rounded-full hover:bg-blue-500 hover:text-white',className)}
                 >
                     <IoIosSync/>

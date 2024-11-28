@@ -3,18 +3,19 @@ import { useForm,SubmitHandler } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { RegisterCredentials } from '../../types/auth.types';
-import { register as registerUser } from '../../features/auth/authSlice';
-
+import {registerAsync as registerUser} from "../../features/auth/authThunks";
+import {selectAuthError, selectAuthLoading} from "../../features/auth/authSelectors";
 
 
 export const RegisterForm = () => {
-  const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector((state) => state.auth);
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterCredentials>();
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(selectAuthLoading);
+    const error = useAppSelector(selectAuthError);
 
-  const navigate = useNavigate();
-  const password = watch("password");
-  const onSubmit: SubmitHandler<RegisterCredentials> = async (data) => {
+    const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterCredentials>();
+    const navigate = useNavigate();
+    const password = watch("password");
+    const onSubmit: SubmitHandler<RegisterCredentials> = async (data) => {
     await dispatch(registerUser(data));
     const result = await dispatch(registerUser(data));
 

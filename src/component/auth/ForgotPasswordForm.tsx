@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { forgotPassword, logout } from '../../features/auth/authSlice';
-
+import { logout } from '../../features/auth/authSlice';
+import {forgotPasswordAsync} from "../../features/auth/authThunks";
 interface ForgotPasswordFormType {
   email: string;
 }
@@ -26,7 +26,7 @@ export const ForgotPasswordForm: React.FC = () => {
 
 
   const onSubmit = async (data: ForgotPasswordFormType) => {
-    dispatch(forgotPassword(data.email));
+    dispatch(forgotPasswordAsync(data.email));
   };
 
   return (

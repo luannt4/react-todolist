@@ -6,7 +6,6 @@ import AccountIcon from '../icons/account-icon';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logout } from '../../features/auth/authSlice';
-
 interface Props {
     className?: string;
 }
@@ -28,7 +27,7 @@ export const MyAccount: React.FC<Props> = ({className }) => {
     if (isLoggedIn) return (
         <div className=" lg:flex items-center shrink-0 accountButton">
             <Menu >
-                <MenuButton className="flex gap-1 justify-center items-center">
+                <MenuButton as="div" className="flex gap-1 justify-center items-center">
                     <div className="cart-button">
                         <AccountIcon />
                     </div>

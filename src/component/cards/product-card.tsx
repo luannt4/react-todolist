@@ -35,29 +35,19 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
     });
     
     const RenderAddToCart: React.FC<Props> = ({ product }) => {
-        const {id, stock, availabilityStatus} = product;
+        const {id, stock} = product;
         const isInStock = product.stock > 0 ;
         const outOfStock =  !isInStock;
 
         if (Number(stock) < 1 || outOfStock) {
             return (
-                <span className="block text-sm leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-sm font-medium items-center justify-center">
+                <span className="block  leading-6 px-4 py-2 bg-red-400 rounded-full text-white text-sm font-medium items-center justify-center">
                     Out Of Stock
                 </span>
             );
         }
 
-        /*if (availabilityStatus === 'Low Stock') {
-            return (
-                <Link
-                    className="block leading-6 px-4 py-2 bg-blue-500 rounded-full  text-white text-sm font-medium items-center justify-center focus:outline-none focus-visible:outline-none"
-                    aria-label="Count Button"
-                    to={`/product/${slug}-${id}`}
-                >
-                    Product Details
-                </Link>
-            );
-        }*/
+
 
         return <AddToCart product={product} />;
     }
@@ -84,7 +74,7 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
     }
 
     return (
-        <div className=" gap-2 p-2 border rounded bg-white group">
+        <div className="gap-2 p-2 border rounded bg-white group">
             <div className="relative overflow-hidden bg-slate-100 ">
                 <Link
                     key={id} 

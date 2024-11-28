@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/features/auth/auth.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/authAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/authSelectors.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/authThunks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/auth/ForgotPasswordForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/ForgotPasswordForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/auth/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/RegisterForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/common/modal/managed-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/modal/managed-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/compare/compare-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/compare/compare-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/compare/compare-cardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/compare/compare-cardPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/header/myAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/header/myAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/modal/modalProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/modal/modalProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/modal/modalReducer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/modal/modalReducer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/modal/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/modal/types.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authSlice.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2pSX9SXIVxz3XYUzN4teRBkX8bY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "redux",
+    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/features/auth",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/features/auth" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="" />
+      <created>1732760299630</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732760299630</updated>
+      <workItem from="1732760301978" duration="13189000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
