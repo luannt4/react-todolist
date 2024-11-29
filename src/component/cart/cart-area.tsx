@@ -9,7 +9,7 @@ import { fetchCart} from '../../features/cart/cartThunks';
 
 const CartArea:React.FC = () => {
     const dispatch = useAppDispatch();
-    const { cart, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const { items, isEmpty, totalItems } = useAppSelector((state) => state.cart);
     const total = cart?.total ?? 0;
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const CartArea:React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cart?.products.map((item) => (
+                                    {items?.products.map((item) => (
                                         <CartItems item={item} key={item.id} />
                                     ))}
                                 </tbody>

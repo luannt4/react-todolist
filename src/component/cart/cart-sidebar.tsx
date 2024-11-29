@@ -11,7 +11,7 @@ import { useAppSelector } from "../../hooks";
 
 const CartSideBar = () => {
     const { closeDrawer } = useDrawer();
-    const { cart, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const { items, isEmpty, totalItems } = useAppSelector((state) => state.cart);
     const total = cart?.total ?? 0;
     const { price: cartTotal } = usePrice({
         amount: total,
@@ -38,7 +38,7 @@ const CartSideBar = () => {
             {!isEmpty ? (
                 <Scrollbar className="flex-grow w-full cart-scrollbar ">
                     <div className="w-full px-5  space-y-5 h-[calc(100vh-350px)]">
-                        {cart?.products.map((item) => (
+                        {items?.products.map((item) => (
                             <CartSideBarItems item={item} key={item.id} />
                         ))}
                     </div>

@@ -9,12 +9,14 @@ export const fetchCart = createAsyncThunk(
     async (userId: number, { rejectWithValue }) => {
         try {
             const cart = await cartApi.getCart(userId);
-            return {
-                ...cart,
-                products: cart.products || [], // Ensure products is always an array
-                total: cart.total || 0,
-                totalQuantity: cart.totalQuantity || 0
-            };
+            // Map API response to CartItem[]
+            return cart.products.map(p => ({
+                id: p.id,
+                title: p.title,
+                price: p.price,
+                quantity: p.quantity,
+                thumbnail: '' // You might want to fetch product details separately
+            }));
         } catch (error) {
             return rejectWithValue('Failed to fetch cart');
         }
@@ -30,7 +32,7 @@ export const addToCart = createAsyncThunk(
     }, { rejectWithValue, getState }) => {
         try {
             const state = getState() as RootState;
-            const existingCartItem = state.cart.cart.find(item => item.id === product.id);
+            const existingCartItem = state.cart.items.find(item => item.id === product.id);
 
             if (existingCartItem) {
                 // If product exists, update quantity
@@ -61,7 +63,8 @@ export const updateCartItem = createAsyncThunk(
     'cart/updateCartItem',
     async ({ cartId, productId, quantity }: { cartId: number, productId: number, quantity: number }, { rejectWithValue }) => {
         try {
-            return await cartApi.updateCartItem(cartId, productId, quantity);
+            await cartApi.updateCartItem(cartId, productId, quantity);
+            return { productId, quantity };
         } catch (error) {
             return rejectWithValue('Failed to update cart item');
         }
@@ -72,7 +75,8 @@ export const deleteCartItem = createAsyncThunk(
     'cart/deleteCartItem',
     async ({ cartId, productId }: { cartId: number, productId: number }, { rejectWithValue }) => {
         try {
-            return await cartApi.deleteCartItem(cartId, productId);
+            await cartApi.deleteCartItem(cartId, productId);
+            return productId;
         } catch (error) {
             return rejectWithValue('Failed to delete cart item');
         }

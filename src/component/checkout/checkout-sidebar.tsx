@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CheckoutSideBar: React.FC = () => {
     const navigate = useNavigate();
-    const { cart, isEmpty, totalItems } = useAppSelector((state) => state.cart);
-    const total = cart?.total ?? 0;
+    const { items, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const total = items?.total ?? 0;
     const { price: subtotal } = usePrice({
         amount: total,
         currencyCode: 'USD',
@@ -51,7 +51,7 @@ const CheckoutSideBar: React.FC = () => {
                 </div>
                 <div className="mb-5">
                     {!isEmpty  ? (
-                        cart?.products.map((item) => <CheckoutItem item={item} key={item.id} />)
+                        items?.products.map((item) => <CheckoutItem item={item} key={item.id} />)
                     ) : (
                     <p className="py-4 text-brand-danger text-opacity-70">
                         Your cart is empty.

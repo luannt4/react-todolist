@@ -13,7 +13,6 @@ const initialState: CartState = {
     isEmpty: true
 };
 
-
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -25,11 +24,19 @@ const cartSlice = createSlice({
             })
             .addCase(fetchCart.fulfilled, (state, action) => {
                 state.status = 'succeeded';
+                // @ts-ignore
+                state.items = action.payload;
+                state.totalItems = state.items.reduce((total, item) => total + item.quantity!, 0);
+                state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity!), 0);
+                state.isEmpty = state.items.length === 0;
+            })
+            /*.addCase(fetchCart.fulfilled, (state, action) => {
+                state.status = 'succeeded';
                 state.items = action.payload;
                 state.totalItems = action.payload.totalQuantity || 0;
                 state.totalPrice = action.payload.reduce((total, item) => total + (item.price * item.quantity!), 0);
                 state.isEmpty = !action.payload.products || action.payload.products.length === 0;
-            })
+            })*/
             .addCase(fetchCart.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload as string;
@@ -42,31 +49,31 @@ const cartSlice = createSlice({
                 } else {
                     state.items.push(action.payload);
                 }
-                state.totalItems = action.payload.totalQuantity|| 0;
+                state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
                 state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                state.isEmpty = !action.payload.products || action.payload.products.length === 0;
+                state.isEmpty = state.items.length === 0;
             })
             .addCase(updateCartItem.fulfilled, (state, action) => {
                 const item = state.items.find(item => item.id === action.payload.productId);
                 if (item) {
                     item.quantity = action.payload.quantity;
                 }
-                state.totalItems = action.payload.totalQuantity || 0;
+                state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
                 state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                state.isEmpty = !action.payload.products || action.payload.products.length === 0;
+                state.isEmpty = state.items.length === 0;
             })
             .addCase(deleteCartItem.fulfilled, (state, action) => {
                 state.items = state.items.filter(item => item.id !== action.payload);
-                state.totalItems = action.payload.totalQuantity || 0;
+                state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
                 state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                state.isEmpty = !action.payload.products || action.payload.products.length === 0;
+                state.isEmpty = state.items.length === 0;
             });
     }
 });
 
 // Selector for checking if product is in cart and its quantity
 export const selectCartItemDetails = createSelector(
-    [(state: RootState) => state.cart.items?.products, (_state: RootState, productId: number) => productId],(cartItems, productId) => {
+    [(state: RootState) => state.cart.items, (_state: RootState, productId: number) => productId],(cartItems, productId) => {
         const cartItem = cartItems && cartItems.find(item => item.id === productId);
       return {
         isInCart: !!cartItem,
