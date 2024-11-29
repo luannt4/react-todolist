@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import usePrice from '../product/use-price';
 import { IoIosCloseCircle } from 'react-icons/io';
-import { REMOVE_ITEM } from '../../features/cart/cartSlice';
+import {deleteCartItem} from '../../features/cart/cartThunks';
+
 import { useAppDispatch } from '../../hooks';
+import React from "react";
 
 
 type CartItemProps = {
@@ -11,7 +13,7 @@ type CartItemProps = {
 
 const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
     const dispatch = useAppDispatch();
-    const {id,title, category, quantity,  thumbnail } = item ?? {};
+    const {id:productId,title, category, quantity,  thumbnail } = item ?? {};
     
     const { price: totalPrice } = usePrice({
         amount: item?.price,
@@ -23,7 +25,7 @@ const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
 
     const handleClearItemFromCart = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(REMOVE_ITEM(id));
+        dispatch(deleteCartItem({ cartId: 1, productId })); // Assuming cartId = 1
     }
   return (
     <div
@@ -46,7 +48,7 @@ const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
         <div className="pl-3 md:pl-4 ">
        
           <Link
-            to={`/product/${slug}-${id}`}
+            to={`/product/${slug}-${productId}`}
             className="block leading-5 transition-all font-medium lg:text-15px group-hover:text-blue-500"
           >
             {title}

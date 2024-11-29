@@ -10,12 +10,13 @@ interface Props {
 };
 
 const CartButton: React.FC<Props> = ({className,iconClassName = '',hideLabel}) => {
-   const {totalItems } = useAppSelector((state) => state.cart);
+   const {totalItems,cart  } = useAppSelector((state) => state.cart);
     const {openDrawer, setDrawerView} = useDrawer();
     const handleCartOpen = () =>{
         setDrawerView('CART_SIDEBAR');
         return openDrawer();
     }
+    console.log(cart);
     return (
         <div onClick={handleCartOpen} className={cn('cursor-pointer items-center justify-center shrink-0 h-auto focus:outline-none transform lg:flex',className)} aria-label="cart-button">
             <div className="relative flex items-center">

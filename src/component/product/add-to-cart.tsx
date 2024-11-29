@@ -2,15 +2,21 @@ import React from "react";
 import { Product } from "../../types/Product";
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { ADD_ITEM, selectCartItemDetails } from "../../features/cart/cartSlice";
+import { selectCartItemDetails } from "../../features/cart/cartSlice";
+import { addToCart } from '../../features/cart/cartThunks';
+
 import {useModal} from "../../contexts";
 interface AddToCartProps {
     product : Product;
+    userId: number;
 }
 
-const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
+
+// @ts-ignore
+const AddToCart: React.FC<AddToCartProps> = ({ product,userId }) => {
     const dispatch = useAppDispatch();
     const {openAlert } = useModal();
+    //const {id,title,  quantity,  thumbnail } = product ?? {};
      // Use the new selector to get cart item details
      const cartItemDetails = useAppSelector((state) => 
         selectCartItemDetails(state, Number(product.id))
@@ -22,10 +28,8 @@ const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
         const totalQuantity = cartItemDetails.quantity;
         if (totalQuantity < product.stock) {
             
-            dispatch(ADD_ITEM({ product, quantity: 1 }));
-            toast('Added to the bag', {
-                progressClassName: 'fancy-progress-bar',
-            });
+            dispatch(addToCart({ userId,productId: product.id,  quantity: 1 } )); // Assuming cartId = 1
+            //toast('Added to the bag', {progressClassName: 'fancy-progress-bar',});
         } else {
             // Optional: Show an error message about exceeding stock
             openAlert ("ALERT_VIEW", `Cannot add more than ${product.stock} items to cart`)

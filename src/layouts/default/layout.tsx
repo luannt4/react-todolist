@@ -1,11 +1,9 @@
 import React from "react";
 import {  Outlet } from "react-router-dom";
 import Header from "./header";
-import useCart from "../../hooks/useCart";
 import BackToTopButton from "../../component/ui/back-to-top";
 
 const DefaultLayout: React.FC = () => {
-    useCart();
     return (
         <>
             <Header/>

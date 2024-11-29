@@ -61,7 +61,7 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
             );
         }
 
-        return <AddToCart product={product} />;
+        return <AddToCart product={product} userId={1}/>;
     }
     
     const RenderLabelStock: React.FC<Props> = ({ product }) => {

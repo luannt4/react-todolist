@@ -11,25 +11,26 @@ import { useAppSelector } from "../../hooks";
 
 const CartSideBar = () => {
     const { closeDrawer } = useDrawer();
-    const { items, total, isEmpty } = useAppSelector((state) => state.cart);
+    const { cart, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const total = cart?.total ?? 0;
     const { price: cartTotal } = usePrice({
         amount: total,
         currencyCode: 'USD',
     });
+
     return (
         <div className="flex flex-col justify-between w-full h-full">
             <div className="relative flex items-center justify-between w-full px-5 py-5 border-b border-gray-base md:px-7">
                 <Heading variant="titleMedium">Shopping Cart</Heading>
-                
                 <div className="flex items-center">
                 
-                <button
-                    className="flex items-center flex-shrink  "
-                    aria-label={'Close'}
-                    onClick={closeDrawer}
-                    >
-                     <CloseIcon/>
-                </button>
+                    <button
+                        className="flex items-center flex-shrink  "
+                        aria-label={'Close'}
+                        onClick={closeDrawer}
+                        >
+                         <CloseIcon/>
+                    </button>
                    
                 </div>
             </div>
@@ -37,7 +38,7 @@ const CartSideBar = () => {
             {!isEmpty ? (
                 <Scrollbar className="flex-grow w-full cart-scrollbar ">
                     <div className="w-full px-5  space-y-5 h-[calc(100vh-350px)]">
-                        {items?.map((item) => (
+                        {cart?.products.map((item) => (
                             <CartSideBarItems item={item} key={item.id} />
                         ))}
                     </div>

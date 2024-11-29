@@ -4,15 +4,15 @@ import ImageFill from '../ui/image';
 import Counter from '../ui/counter';
 import CloseIcon from '../icons/close-icon';
 import { useAppDispatch } from '../../hooks';
-import {  REMOVE_ITEM,  UPDATE_ITEM } from '../../features/cart/cartSlice';
-
+import {deleteCartItem,  updateCartItem} from '../../features/cart/cartThunks';
+import React from "react";
 type CartItemProps = {
     item: any;
 };
 
 const CartItems: React.FC<CartItemProps> = ({  item }) => {
     const dispatch = useAppDispatch();
-    const {id,title,  quantity,  thumbnail } = item ?? {};
+    const {id: productId,title,  quantity,  thumbnail } = item ?? {};
     const { price: totalPrice } = usePrice({
         amount: item?.price,
         currencyCode: 'USD',
@@ -25,18 +25,13 @@ const CartItems: React.FC<CartItemProps> = ({  item }) => {
 
     const handleQuantityChange = (newQuantity: number) => {
         if (newQuantity <= 0) {
-            dispatch(REMOVE_ITEM(item.id));
+            dispatch(deleteCartItem({ cartId: 1, productId })); // Assuming cartId = 1
         } else if (newQuantity > item.stock) {
             // Optional: Show an error or limit to max stock
-            dispatch(UPDATE_ITEM({ 
-                productId: item.id, 
-                quantity: item.stock 
-            }));
+            dispatch(updateCartItem({ cartId: 1, productId, quantity:item.stock }));
+            //dispatch(updateCartItem({ id, quantity }));
         } else {
-            dispatch(UPDATE_ITEM({ 
-                productId: item.id, 
-                quantity: newQuantity 
-            }));
+            dispatch(updateCartItem({  cartId: 1, productId, quantity:newQuantity }));
         }
       };
 
@@ -53,7 +48,7 @@ const CartItems: React.FC<CartItemProps> = ({  item }) => {
             
             <td className="wi-cart-title px-3 py-7 min-w-40 max-w-500px">
             <Link
-                to={`/product/${slug}-${id}`}
+                to={`/product/${slug}-${productId}`}
                 className="block leading-5 transition-all font-medium lg:text-15px group-hover:text-blue-500"
             >
                 {title} 
@@ -83,7 +78,7 @@ const CartItems: React.FC<CartItemProps> = ({  item }) => {
                 <button
                     className="flex items-center justify-center bg-gray-200 rounded-full w-8 h-8 hover:bg-gray-400"
                     aria-label={'Clear Item'}
-                    onClick={() => dispatch(REMOVE_ITEM(id))}
+                    onClick={() => dispatch(deleteCartItem({ cartId: 1, productId })) }
                     >
                         <CloseIcon width={15}/>
                 </button>

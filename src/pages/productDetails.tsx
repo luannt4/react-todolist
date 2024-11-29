@@ -15,10 +15,11 @@ import CartIcon from "../component/icons/cart-icon";
 import { toast } from "react-toastify";
 import ImageFill from "../component/ui/image";
 import Container from "../component/ui/container";
-import { ADD_ITEM, selectCartItemDetails } from "../features/cart/cartSlice";
+import { selectCartItemDetails } from "../features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import Breadcrumb from "../component/ui/breadcrumb";
 import {ROUTES} from "../utils/routes";
+import {addToCart} from "../features/cart/cartThunks";
 
 
 const ProductDetailsPage = () => {
@@ -53,7 +54,7 @@ const ProductDetailsPage = () => {
 
     // Use the new selector to get cart item details
     const cartItemDetails = useAppSelector((state) => 
-        selectCartItemDetails(state, Number(id))
+        selectCartItemDetails(state, Number(productId))
     );
 
     // Bỏ qua selectedVariation do API ko có
@@ -70,7 +71,7 @@ const ProductDetailsPage = () => {
                     setAddToCartLoader(false);
                 }, 1500);
             
-                dispatch(ADD_ITEM({ product, quantity: selectedQuantity }));
+                dispatch(addToCart({userId: 1,  productId, quantity: selectedQuantity  }));
                 toast('Added to the bag', {
                     progressClassName: 'fancy-progress-bar',
                     position: 'top-right',

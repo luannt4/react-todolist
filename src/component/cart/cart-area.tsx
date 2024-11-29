@@ -2,13 +2,21 @@ import usePrice from "../product/use-price";
 import CartItems from "./cart-items";
 import CartSummary from "./cart-summary";
 import EmptyCart from "./empty-cart";
-import { useAppSelector } from '../../hooks';
-
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from "react";
+import { fetchCart} from '../../features/cart/cartThunks';
 
 
 const CartArea:React.FC = () => {
-    const { items, total, isEmpty } = useAppSelector((state) => state.cart);
-      
+    const dispatch = useAppDispatch();
+    const { cart, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const total = cart?.total ?? 0;
+
+    useEffect(() => {
+        // Replace with actual user ID from authentication
+        dispatch(fetchCart(1));
+    }, [dispatch]);
+
     const { price: cartTotal } = usePrice({
         amount: total,
         currencyCode: 'USD',
@@ -18,7 +26,7 @@ const CartArea:React.FC = () => {
         <div className="wi-cart-area pb-20">
             <h1 className="text-2xl font-medium mb-6 capitalize">Shopping Cart</h1>
 
-          
+
             {!isEmpty ? (
                 <div className="flex flex-col xl:flex-row gap-8 2xl:gap-10">
                     <div className="w-full xl:basis-9/12 ">
@@ -33,7 +41,7 @@ const CartArea:React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {items?.map((item) => (
+                                    {cart?.products.map((item) => (
                                         <CartItems item={item} key={item.id} />
                                     ))}
                                 </tbody>
