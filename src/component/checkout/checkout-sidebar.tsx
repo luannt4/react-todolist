@@ -9,15 +9,15 @@ import { useNavigate } from 'react-router-dom';
 
 const CheckoutSideBar: React.FC = () => {
     const navigate = useNavigate();
-    const { items, isEmpty, totalItems } = useAppSelector((state) => state.cart);
-    const total = items?.total ?? 0;
+    //const { items, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const total =  0;
     const { price: subtotal } = usePrice({
         amount: total,
         currencyCode: 'USD',
     });
-   
+
     const orderHeader = () => {
-        !isEmpty && navigate('/complete-order');
+         navigate('/complete-order');
     }
     const checkoutFooter = [
         {
@@ -36,7 +36,7 @@ const CheckoutSideBar: React.FC = () => {
         price: subtotal,
     },
     ];
-  
+
 
     return (
         <>
@@ -50,13 +50,7 @@ const CheckoutSideBar: React.FC = () => {
                     </span>
                 </div>
                 <div className="mb-5">
-                    {!isEmpty  ? (
-                        items?.products.map((item) => <CheckoutItem item={item} key={item.id} />)
-                    ) : (
-                    <p className="py-4 text-brand-danger text-opacity-70">
-                        Your cart is empty.
-                    </p>
-                    )}
+
 
                 </div>
 
@@ -70,16 +64,14 @@ const CheckoutSideBar: React.FC = () => {
                     variant="formButton"
                     className={cn(
                         'w-full mt-8 mb-5 rounded font-semibold px-4 py-3 transition-all',
-                        isEmpty
-                        ? 'opacity-40 cursor-not-allowed'
-                        : '!bg-brand !text-brand-light',
+
                     )}
                     onClick={orderHeader}
                 >
                     Order Now
                 </Button>
             </div>
-           
+
         </>
     );
 }

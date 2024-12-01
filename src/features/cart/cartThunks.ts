@@ -1,22 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {cartApi} from "./cartAPI";
-import {Product} from "../../types/Product";
-import {RootState} from "../../store";
+//import {Product} from "../../types/Product";
+import axios from 'axios';
+import {Cart, CartItem,Product, CartState} from "./cart.types";
 
 // Async Actions
 export const fetchCart = createAsyncThunk(
     'cart/fetchCart',
     async (userId: number, { rejectWithValue }) => {
         try {
-            const cart = await cartApi.getCart(userId);
-            // Map API response to CartItem[]
-            return cart.products.map(p => ({
-                id: p.id,
-                title: p.title,
-                price: p.price,
-                quantity: p.quantity,
-                thumbnail: '' // You might want to fetch product details separately
-            }));
+            return  await cartApi.getCart(userId);
+
         } catch (error) {
             return rejectWithValue('Failed to fetch cart');
         }
@@ -25,34 +19,51 @@ export const fetchCart = createAsyncThunk(
 
 export const addToCart = createAsyncThunk(
     'cart/addToCart',
-    async ({ userId, product, quantity = 1 }: {
+    async ({ userId, productId, quantity = 1 }: {
         userId: number,
-        product: Product,
-        quantity?: number
+        productId: number,
+        quantity: number
     }, { rejectWithValue, getState }) => {
         try {
-            const state = getState() as RootState;
-            const existingCartItem = state.cart.items.find(item => item.id === product.id);
 
-            if (existingCartItem) {
-                // If product exists, update quantity
-                const updatedCart = await cartApi.updateCartItem(
-                    userId,
-                    product.id,
-                    existingCartItem.quantity + quantity
+            const state = getState() as  { cart: CartState };
+            if (!state.cart.cartStore) return;
+            const currentCart = state.cart.cartStore;
+
+            // Find if product already exists in cart
+            const existingProductIndex = currentCart?.products.findIndex(
+                p => p.id === productId
+            );
+
+            // Prepare updated cart payload
+            let updatedProducts: Product[];
+            if (existingProductIndex !== -1 && existingProductIndex !== undefined) {
+                // Update existing product quantity
+                updatedProducts = currentCart!.products.map((product, index) =>
+                    index === existingProductIndex
+                        ? { ...product, quantity: product.quantity + quantity }
+                        : product
                 );
-                return {
-                    ...product,
-                    quantity: existingCartItem.quantity + quantity
-                };
             } else {
-                // If product doesn't exist, add to cart
-                const updatedCart = await cartApi.addToCart(userId, product.id, quantity);
-                return {
-                    ...product,
+                // Add new product to cart
+                const productResponse = await axios.get(`https://dummyjson.com/products/${productId}`);
+                const newProduct = {
+                    ...productResponse.data,
                     quantity
                 };
+
+                updatedProducts = currentCart
+                    ? [...currentCart.products, newProduct]
+                    : [newProduct];
             }
+
+            // Update cart via API
+            const response = await axios.put<Cart>(`https://dummyjson.com/carts/${currentCart?.id}`, {
+                merge: false,
+                products: updatedProducts
+            });
+
+            return response.data;
         } catch (error) {
             return rejectWithValue('Failed to add to cart');
         }
@@ -63,8 +74,7 @@ export const updateCartItem = createAsyncThunk(
     'cart/updateCartItem',
     async ({ cartId, productId, quantity }: { cartId: number, productId: number, quantity: number }, { rejectWithValue }) => {
         try {
-            await cartApi.updateCartItem(cartId, productId, quantity);
-            return { productId, quantity };
+            return await cartApi.updateCartItem(cartId, productId, quantity);
         } catch (error) {
             return rejectWithValue('Failed to update cart item');
         }
@@ -73,10 +83,21 @@ export const updateCartItem = createAsyncThunk(
 
 export const deleteCartItem = createAsyncThunk(
     'cart/deleteCartItem',
-    async ({ cartId, productId }: { cartId: number, productId: number }, { rejectWithValue }) => {
+    async ({ cart, cartId, productId }: { cart:Cart, cartId: number, productId: number }, { rejectWithValue }) => {
         try {
-            await cartApi.deleteCartItem(cartId, productId);
-            return productId;
+            //const updatedCart = await cartApi.deleteCartItem(cart, cartId, productId);
+            //return updatedCart;
+            // Remove the specific product from the cart
+            const updatedProducts = cart.products.filter(
+                product => product.id !== productId
+            );
+
+            // Update the cart via PUT request
+            const response = await axios.put<Cart>(`https://dummyjson.com/carts/${cartId}`, {
+                merge: false,
+                products: updatedProducts
+            });
+            return response.data;
         } catch (error) {
             return rejectWithValue('Failed to delete cart item');
         }

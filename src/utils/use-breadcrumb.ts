@@ -19,7 +19,7 @@ export default function useBreadcrumb() {
   useEffect(() => {
     if (pathname) {
       const linkPath = pathname.split('/');
-      console.log('linkPath',linkPath);
+
       linkPath.shift();
 
       const pathArray = linkPath.map((path, i) => {

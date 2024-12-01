@@ -6,32 +6,36 @@ import CloseIcon from '../icons/close-icon';
 import { useAppDispatch } from '../../hooks';
 import {deleteCartItem,  updateCartItem} from '../../features/cart/cartThunks';
 import React from "react";
+import {Cart} from "../../features/cart/cart.types";
+import {ROUTES} from "../../utils/routes";
 type CartItemProps = {
+    cart: Cart;
+    cartId: number;
     item: any;
 };
 
-const CartItems: React.FC<CartItemProps> = ({  item }) => {
+const CartItems: React.FC<CartItemProps> = ({ cart, cartId, item }) => {
     const dispatch = useAppDispatch();
-    const {id: productId,title,  quantity,  thumbnail } = item ?? {};
+    const {id: productId,title,category , quantity,  thumbnail } = item ?? {};
     const { price: totalPrice } = usePrice({
         amount: item?.price,
         currencyCode: 'USD',
     });
-
     const outOfStock = item.quantity >= item.stock;
 
     // Create slug from title
     const slug = title.toLowerCase().replace(/\s+/g, '-');
 
     const handleQuantityChange = (newQuantity: number) => {
+        console.log('newQuantity',newQuantity,item);
         if (newQuantity <= 0) {
-            dispatch(deleteCartItem({ cartId: 1, productId })); // Assuming cartId = 1
+            dispatch(deleteCartItem({ cart, cartId, productId })); // Assuming cartId = 1
         } else if (newQuantity > item.stock) {
             // Optional: Show an error or limit to max stock
-            dispatch(updateCartItem({ cartId: 1, productId, quantity:item.stock }));
-            //dispatch(updateCartItem({ id, quantity }));
+            dispatch(updateCartItem({ cartId, productId, quantity:item.stock }));
+
         } else {
-            dispatch(updateCartItem({  cartId: 1, productId, quantity:newQuantity }));
+            dispatch(updateCartItem({  cartId, productId, quantity:newQuantity }));
         }
       };
 
@@ -48,7 +52,7 @@ const CartItems: React.FC<CartItemProps> = ({  item }) => {
             
             <td className="wi-cart-title px-3 py-7 min-w-40 max-w-500px">
             <Link
-                to={`/product/${slug}-${productId}`}
+                to={`${ROUTES.CATEGORIES}/${category}/${slug}-${productId}`}
                 className="block leading-5 transition-all font-medium lg:text-15px group-hover:text-blue-500"
             >
                 {title} 
@@ -78,7 +82,7 @@ const CartItems: React.FC<CartItemProps> = ({  item }) => {
                 <button
                     className="flex items-center justify-center bg-gray-200 rounded-full w-8 h-8 hover:bg-gray-400"
                     aria-label={'Clear Item'}
-                    onClick={() => dispatch(deleteCartItem({ cartId: 1, productId })) }
+                    onClick={() => dispatch(deleteCartItem({cart, cartId, productId })) }
                     >
                         <CloseIcon width={15}/>
                 </button>

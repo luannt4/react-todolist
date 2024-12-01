@@ -1,13 +1,13 @@
 // src/redux/features/cart/cartSlice.ts
 import { createSlice,  createSelector } from '@reduxjs/toolkit';
-import { CartState } from '../../types/cart.types';
+import { CartState } from './cart.types';
 import { RootState } from '../../store';
 import {addToCart, fetchCart, deleteCartItem, updateCartItem} from "./cartThunks";
+import axios from "axios";
 
 const initialState: CartState = {
-    items: [],
+    cartStore: null,
     totalItems: 0,
-    totalPrice: 0,
     status: 'idle',
     error: null,
     isEmpty: true
@@ -24,57 +24,84 @@ const cartSlice = createSlice({
             })
             .addCase(fetchCart.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                // @ts-ignore
-                state.items = action.payload;
-                state.totalItems = state.items.reduce((total, item) => total + item.quantity!, 0);
-                state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity!), 0);
-                state.isEmpty = state.items.length === 0;
+                state.cartStore = action.payload;
+                state.totalItems = action.payload.totalQuantity;
+                state.isEmpty =  action.payload.totalQuantity === 0;
             })
-            /*.addCase(fetchCart.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.items = action.payload;
-                state.totalItems = action.payload.totalQuantity || 0;
-                state.totalPrice = action.payload.reduce((total, item) => total + (item.price * item.quantity!), 0);
-                state.isEmpty = !action.payload.products || action.payload.products.length === 0;
-            })*/
+
             .addCase(fetchCart.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload as string;
 
             })
             .addCase(addToCart.fulfilled, (state, action) => {
-                const existingItem = state.items.find(item => item.id === action.payload.id);
-                if (existingItem) {
-                    existingItem.quantity = action.payload.quantity;
-                } else {
-                    state.items.push(action.payload);
+                // Ensure payload exists before updating state
+                if (action.payload) {
+                    state.status = 'succeeded';
+                    state.cartStore = action.payload;
+                    state.totalItems = action.payload.products.reduce(
+                        (total, product) => total + product.quantity,
+                        0
+                    );
+                    state.isEmpty = action.payload.products.length === 0;
                 }
-                state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
-                state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                state.isEmpty = state.items.length === 0;
+
             })
             .addCase(updateCartItem.fulfilled, (state, action) => {
-                const item = state.items.find(item => item.id === action.payload.productId);
-                if (item) {
-                    item.quantity = action.payload.quantity;
+                if (!state.cartStore) return;
+
+                const { productId, quantity,stock } = action.payload;
+
+                // Use findIndex to locate the specific product
+                const itemIndex = state.cartStore.products.findIndex(
+                    item => item.id === productId
+                );
+
+                // If item found, update its quantity and total
+                if (itemIndex !== -1) {
+                    const updatedProducts = [...state.cartStore.products];
+                    const currentItem = updatedProducts[itemIndex];
+
+                    updatedProducts[itemIndex] = {
+                        ...currentItem,
+                        quantity,
+                        stock,
+                        total: currentItem.price * quantity
+                    };
+
+                    // Recalculate cart totals
+                    const totalProducts = updatedProducts.length;
+                    const totalQuantity = updatedProducts.reduce((sum, item) => sum + item.quantity, 0);
+                    const total = updatedProducts.reduce((sum, item) => sum + item.total, 0);
+
+                    state.cartStore = {
+                        ...state.cartStore,
+                        products: updatedProducts,
+                        totalProducts,
+                        totalQuantity,
+                        total
+                    };
                 }
-                state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
-                state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                state.isEmpty = state.items.length === 0;
+
+                state.status = 'succeeded';
+                state.totalItems =  state.cartStore.totalQuantity;
+                state.isEmpty = state.cartStore.products.length === 0;
             })
             .addCase(deleteCartItem.fulfilled, (state, action) => {
-                state.items = state.items.filter(item => item.id !== action.payload);
-                state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
-                state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                state.isEmpty = state.items.length === 0;
+                if (action.payload) {
+                    state.status = 'succeeded';
+                    state.cartStore = action.payload;
+                    state.totalItems = action.payload.products.reduce((total, product) => total + product.quantity, 0);
+                    state.isEmpty = action.payload.products.length === 0;
+                }
             });
     }
 });
 
 // Selector for checking if product is in cart and its quantity
 export const selectCartItemDetails = createSelector(
-    [(state: RootState) => state.cart.items, (_state: RootState, productId: number) => productId],(cartItems, productId) => {
-        const cartItem = cartItems && cartItems.find(item => item.id === productId);
+    [(state: RootState) => state.cart.cartStore?.products, (_state: RootState, productId: number) => productId],(cartItems, productId) => {
+        const cartItem = cartItems?.find(item => item.id === productId);
       return {
         isInCart: !!cartItem,
         quantity: cartItem?.quantity || 0,

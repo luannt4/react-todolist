@@ -5,13 +5,17 @@ import {deleteCartItem} from '../../features/cart/cartThunks';
 
 import { useAppDispatch } from '../../hooks';
 import React from "react";
+import {Cart} from "../../features/cart/cart.types";
 
 
 type CartItemProps = {
-  item: any;
+    cart: Cart;
+    cartId: number;
+    item: any;
+
 };
 
-const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
+const CartSideBarItems: React.FC<CartItemProps> = ({ cart, cartId, item }) => {
     const dispatch = useAppDispatch();
     const {id:productId,title, category, quantity,  thumbnail } = item ?? {};
     
@@ -19,13 +23,18 @@ const CartSideBarItems: React.FC<CartItemProps> = ({  item }) => {
         amount: item?.price,
         currencyCode: 'USD',
     });
-    
+
     // Create slug from title
     const slug = title.toLowerCase().replace(/\s+/g, '-');
 
     const handleClearItemFromCart = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(deleteCartItem({ cartId: 1, productId })); // Assuming cartId = 1
+
+        try {
+             dispatch(deleteCartItem({ cart,  cartId, productId }));
+        } catch (error) {
+            console.error('Failed to delete cart', error);
+        }
     }
   return (
     <div

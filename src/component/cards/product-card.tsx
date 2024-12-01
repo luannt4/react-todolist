@@ -49,7 +49,7 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
 
 
 
-        return <AddToCart product={product} userId={1}/>;
+        return <AddToCart product={product} userId={2}/>;
     }
     
     const RenderLabelStock: React.FC<Props> = ({ product }) => {

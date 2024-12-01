@@ -6,12 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/cart/cart-area.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-area.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/common/form/stripe-inline-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/form/stripe-inline-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/cart.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/cart.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/default/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/cart.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cart.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/use-breadcrumb.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-breadcrumb.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +33,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -38,14 +49,15 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;redux&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/luannt4/work/React/zip/todolist/src/features/cart&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/NextJS/zip/react-todolist&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\NextJS\\zip\\react-todolist\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -54,6 +66,9 @@
       <recent name="$PROJECT_DIR$/src/features/cart" />
       <recent name="$PROJECT_DIR$/src/component/ui" />
       <recent name="$PROJECT_DIR$/src/features/auth" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\NextJS\zip\react-todolist\src\features\cart" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -72,6 +87,9 @@
       <option name="presentableId" value="Default" />
       <updated>1732760299630</updated>
       <workItem from="1732760301978" duration="37324000" />
+      <workItem from="1732887341439" duration="110000" />
+      <workItem from="1732892339855" duration="25655000" />
+      <workItem from="1732975529000" duration="18908000" />
     </task>
     <servers />
   </component>

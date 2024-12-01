@@ -11,8 +11,8 @@ import { useAppSelector } from "../../hooks";
 
 const CartSideBar = () => {
     const { closeDrawer } = useDrawer();
-    const { items, isEmpty, totalItems } = useAppSelector((state) => state.cart);
-    const total = cart?.total ?? 0;
+    const { cartStore, isEmpty, totalItems } = useAppSelector((state) => state.cart);
+    const total = cartStore?.total ?? 0;
     const { price: cartTotal } = usePrice({
         amount: total,
         currencyCode: 'USD',
@@ -23,23 +23,23 @@ const CartSideBar = () => {
             <div className="relative flex items-center justify-between w-full px-5 py-5 border-b border-gray-base md:px-7">
                 <Heading variant="titleMedium">Shopping Cart</Heading>
                 <div className="flex items-center">
-                
+
                     <button
                         className="flex items-center flex-shrink  "
                         aria-label={'Close'}
                         onClick={closeDrawer}
-                        >
-                         <CloseIcon/>
+                    >
+                        <CloseIcon/>
                     </button>
-                   
+
                 </div>
             </div>
 
             {!isEmpty ? (
                 <Scrollbar className="flex-grow w-full cart-scrollbar ">
                     <div className="w-full px-5  space-y-5 h-[calc(100vh-350px)]">
-                        {items?.products.map((item) => (
-                            <CartSideBarItems item={item} key={item.id} />
+                        {cartStore?.products.map((item) => (
+                            <CartSideBarItems cart={cartStore} cartId={cartStore?.id!} item={item} key={item.id} />
                         ))}
                     </div>
                 </Scrollbar>
@@ -61,11 +61,11 @@ const CartSideBar = () => {
                         <Link
                             to={'/cart'}
                             className={cn(
-                            'shadow-lg w-full px-5 py-3 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-15px text-white bg-gray-500 focus:outline-none transition duration-300 hover:bg-opacity-90',
-                            {
-                                'cursor-not-allowed !text-black !text-opacity-25 !bg-[#EEEEEE] hover:!bg-[#EEEEEE]':
-                                isEmpty,
-                            }
+                                'shadow-lg w-full px-5 py-3 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-15px text-white bg-gray-500 focus:outline-none transition duration-300 hover:bg-opacity-90',
+                                {
+                                    'cursor-not-allowed !text-black !text-opacity-25 !bg-[#EEEEEE] hover:!bg-[#EEEEEE]':
+                                    isEmpty,
+                                }
                             )}
                         >
                             <span className="py-0.5">View or edit your cart</span>
@@ -74,11 +74,11 @@ const CartSideBar = () => {
                         <Link
                             to={'/checkout'}
                             className={cn(
-                            'shadow-lg w-full px-5 py-3 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-15px text-white bg-blue-500 focus:outline-none transition duration-300 hover:bg-opacity-90',
-                            {
-                                'cursor-not-allowed !text-black !text-opacity-25 !bg-[#EEEEEE] hover:!bg-[#EEEEEE]':
-                                isEmpty,
-                            }
+                                'shadow-lg w-full px-5 py-3 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-15px text-white bg-blue-500 focus:outline-none transition duration-300 hover:bg-opacity-90',
+                                {
+                                    'cursor-not-allowed !text-black !text-opacity-25 !bg-[#EEEEEE] hover:!bg-[#EEEEEE]':
+                                    isEmpty,
+                                }
                             )}
                         >
                             <span className="py-0.5">Proceed To Checkout</span>
@@ -86,8 +86,8 @@ const CartSideBar = () => {
                     </div>
                 </div>
             )}
-            
-            
+
+
         </div>
     );
 };

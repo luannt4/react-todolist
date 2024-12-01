@@ -27,8 +27,8 @@ const AddToCart: React.FC<AddToCartProps> = ({ product,userId }) => {
         // Check if adding would exceed stock
         const totalQuantity = cartItemDetails.quantity;
         if (totalQuantity < product.stock) {
-            
-            dispatch(addToCart({ userId,productId: product.id,  quantity: 1 } )); // Assuming cartId = 1
+
+            dispatch(addToCart({ userId, productId: product.id,  quantity: 1 } )); // Assuming cartId = 1
             //toast('Added to the bag', {progressClassName: 'fancy-progress-bar',});
         } else {
             // Optional: Show an error message about exceeding stock
