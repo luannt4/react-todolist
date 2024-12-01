@@ -9,9 +9,9 @@ const DefaultLayout: React.FC = () => {
     const dispatch = useAppDispatch();
     const { isLoggedIn, user } = useAppSelector((state) => state.auth);
 
-    useEffect(() => {
+    /*useEffect(() => {
         dispatch(fetchCart(user?.id!));
-    }, [dispatch,isLoggedIn]);
+    }, [isLoggedIn]);*/
 
     return (
         <>

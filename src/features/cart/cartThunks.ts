@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Cart, CartItem,Product, CartState} from "./cart.types";
 
 // Async Actions
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 export const fetchCart = createAsyncThunk(
     'cart/fetchCart',
     async (userId: number, { rejectWithValue }) => {
@@ -46,7 +47,7 @@ export const addToCart = createAsyncThunk(
                 );
             } else {
                 // Add new product to cart
-                const productResponse = await axios.get(`https://dummyjson.com/products/${productId}`);
+                const productResponse = await axios.get(`${API_BASE_URL}/products/${productId}`);
                 const newProduct = {
                     ...productResponse.data,
                     quantity
@@ -55,10 +56,11 @@ export const addToCart = createAsyncThunk(
                 updatedProducts = currentCart
                     ? [...currentCart.products, newProduct]
                     : [newProduct];
+                console.log(updatedProducts);
             }
 
             // Update cart via API
-            const response = await axios.put<Cart>(`https://dummyjson.com/carts/${currentCart?.id}`, {
+            const response = await axios.put<Cart>(`${API_BASE_URL}/carts//${currentCart?.id}`, {
                 merge: false,
                 products: updatedProducts
             });
@@ -85,19 +87,8 @@ export const deleteCartItem = createAsyncThunk(
     'cart/deleteCartItem',
     async ({ cart, cartId, productId }: { cart:Cart, cartId: number, productId: number }, { rejectWithValue }) => {
         try {
-            //const updatedCart = await cartApi.deleteCartItem(cart, cartId, productId);
-            //return updatedCart;
-            // Remove the specific product from the cart
-            const updatedProducts = cart.products.filter(
-                product => product.id !== productId
-            );
+            return await cartApi.deleteCartItem(cart, cartId, productId);
 
-            // Update the cart via PUT request
-            const response = await axios.put<Cart>(`https://dummyjson.com/carts/${cartId}`, {
-                merge: false,
-                products: updatedProducts
-            });
-            return response.data;
         } catch (error) {
             return rejectWithValue('Failed to delete cart item');
         }

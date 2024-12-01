@@ -32,7 +32,7 @@ import { Provider } from 'react-redux';
 import store from "../component/todo-redux/redux/store";
 import CompareBotomPanel from "../component/compare/compare-bottomPanel";
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: (
@@ -154,8 +154,19 @@ export const router = createBrowserRouter([
       
     ],
   },
-]);
+];
+
+// Add more routes here if needed ];
+const router = createBrowserRouter(routes, {
+  future: {
+    v7_skipActionErrorRevalidation: true,
+    v7_partialHydration: true,
+    v7_normalizeFormMethod: true,
+    v7_fetcherPersist: true,
+    v7_relativeSplatPath: true,
+  },
+});
 
 export const AppRouter: React.FC = ({ children }: React.PropsWithChildren) => {
-  return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />;
 };

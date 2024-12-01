@@ -5,24 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-area.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-area.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/common/form/stripe-inline-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/form/stripe-inline-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/checkout/stripe-checkout-inline-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/stripe-checkout-inline-form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/default/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/cart.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cart.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/use-breadcrumb.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-breadcrumb.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +78,7 @@
       <workItem from="1732760301978" duration="37324000" />
       <workItem from="1732887341439" duration="110000" />
       <workItem from="1732892339855" duration="25655000" />
-      <workItem from="1732975529000" duration="18908000" />
+      <workItem from="1732975529000" duration="23722000" />
     </task>
     <servers />
   </component>

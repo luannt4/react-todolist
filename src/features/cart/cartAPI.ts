@@ -28,35 +28,35 @@ export const cartApi = {
         }
 
     },
-    updateCartItem: async (cartId: number, productId: number, quantity: number) => {
-        const productResponse = await axios.get(`https://dummyjson.com/products/${productId}`);
-        const stock = productResponse?.data.stock || 0;
 
-        const response = await axios.put(`${API_BASE_URL}/carts/${cartId}`, {
-            merge: true,
-            products: [{id: productId, quantity}]
-        });
-        return { productId, quantity, stock };
+    updateCartItem: async (cartId: number, productId: number, quantity: number) => {
+        try{
+            const productResponse = await axios.get(`${API_BASE_URL}/products/${productId}`);
+            const stock = productResponse?.data.stock || 0;
+
+            const response = await axios.put<Cart>(`${API_BASE_URL}/carts/${cartId}`, {
+                merge: true,
+                products: [{id: productId, quantity}]
+            });
+            return { productId, quantity, stock };
+        } catch (error) {
+            console.error('Failed to update cart item', error);
+            throw error;
+        }
+
     },
 
     deleteCartItem: async (cart: Cart, cartId: number, productId: number) => {
         // DummyJSON doesn't have a direct delete endpoint
-        // Use PUT to modify the cart by removing the specific product
         try {
             // Remove the specific product from the cart
             const updatedProducts = cart.products.filter(product => product.id !== productId);
 
-            // Prepare the updated cart payload
-            const updatedCartPayload = {
-                merge: false,
-                products: updatedProducts.map(product => ({
-                    id: product.id,
-                    quantity: product.quantity
-                }))
-            };
-
             // Send PUT request to update the cart
-            const response = await axios.put(`${API_BASE_URL}/carts/${cartId}`, updatedCartPayload);
+            const response = await axios.put<Cart>(`https://dummyjson.com/carts/${cartId}`, {
+                merge: false,
+                products: updatedProducts
+            });
             return response.data;
 
         } catch (error) {
