@@ -6,6 +6,8 @@ import AccountIcon from '../icons/account-icon';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logout } from '../../features/auth/authSlice';
+import {clearCart} from "../../features/cart/cartThunks";
+import cn from 'classnames';
 interface Props {
     className?: string;
 }
@@ -15,17 +17,17 @@ const links = [
   { href: '/cart', label: 'Cart' },
 ]
 
-
 export const MyAccount: React.FC<Props> = ({className }) => {
     // Check if user is authenticated by looking for token
     const { isLoggedIn, user } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const handleLogout = () => {
+        dispatch(clearCart({ cartId: user?.id! }));
         dispatch(logout());
     };
 
     if (isLoggedIn) return (
-        <div className=" lg:flex items-center shrink-0 accountButton">
+        <div className={cn('lg:flex items-center shrink-0 accountButton',className)}>
             <Menu >
                 <MenuButton as="div" className="flex gap-1 justify-center items-center">
                     <div className="cart-button">

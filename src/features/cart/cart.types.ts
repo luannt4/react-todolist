@@ -9,6 +9,10 @@ export interface Product {
     thumbnail?: string;
     stock?: number;
 }
+export interface CartProduct {
+    id: number;
+    quantity: number;
+}
 
 export interface CartItem extends Product {
     quantity: number;

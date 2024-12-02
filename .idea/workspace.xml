@@ -5,13 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/checkout/stripe-checkout-inline-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/stripe-checkout-inline-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/auth/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/LogoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/header/myAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/header/myAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/Loading.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/TodoInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/TodoItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/TodoList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/api/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/context/ProductContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/hooks/useAddProduct.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/hooks/useDeleteProduct.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/hooks/useUpdateProduct.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/reducers/ProductReducer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-api/star-icon.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/TodoInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/TodoItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/TodoList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/star-icon.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/useTodoReducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoReducer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/star-icon.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/cart/cart.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cart.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/default/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +73,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\NextJS\\zip\\react-todolist\\node_modules\\typescript\\lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -79,10 +107,23 @@
       <workItem from="1732887341439" duration="110000" />
       <workItem from="1732892339855" duration="25655000" />
       <workItem from="1732975529000" duration="23722000" />
+      <workItem from="1733105355588" duration="16690000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/features/cart/cartThunks.ts</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,12 +1,14 @@
 import { logout } from '../../features/auth/authSlice';
-import { useAppDispatch } from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {clearCart} from "../../features/cart/cartThunks";
 
 
 export const LogoutButton = () => {
   const dispatch = useAppDispatch();
-
+  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const handleLogout = () => {
-    dispatch(logout());
+      dispatch(clearCart({ cartId: user?.id! }));
+      dispatch(logout());
   };
   return (
     <button

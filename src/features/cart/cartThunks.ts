@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {cartApi} from "./cartAPI";
-//import {Product} from "../../types/Product";
 import axios from 'axios';
-import {Cart, CartItem,Product, CartState} from "./cart.types";
+import {Cart,  CartProduct, CartState} from "./cart.types";
 
 // Async Actions
 const API_BASE_URL = process.env.REACT_APP_API_URL;
@@ -28,44 +27,40 @@ export const addToCart = createAsyncThunk(
         try {
 
             const state = getState() as  { cart: CartState };
-            if (!state.cart.cartStore) return;
+            //if (!state.cart.cartStore) return;
             const currentCart = state.cart.cartStore;
 
-            // Find if product already exists in cart
-            const existingProductIndex = currentCart?.products.findIndex(
-                p => p.id === productId
-            );
-
             // Prepare updated cart payload
-            let updatedProducts: Product[];
-            if (existingProductIndex !== -1 && existingProductIndex !== undefined) {
-                // Update existing product quantity
-                updatedProducts = currentCart!.products.map((product, index) =>
-                    index === existingProductIndex
-                        ? { ...product, quantity: product.quantity + quantity }
-                        : product
-                );
-            } else {
-                // Add new product to cart
-                const productResponse = await axios.get(`${API_BASE_URL}/products/${productId}`);
-                const newProduct = {
-                    ...productResponse.data,
-                    quantity
-                };
+            let updatedProducts:  CartProduct[] ;
+            if (currentCart) {
+                // Find if product already exists in cart
+                const existingProduct = currentCart?.products.find((item) => item.id === productId);
 
-                updatedProducts = currentCart
-                    ? [...currentCart.products, newProduct]
-                    : [newProduct];
-                console.log(updatedProducts);
+                if (existingProduct) {
+                    // Update existing product quantity
+                    updatedProducts = currentCart!.products.map((item, index) =>
+                        item.id === productId ? { ...item, quantity: item.quantity + quantity } : item
+                    );
+                } else {
+                    // Add new product to cart
+                    updatedProducts = [...currentCart!.products, { id: productId, quantity }];
+                }
+                // Update cart via API
+                const response = await axios.put<Cart>(`${API_BASE_URL}/carts/${currentCart?.id}`, {
+                    merge: false,
+                    products: updatedProducts
+                });
+                return response.data;
+            }else{
+                // If no cart exists, create a new one
+                updatedProducts = [{ id: productId, quantity }];
+                const updatedCart = await cartApi.addToCart({
+                    userId,
+                    products: updatedProducts,
+                });
+                return updatedCart;
             }
 
-            // Update cart via API
-            const response = await axios.put<Cart>(`${API_BASE_URL}/carts//${currentCart?.id}`, {
-                merge: false,
-                products: updatedProducts
-            });
-
-            return response.data;
         } catch (error) {
             return rejectWithValue('Failed to add to cart');
         }
@@ -91,6 +86,17 @@ export const deleteCartItem = createAsyncThunk(
 
         } catch (error) {
             return rejectWithValue('Failed to delete cart item');
+        }
+    }
+);
+
+export const clearCart = createAsyncThunk(
+    'cart/clearCart',
+    async ({  cartId, }: { cartId: number }, { rejectWithValue }) => {
+        try {
+            return await cartApi.clearCart(cartId);
+        } catch (error) {
+            return rejectWithValue('Failed to clear cart ');
         }
     }
 );

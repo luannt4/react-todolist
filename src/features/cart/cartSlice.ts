@@ -2,8 +2,7 @@
 import { createSlice,  createSelector } from '@reduxjs/toolkit';
 import { CartState } from './cart.types';
 import { RootState } from '../../store';
-import {addToCart, fetchCart, deleteCartItem, updateCartItem} from "./cartThunks";
-import axios from "axios";
+import {addToCart, fetchCart, deleteCartItem, updateCartItem, clearCart} from "./cartThunks";
 
 const initialState: CartState = {
     cartStore: null,
@@ -94,7 +93,14 @@ const cartSlice = createSlice({
                     state.totalItems = action.payload.products.reduce((total, product) => total + product.quantity, 0);
                     state.isEmpty = action.payload.products.length === 0;
                 }
-            });
+            })
+            .addCase(clearCart.fulfilled, (state, action) => {
+                    state.status = 'succeeded';
+                    state.cartStore = null;
+                    state.totalItems = 0;
+                    state.isEmpty = action.payload.products.length === 0;
+
+            })
     }
 });
 

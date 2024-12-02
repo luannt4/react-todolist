@@ -24,10 +24,10 @@ const AddToCart: React.FC<AddToCartProps> = ({ product,userId }) => {
 
     const handleAddToCart = (e: React.FormEvent) => {
         e.preventDefault();
+
         // Check if adding would exceed stock
         const totalQuantity = cartItemDetails.quantity;
         if (totalQuantity < product.stock) {
-
             dispatch(addToCart({ userId, productId: product.id,  quantity: 1 } )); // Assuming cartId = 1
             //toast('Added to the bag', {progressClassName: 'fancy-progress-bar',});
         } else {

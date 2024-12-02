@@ -27,7 +27,6 @@ const CartItems: React.FC<CartItemProps> = ({ cart, cartId, item }) => {
     const slug = title.toLowerCase().replace(/\s+/g, '-');
 
     const handleQuantityChange = (newQuantity: number) => {
-        console.log('newQuantity',newQuantity,item);
         if (newQuantity <= 0) {
             dispatch(deleteCartItem({ cart, cartId, productId })); // Assuming cartId = 1
         } else if (newQuantity > item.stock) {
