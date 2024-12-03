@@ -24,7 +24,6 @@ const AddToCart: React.FC<AddToCartProps> = ({ product,userId }) => {
 
     const handleAddToCart = (e: React.FormEvent) => {
         e.preventDefault();
-
         // Check if adding would exceed stock
         const totalQuantity = cartItemDetails.quantity;
         if (totalQuantity < product.stock) {

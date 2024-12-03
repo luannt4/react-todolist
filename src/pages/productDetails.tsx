@@ -20,11 +20,12 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import Breadcrumb from "../component/ui/breadcrumb";
 import {ROUTES} from "../utils/routes";
 import {addToCart} from "../features/cart/cartThunks";
+import {useModal} from "../contexts";
 
 
 const ProductDetailsPage = () => {
     const dispatch = useAppDispatch();
-    
+    const {openAlert } = useModal();
     const { slug } = useParams<{ slug: string }>();
 
     // Parse product ID from the slug. Ensure this is done only once.
@@ -64,7 +65,7 @@ const ProductDetailsPage = () => {
         if (product) {
             // Check if adding would exceed stock
             const totalQuantity = cartItemDetails.quantity + selectedQuantity;
-            if (totalQuantity < product.stock) {
+            if (totalQuantity <= product.stock) {
                 // to show btn feedback while product carting
                 setAddToCartLoader(true);
                 setTimeout(() => {
@@ -72,20 +73,11 @@ const ProductDetailsPage = () => {
                 }, 1500);
             
                 dispatch(addToCart({userId: 1,  productId, quantity: selectedQuantity  }));
-                toast('Added to the bag', {
-                    progressClassName: 'fancy-progress-bar',
-                    position: 'top-right',
-                    autoClose: 3000,
-                });
+
             } else {
                 // Optional: Show an error message about exceeding stock
-                toast(`Cannot add more than ${product.stock} items to cart`, {
-                    progressClassName: 'fancy-progress-bar',
-                    position: 'top-right',
-                    autoClose: 3000,
-                });
+                openAlert ("ALERT_VIEW", `Cannot add more than ${product.stock} items to cart`)
             }
-            
             
         }
     }

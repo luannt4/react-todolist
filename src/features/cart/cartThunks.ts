@@ -25,9 +25,7 @@ export const addToCart = createAsyncThunk(
         quantity: number
     }, { rejectWithValue, getState }) => {
         try {
-
             const state = getState() as  { cart: CartState };
-            //if (!state.cart.cartStore) return;
             const currentCart = state.cart.cartStore;
 
             // Prepare updated cart payload

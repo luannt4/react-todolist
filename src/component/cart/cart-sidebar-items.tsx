@@ -6,6 +6,7 @@ import {deleteCartItem} from '../../features/cart/cartThunks';
 import { useAppDispatch } from '../../hooks';
 import React from "react";
 import {Cart} from "../../features/cart/cart.types";
+import {ROUTES} from "../../utils/routes";
 
 
 type CartItemProps = {
@@ -18,7 +19,7 @@ type CartItemProps = {
 const CartSideBarItems: React.FC<CartItemProps> = ({ cart, cartId, item }) => {
     const dispatch = useAppDispatch();
     const {id:productId,title, category, quantity,  thumbnail } = item ?? {};
-    
+    console.log(item);
     const { price: totalPrice } = usePrice({
         amount: item?.price,
         currencyCode: 'USD',
@@ -57,7 +58,7 @@ const CartSideBarItems: React.FC<CartItemProps> = ({ cart, cartId, item }) => {
         <div className="pl-3 md:pl-4 ">
        
           <Link
-            to={`/product/${slug}-${productId}`}
+              to={`${ROUTES.CATEGORIES}/${category}/${slug}-${productId}`}
             className="block leading-5 transition-all font-medium lg:text-15px group-hover:text-blue-500"
           >
             {title}

@@ -5,41 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/component/header/highLightedBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/ui/highlighted-bar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/auth/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/auth/LogoutButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-items.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/header/myAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/header/myAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/checkout/checkout-card-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/checkout-card-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/Loading.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/TodoInput.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/TodoItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/TodoList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/api/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/context/ProductContext.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/hooks/useAddProduct.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/hooks/useDeleteProduct.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/hooks/useUpdateProduct.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/reducers/ProductReducer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-api/star-icon.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/TodoInput.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/TodoItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/TodoList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/star-icon.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-reducer/useTodoReducer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoContext.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoInput.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/TodoReducer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/todo-useContext/star-icon.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/cart/cart.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cart.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/default/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/productDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/productDetails.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -60,28 +36,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;redux&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/NextJS/zip/react-todolist&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "redux",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/component/ui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/features/cart" />
       <recent name="$PROJECT_DIR$/src/component/ui" />
+      <recent name="$PROJECT_DIR$/src/features/cart" />
       <recent name="$PROJECT_DIR$/src/features/auth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -120,7 +96,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/features/cart/cartThunks.ts</url>
           <line>19</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
