@@ -15,6 +15,7 @@ import Breadcrumb from "../component/ui/breadcrumb";
 const CategoriesProductPage = () => {
     const [page, setPage] = useState(1);
     const limit = LIMITS.PAGECATEGORY_LIMITS;
+    const [sortOption, setSortOption] = useState<string>('price');
 
     // Get categoryName query parameters
     const { categoryName} = useParams<{ categoryName: string }>();
@@ -27,17 +28,45 @@ const CategoriesProductPage = () => {
     });
     
     const {products = [], total } = data  ?? {};
-    
 
     const handlePageChange  = (newPage: number) => {
         setPage(newPage);
     };
 
+    // Handle Sorting
+    const sortedProducts = products?.slice().sort((a, b) => {
+        if (sortOption === 'price') return a.price - b.price;
+        if (sortOption === 'price-h') return b.price - a.price;
+        if (sortOption === 'rating') return b.rating - a.rating;
+        if (sortOption === 'stock') return b.stock - a.stock;
+        return 0;
+    });
+
     return (
         <Container>
              <Breadcrumb />
-            <h1 className="text-2xl font-medium mb-6 capitalize">{categoryName}</h1>
-        
+            <div className={"flex justify-between"}>
+                <h1 className="text-2xl font-medium mb-6 capitalize">{categoryName}</h1>
+                {/* Sorting Options */}
+                <div className="mb-4 flex gap-1 justify-center items-center">
+                    <label htmlFor="sort" className="block text-sm ">
+                        Sort By:
+                    </label>
+                    <select
+                        id="sort"
+                        className="border border-gray-300 rounded p-2 text-sm"
+                        value={sortOption}
+                        onChange={(e) => setSortOption(e.target.value)}
+                    >
+                        <option value="price">Price (Low to High)</option>
+                        <option value="price-h">Price (High to Low)</option>
+                        <option value="rating">Rating (High to Low)</option>
+                        <option value="stock">Stock (High to Low)</option>
+                    </select>
+                </div>
+            </div>
+
+
             {/* Loading state */}
             {isLoading && (
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -48,10 +77,10 @@ const CategoriesProductPage = () => {
             )}
 
             {/*Showing search results */}
-            {products && (
+            {sortedProducts && (
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {products.map((product) => (
+                        {sortedProducts.map((product) => (
                             <ProductCard key={product.id} product={product}/>
                         ))}
                     </div>

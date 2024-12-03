@@ -1,9 +1,0 @@
-{
-  "email": {
-    "required": "Email is required.",
-    "invalid": "Please enter a valid email address."
-  },
-  "name": {
-    "required": "Name is required."
-  }
-}

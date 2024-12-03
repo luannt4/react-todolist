@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/header/highLightedBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/ui/highlighted-bar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/checkout/checkout-card-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/checkout-card-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/checkout/checkout-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/cart/cartThunks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/default/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/productDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/productDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/errors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/forms.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/category.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/getTextFromKey.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +21,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
