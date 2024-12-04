@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/use-query-params.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/category/priceFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/category/ratingFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/category/statusFilter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/category/filters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/filters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/heading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/category.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +23,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -81,7 +84,7 @@
       <workItem from="1732975529000" duration="23722000" />
       <workItem from="1733105355588" duration="16690000" />
       <workItem from="1733283516183" duration="1776000" />
-      <workItem from="1733285728380" duration="4971000" />
+      <workItem from="1733285728380" duration="14017000" />
     </task>
     <servers />
   </component>
