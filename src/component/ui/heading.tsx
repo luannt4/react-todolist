@@ -58,7 +58,7 @@ const Heading: React.FC<Props> = ({
       className={cn(
         'text-fill-base',
         {
-          'text-sm font-semibold': variant === 'base',
+          'text-2xl font-medium ': variant === 'base',
           'text-base  font-semibold ':
             variant === 'title',
           'font-bold text-fill-base text-xl': variant === 'titleMedium',
