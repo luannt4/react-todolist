@@ -1,4 +1,4 @@
-import {useState,useEffect} from "react";
+import {useState, useEffect, Suspense} from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllCategories } from "../api/fetchCategories";
@@ -42,11 +42,20 @@ const CategoriesPage = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
         </div>
     );
-  
+
+    const SearchBarFallback = () => {
+        return (<div className="flex justify-center items-center min-h-[300px] bg-white">
+                <div
+                    className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+            </div>);
+    }
+
     return (
         <Container>
-             <Breadcrumb />
+            <Breadcrumb/>
             <h1 className="text-2xl font-bold mb-6 capitalize">Categories</h1>
+            <Suspense fallback={<SearchBarFallback/>}>
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {filterCategories?.map((category: any, idx: number) => (
                 <div key={category.slug} className="pointer">
@@ -71,6 +80,7 @@ const CategoriesPage = () => {
                     />
                 </div>
             </div>
+            </Suspense>
         </Container>
         
     );

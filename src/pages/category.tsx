@@ -11,6 +11,7 @@ import Pagination from "../component/ui/pagination";
 import { LIMITS } from "../settings/limits";
 import Container from "../component/ui/container";
 import Breadcrumb from "../component/ui/breadcrumb";
+import SearchTopBar from "../component/category/search-top-bar";
 
 const CategoriesProductPage = () => {
     const [page, setPage] = useState(1);
@@ -42,28 +43,14 @@ const CategoriesProductPage = () => {
         return 0;
     });
 
+
     return (
         <Container>
-             <Breadcrumb />
+            <Breadcrumb />
             <div className={"flex justify-between"}>
                 <h1 className="text-2xl font-medium mb-6 capitalize">{categoryName}</h1>
                 {/* Sorting Options */}
-                <div className="mb-4 flex gap-1 justify-center items-center">
-                    <label htmlFor="sort" className="block text-sm ">
-                        Sort By:
-                    </label>
-                    <select
-                        id="sort"
-                        className="border border-gray-300 rounded p-2 text-sm"
-                        value={sortOption}
-                        onChange={(e) => setSortOption(e.target.value)}
-                    >
-                        <option value="price">Price (Low to High)</option>
-                        <option value="price-h">Price (High to Low)</option>
-                        <option value="rating">Rating (High to Low)</option>
-                        <option value="stock">Stock (High to Low)</option>
-                    </select>
-                </div>
+                <SearchTopBar sortOption={sortOption} setSortOption={setSortOption}/>
             </div>
 
 
@@ -78,24 +65,29 @@ const CategoriesProductPage = () => {
 
             {/*Showing search results */}
             {sortedProducts && (
-                <>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {sortedProducts.map((product) => (
-                            <ProductCard key={product.id} product={product}/>
-                        ))}
+                <div className="flex pt-7 lg:pt-7 pb-10 lg:pb-16">
+                    <div className="sticky hidden h-full shrink-0 ltr:pr-7 rtl:pl-7  lg:block w-[300px] top-16 ">
+
                     </div>
-                    <div className="pagination bg-white rounded mt-10">
-                        <Pagination
-                            current={page}
-                            pageSize={limit}
-                            total={total}
-                            onChange={handlePageChange }
-                            
-                            prevIcon={<GrPrevious size={14}  className={`m-auto my-1.5 rtl:rotate-180`}/>}
-                            nextIcon={<GrNext size={14}  className={`m-auto my-1.5 rtl:rotate-180`}/>}
-                        />
+                    <div className="w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            {sortedProducts.map((product) => (
+                                <ProductCard key={product.id} product={product}/>
+                            ))}
+                        </div>
+                        <div className="pagination bg-white rounded mt-10">
+                            <Pagination
+                                current={page}
+                                pageSize={limit}
+                                total={total}
+                                onChange={handlePageChange }
+
+                                prevIcon={<GrPrevious size={14}  className={`m-auto my-1.5 rtl:rotate-180`}/>}
+                                nextIcon={<GrNext size={14}  className={`m-auto my-1.5 rtl:rotate-180`}/>}
+                            />
+                        </div>
                     </div>
-                </>
+                </div>
                 
             )}
 

@@ -1,9 +1,9 @@
 
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import React from "react";
 
-const CategoryGridSkeleton: React.FC = () => {
-
+const CollectionLoading = () => {
    return (
      <SkeletonTheme >
             <div className="w-full space-y-2 text-center"  >
@@ -14,8 +14,7 @@ const CategoryGridSkeleton: React.FC = () => {
                 </div>
             </div>
   </SkeletonTheme>
-    
   );
 }
  
-export default CategoryGridSkeleton;
+export default CollectionLoading;

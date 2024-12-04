@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import Alert from "../ui/alert";
 import Carousel from "../ui/carousel/carousel";
 import CategoryCard from "../cards/category-card";
-import CategoryGridSkeleton from "./category-grid-skeleton";
+import CollectionLoading from "./collection-featured-skeleton";
 import { ROUTES } from "../../utils/routes";
 
 
@@ -20,7 +20,7 @@ interface CategoriesProps {
 
 
 
-const CategoryGridBlock: React.FC<CategoriesProps> = ({
+const CollectionFeaturedBlock: React.FC<CategoriesProps> = ({
     className = 'md:pt-3 lg:pt-0 3xl:pb-2 mb-12 sm:mb-14 md:mb-16 xl:mb-24 2xl:mb-16',
     limit = 8,
     variant='default'
@@ -70,7 +70,7 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                             <div className="grid grid-cols-1 md:grid-cols-8 gap-2">
                             {Array.from({ length: 8 }).map((_, id) => (
                                 <div key={id} className="p-2  rounded bg-white group">
-                                    <CategoryGridSkeleton />
+                                    <CollectionLoading />
                                 </div>
                             ))}
                             </div>
@@ -102,4 +102,4 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
     );
 };
 
-export default CategoryGridBlock;
+export default CollectionFeaturedBlock;

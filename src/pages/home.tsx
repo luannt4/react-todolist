@@ -1,7 +1,7 @@
 
 import BannerGrid from '../component/banner/banner-grid';
 import ProductWithBestDeals from '../component/product-feeds/product-with-best-deals';
-import CategoryGridBlock from '../component/category-grid/category-grid-block';
+import CollectionFeaturedBlock from '../component/collection/collection-featured-block';
 import HeroSliderBlock from '../component/hero/hero-slider-block';
 import Listingtabs from '../component/listingtabs';
 import Container from '../component/ui/container';
@@ -33,7 +33,7 @@ const HomePage = () => {
                         className="xl:col-span-4 mb-5 xl:mb-12"
                     />
                 </div>
-                <CategoryGridBlock  className="mb-8 lg:mb-12"/>    
+                <CollectionFeaturedBlock className="mb-8 lg:mb-12"/>
             </Container>
 
             <div className={'bg-zinc-100 py-10 sm:py-14'}>
