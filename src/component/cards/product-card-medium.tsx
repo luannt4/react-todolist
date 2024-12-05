@@ -106,8 +106,8 @@ const ProductCardMedium: React.FC<Props> = ({ product }) => {
                     <div className="flex items-center">
                     {rating !== undefined && [...Array(5)].map((_,idx) => (
                         <StarIcon
-                        key={idx}
-                        color={idx < rating ? '#F3B81F' : '#DFE6ED'}
+                        key={idx + 1}
+                        color={idx + 1 < rating ? '#F3B81F' : '#DFE6ED'}
                         className="w-3 h-3 mx-0.5"
                         />
                     ))}

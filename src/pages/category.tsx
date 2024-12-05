@@ -22,10 +22,9 @@ const CategoriesProductPage = () => {
         category: 'all',
         priceRange: [0, 1000],
         status: 'all',
-        rating: 0,
+        rating: 1,
         page: 1,
         limit: LIMITS.PAGECATEGORY_LIMITS,
-        total: 0, // Add total
     });
 
 
@@ -34,28 +33,10 @@ const CategoriesProductPage = () => {
     // Get categoryName query parameters
     const { categoryName} = useParams<{ categoryName: string }>();
     // Fetch products using react-query
-    const { data: productData, isLoading,refetch } = useQuery<SearchResponse>({
+    const { data: productData, isLoading, refetch } = useQuery<SearchResponse>({
         queryKey: ['products', categoryName, filters.limit, filters.page],
         queryFn: () => fetchProductsByCategory(categoryName,filters.page, filters.limit),
-        enabled: !!categoryName, // Chỉ gọi API khi có từ khóa
     });
-
-
-
-    // Refetch when filters change
-    useEffect(() => {
-        refetch();
-    }, [filters, refetch]);
-
-    // Update total when filtered products change
-    useEffect(() => {
-        if (!isLoading && productData?.products) {
-            const total = productData.total || productData.products.length;
-            setFilters((prev) => ({ ...prev, total }));
-            console.log('Update total', filters);
-        }
-    }, [productData?.products,isLoading, filters.priceRange, filters.status, filters.rating]);
-
 
     const filterProducts = (products: any[]) => {
         let filtered = products;
@@ -67,7 +48,7 @@ const CategoriesProductPage = () => {
         if (filters.status === 'onsale') {
             filtered = filtered.filter((p) => p.discountPercentage > 0);
         } else if (filters.status === 'instock') {
-            filtered = filtered.filter((p) => p.stock > 0);
+            filtered = filtered.filter((p) => p.stock > 10);
         }
 
         // Filter by rating
@@ -85,18 +66,32 @@ const CategoriesProductPage = () => {
         return filtered;
     };
 
+    const {products=[]} = productData  ?? {};
+    const totalProducts = productData?.total || 0;
 
+    const filteredProducts = filterProducts(products);
+
+    // Total filtered products
+    const totalFilteredProducts = filteredProducts.length;
+    console.log('page',filters.page,filters.limit  );
+
+    // Reset pagination when the number of filtered products changes
+    useEffect(() => {
+        if (filters.page > Math.ceil(totalFilteredProducts / filters.limit)) {
+            setFilters((prevFilters) => ({ ...prevFilters, page: 1 }));
+        }
+    }, [totalFilteredProducts, filters.limit, filters.page]);
+
+    // Paginate filtered products
+   // const paginatedProducts = filteredProducts.slice((filters.page - 1) * filters.limit, filters.page * filters.limit);
+
+    // Handle changes in the filters state
     const handleFilterChange  = (key: string,value: any) => {
         setFilters((prev) => ({
             ...prev,
             [key]: value,
-            page: 1, // Reset to page 1 on filter change
         }));
     };
-
-    const {products=[], total} = productData  ?? {};
-
-    const filteredProducts = filterProducts(products);
 
     return (
         <Container>
@@ -111,18 +106,18 @@ const CategoriesProductPage = () => {
                     <PriceFilter onPriceChange={(min, max) => handleFilterChange('priceRange', [min, max])} />
 
                     {/* Status Filter */}
-                    <StatusFilter onStatusChange={(status) => handleFilterChange('status', status)} />
+                    <StatusFilter value={filters.status} onStatusChange={(status) => handleFilterChange('status', status)} />
 
                     {/* Rating Filter */}
-                    <RatingFilter onRatingChange={(rating) => handleFilterChange('rating', rating)} />
+                    <RatingFilter value={filters.rating} onRatingChange={(rating) => handleFilterChange('rating', rating)} />
                 </div>
 
                 <div className="w-full">
                     <div className={"flex justify-between"}>
                         <h1 className="text-2xl font-medium mb-6 capitalize">
-                            <span>
-                              Page {filters.page} / {Math.ceil(filters.total / filters.limit)}
-                            </span>
+                            Showing <span className="font-bold">{totalFilteredProducts}</span> products
+                            {` out of ${totalProducts} available products.`}
+
                         </h1>
                         {/* Sorting Options */}
                         <SearchTopBar sortOption={sortOption} setSortOption={setSortOption}/>
@@ -141,13 +136,20 @@ const CategoriesProductPage = () => {
                             <ProductCard key={product.id} product={product}/>
                         ))}
                     </div>
+
+                    {/* No results message */}
+                    {filteredProducts.length === 0 && totalFilteredProducts === 0 && (
+                        <div className="no-results  min-h-52 flex  justify-center items-center">
+                            <h3 className="text-lg ">Not Product found.</h3>
+                        </div>
+                    )}
+
                     <div className="pagination bg-white rounded mt-10">
-                        {filters.total}
                         <Pagination
                             current={filters.page}
                             pageSize={filters.limit}
-                            total={filters.total}
-                            onChange={() =>handleFilterChange('page', filters.page)}
+                            total={totalProducts}
+                            onChange={(page) => handleFilterChange('page',page)}
                             prevIcon={<GrPrevious size={14} className={`m-auto my-1.5 rtl:rotate-180`}/>}
                             nextIcon={<GrNext size={14} className={`m-auto my-1.5 rtl:rotate-180`}/>}
                         />
@@ -155,12 +157,7 @@ const CategoriesProductPage = () => {
                 </div>
             </div>
 
-            {/* No results message */}
-            {products?.length === 0 && !isLoading && (
-                <div className="no-results  min-h-52 flex  justify-center items-center">
-                    <h3 className="text-lg ">Not Product found.</h3>
-                </div>
-            )}
+
 
         </Container>
     );

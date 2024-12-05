@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/category/priceFilter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/category/ratingFilter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/category/statusFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/fetchProductsByCategoryFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/useFilters.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card-medium.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card-medium.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/category/filters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/filters.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/category/ratingFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/ratingFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/category/statusFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/statusFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/ui/heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/heading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/category.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/productDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/productDetails.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +44,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "redux",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/utils",
+    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/component/ui/form",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,11 +57,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/component/ui/form" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/component/category" />
       <recent name="$PROJECT_DIR$/src/component/ui" />
       <recent name="$PROJECT_DIR$/src/features/cart" />
-      <recent name="$PROJECT_DIR$/src/features/auth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\NextJS\zip\react-todolist\src\features\cart" />
@@ -85,6 +89,7 @@
       <workItem from="1733105355588" duration="16690000" />
       <workItem from="1733283516183" duration="1776000" />
       <workItem from="1733285728380" duration="14017000" />
+      <workItem from="1733364016378" duration="16596000" />
     </task>
     <servers />
   </component>

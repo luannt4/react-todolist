@@ -1,25 +1,42 @@
 import React from 'react';
+import { CheckBox } from '../ui/form/checkbox';
 import Heading from "../ui/heading";
 
 interface Props {
+    value: string;
     onStatusChange: (status: string) => void;
 }
 
-const StatusFilter: React.FC<Props> = ({ onStatusChange }) => {
-    const statuses = ['all', 'onsale', 'instock'];
-
+const StatusFilter: React.FC<Props> = ({ value,onStatusChange }) => {
+    const statuses = [
+        { id: "all", label: "All" },
+        { id: "onsale", label: "On Sale" },
+        { id: "instock", label: "In Stock" },
+    ];
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedStatus = e.target.value;
+        onStatusChange(selectedStatus);
+    };
     return (
         <div className="block mb-10">
             <Heading className="mb-3 block-title">Filter by Status</Heading>
             <div className="flex flex-col space-y-2">
                 {statuses.map((status) => (
-                    <button
-                        key={status}
-                        onClick={() => onStatusChange(status)}
-                        className="px-4 py-2 text-sm font-medium bg-blue-500 text-white rounded hover:bg-blue-600"
+                    <label
+                        key={status.id}
+                        className="flex items-center space-x-2 cursor-pointer"
                     >
-                        {status.charAt(0).toUpperCase() + status.slice(1)}
-                    </button>
+                        <input
+                            type="radio"
+                            name="status"
+                            value={status.id}
+                            checked={value === status.id}
+                            onChange={handleChange}
+                            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                        />
+                        <span className="text-gray-700">{status.label}</span>
+                    </label>
+
                 ))}
             </div>
         </div>
