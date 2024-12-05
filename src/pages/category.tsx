@@ -76,11 +76,11 @@ const CategoriesProductPage = () => {
     console.log('page',filters.page,filters.limit  );
 
     // Reset pagination when the number of filtered products changes
-    useEffect(() => {
+    /*useEffect(() => {
         if (filters.page > Math.ceil(totalFilteredProducts / filters.limit)) {
             setFilters((prevFilters) => ({ ...prevFilters, page: 1 }));
         }
-    }, [totalFilteredProducts, filters.limit, filters.page]);
+    }, [totalFilteredProducts, filters.limit, filters.page]);*/
 
     // Paginate filtered products
    // const paginatedProducts = filteredProducts.slice((filters.page - 1) * filters.limit, filters.page * filters.limit);

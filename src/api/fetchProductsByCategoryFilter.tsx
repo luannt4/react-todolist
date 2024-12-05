@@ -1,24 +1,15 @@
 import axios from 'axios';
+import {SearchResponse} from "../types/Product";
 
-export const fetchProductsByCategoryFilter = async (
-    categoryName: string,
-    page: number,
-    limit: number,
-    filters: { rating?: number; priceRange?: [number, number]; status?: string }
-) => {
-    const params: Record<string, any> = {
-        limit,
-        skip: (page - 1) * limit,
-        rating: filters?.rating || undefined,
-        minPrice: filters.priceRange?.[0],
-        maxPrice: filters.priceRange?.[1],
-        status: filters?.status || undefined,
-    };
+export const fetchProductsByCategoryFilter = async (category: string | undefined, page:number,limit:number,rating?: number): Promise<SearchResponse> => {
+    const API_URL = process.env.REACT_APP_API_URL;
+    const skip = (page - 1) * limit;
 
-    const { data } = await axios.get(`https://dummyjson.com/products/category/${categoryName}`, {
-        params,
-    });
+    const categoryQuery = category !== 'all' ? `/category/${category}` : '';
+    const ratingQuery = rating ? `&rating_gte=${rating}` : '';
+    const response = await fetch(`${API_URL}/products/${categoryQuery}?limit=${limit}&skip=${skip}`);
+    if (!response.ok)  throw new Error('Network response was not ok');
+    const data = await response.json();
 
-    // Ensure `data` includes `total` for pagination
-    return { products: data.products, total: data.total };
+    return data;
 };

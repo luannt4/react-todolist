@@ -1,17 +1,29 @@
-import React, {useState} from "react";
-import {CategoryFilter} from "./category-filter";
-import PriceFilter from "./priceFilter";
-import {Product} from "../../types/Product";
-import {useFilters} from "../../hooks/useFilters";
-import {useQuery} from "@tanstack/react-query";
-import {fetchProductsByCategoryFilter} from "../../api/fetchProductsByCategoryFilter";
+import React from "react";
 
-export const ShopFilters: React.FC = () => {
-    const { filters, updateFilter, updateTotal } = useFilters();
+import RatingFilter from "./ratingFilter";
+import SelectFilter from "./SelectFilter";
+import ClearFilters from "./ClearFilters";
+
+interface Props {
+    filters: any;
+    updateFilter: (key: string, value: any) => void;
+    clearFilters: () => void;
+}
+
+export const ShopFilters: React.FC<Props>  = ({ filters, updateFilter, clearFilters }) => {
 
     return (
         <div className="bg-white ">
+            <SelectFilter
+                label="Category"
+                value={filters.category}
+                options={['all', 'electronics', 'furniture', 'clothing']}
+                onChange={(value) => updateFilter('category', value)}
+            />
+            {/* Rating Filter */}
+            <RatingFilter value={filters.rating} onRatingChange={(rating) => updateFilter('rating', rating)} />
 
+            <ClearFilters onClear={clearFilters} />
         </div>
     );
 };

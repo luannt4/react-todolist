@@ -9,10 +9,6 @@ interface Props {
 
 const RatingFilter: React.FC<Props> = ({ value,onRatingChange }) => {
     const ratings = [5, 4, 3, 2, 1];
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedRating = Number(e.target.value);
-        onRatingChange(selectedRating);
-    };
 
     return (
         <div className="block mb-10">
@@ -28,7 +24,7 @@ const RatingFilter: React.FC<Props> = ({ value,onRatingChange }) => {
                             name="rating"
                             value={rating}
                             checked={value === rating}
-                            onChange={handleChange}
+                            onChange={ (e) =>  onRatingChange(Number(e.target.value))}
                             className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                         />
                         <div className="flex items-center">
