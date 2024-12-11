@@ -113,9 +113,9 @@ const CategoriesProductPage = () => {
 
                 <div className="w-full">
                     <div className={"flex justify-between"}>
-                        <h1 className="text-2xl font-medium mb-6 capitalize">
+                        <h1 className="text-sm ">
                             Showing <span className="font-bold">{totalFilteredProducts}</span> products
-                            {` out of ${totalProducts} available products.`}
+                            {` of ${totalProducts} available products.`}
 
                         </h1>
                         {/* Sorting Options */}
