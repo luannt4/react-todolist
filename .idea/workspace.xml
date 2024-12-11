@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product-feeds/product-with-best-deals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product-feeds/product-with-best-deals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/add-to-cart.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +20,7 @@
     <setting file="file://$PROJECT_DIR$/src/component/category/category-filter.tsx" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -88,7 +86,7 @@
       <workItem from="1733737321500" duration="664000" />
       <workItem from="1733799490659" duration="17890000" />
       <workItem from="1733887537056" duration="6106000" />
-      <workItem from="1733905788215" duration="651000" />
+      <workItem from="1733905788215" duration="2315000" />
     </task>
     <servers />
   </component>

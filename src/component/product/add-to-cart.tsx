@@ -6,6 +6,7 @@ import { selectCartItemDetails } from "../../features/cart/cartSlice";
 import { addToCart } from '../../features/cart/cartThunks';
 
 import {useModal} from "../../contexts";
+import {useNavigate} from "react-router-dom";
 interface AddToCartProps {
     product : Product;
     userId: number;
@@ -14,6 +15,9 @@ interface AddToCartProps {
 
 // @ts-ignore
 const AddToCart: React.FC<AddToCartProps> = ({ product,userId }) => {
+    // Check if user is authenticated by looking for token
+    const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {openAlert } = useModal();
     //const {id,title,  quantity,  thumbnail } = product ?? {};
@@ -24,17 +28,20 @@ const AddToCart: React.FC<AddToCartProps> = ({ product,userId }) => {
 
     const handleAddToCart = (e: React.FormEvent) => {
         e.preventDefault();
-        // Check if adding would exceed stock
-        const totalQuantity = cartItemDetails.quantity;
-        if (totalQuantity < product.stock) {
-            dispatch(addToCart({ userId, productId: product.id,  quantity: 1 } )); // Assuming cartId = 1
-            //toast('Added to the bag', {progressClassName: 'fancy-progress-bar',});
-        } else {
-            // Optional: Show an error message about exceeding stock
-            openAlert ("ALERT_VIEW", `Cannot add more than ${product.stock} items to cart`)
-
+        if (!isLoggedIn)  navigate('/login')
+        else{
+            // Check if adding would exceed stock
+            const totalQuantity = cartItemDetails.quantity;
+            if (totalQuantity < product.stock) {
+                dispatch(addToCart({ userId, productId: product.id,  quantity: 1 } )); // Assuming cartId = 1
+                //toast('Added to the bag', {progressClassName: 'fancy-progress-bar',});
+            } else {
+                // Optional: Show an error message about exceeding stock
+                openAlert ("ALERT_VIEW", `Cannot add more than ${product.stock} items to cart`)
+                
+            }
         }
-    
+        
     };
 
     return (
