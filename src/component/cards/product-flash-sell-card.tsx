@@ -93,7 +93,7 @@ const ProductFlashSellCard: React.FC<Props> = ({ product, className, date }) => 
                     key={id}
                     to={`${ROUTES.CATEGORIES}/${category}/${slug}-${id}`}
                     className="block bg-slate-100 group-hover:-translate-y-6 transition-all duration-300">
-                        <ImageFill src={thumbnail|| 'Product Image'} height={230}   alt={title || 'Product Image'}/>
+                        <ImageFill src={thumbnail|| 'Product Image'} height={210}   alt={title || 'Product Image'}/>
                         
                 </Link>
 

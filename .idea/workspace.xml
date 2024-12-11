@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/category/Pagination.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/category/ProductList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/category/filtered-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contexts/categories/ProductsContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/useProductQuery.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/cards/product-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cart/cart-sidebar-items.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/category/SelectFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/SelectFilter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/category/category-filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/category-filter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/category/filters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/filters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/form/checkbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/form/checkbox.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/image.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AppContextProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AppContextProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useFilters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useFilters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blogs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/category.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/use-breadcrumb.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-breadcrumb.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/use-query-params.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-query-params.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/product-flash-sell-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/product-feeds/product-with-best-deals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product-feeds/product-with-best-deals.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,24 +32,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "redux",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/contexts",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;redux&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/luannt4/work/React/zip/todolist/src/contexts&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/contexts" />
@@ -107,7 +87,8 @@
       <workItem from="1733364016378" duration="38510000" />
       <workItem from="1733737321500" duration="664000" />
       <workItem from="1733799490659" duration="17890000" />
-      <workItem from="1733887537056" duration="2823000" />
+      <workItem from="1733887537056" duration="6106000" />
+      <workItem from="1733905788215" duration="651000" />
     </task>
     <servers />
   </component>
