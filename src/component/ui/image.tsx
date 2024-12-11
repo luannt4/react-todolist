@@ -38,7 +38,7 @@ const Image : React.FC<Props>  = ({
     .join(', ');
 
     return (
-        <div style={{ width, height, position: 'relative' }} ref={ref}>
+        <div style={{ width, position: 'relative' }} ref={ref}>
             {/* Placeholder Skeleton */}
             {!isLoaded && <Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
             
@@ -53,7 +53,6 @@ const Image : React.FC<Props>  = ({
                     height={height}    // Pass height to the image
                     style={{
                         width: '100%',
-                        height: '100%',
                         display: isLoaded ? 'block' : 'none',
                     }}
                     onLoad={() => setIsLoaded(true)} // Hide skeleton when image is loaded

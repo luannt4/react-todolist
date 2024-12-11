@@ -73,7 +73,6 @@ const CategoriesProductPage = () => {
 
     // Total filtered products
     const totalFilteredProducts = filteredProducts.length;
-    console.log('page',filters.page,filters.limit  );
 
     // Reset pagination when the number of filtered products changes
     /*useEffect(() => {

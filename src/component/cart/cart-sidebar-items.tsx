@@ -19,7 +19,6 @@ type CartItemProps = {
 const CartSideBarItems: React.FC<CartItemProps> = ({ cart, cartId, item }) => {
     const dispatch = useAppDispatch();
     const {id:productId,title, category, quantity,  thumbnail } = item ?? {};
-    console.log(item);
     const { price: totalPrice } = usePrice({
         amount: item?.price,
         currencyCode: 'USD',

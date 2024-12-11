@@ -67,6 +67,7 @@ interface Address {
     state: string;
   };
 }
+
 export type OrderItem = {
   id: number | string;
   name: string;
@@ -86,4 +87,17 @@ export interface Order {
   };
   shipping_fee: number;
   payment_gateway: string;
+}
+
+export interface FilterState {
+  category: string;
+  minPrice: number;
+  maxPrice: number;
+  minRating: number;
+}
+
+export interface PaginationState {
+  currentPage: number;
+  pageSize: number;
+  totalItems: number;
 }

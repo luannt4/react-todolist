@@ -1,36 +1,48 @@
-import { useState } from 'react';
-import {LIMITS} from "../settings/limits";
+import {useMemo, useState} from 'react';
+import {FilterState, PaginationState, Product} from "../types/Product";
 
-export interface Filters {
-    category: string;
-    priceRange: [number, number];
-    status: string;
-    rating: number;
-    page: number;
-    limit: number;
-}
+export const useFilter = (initialProducts: Product[]) => {
+    const [filters, setFilters] = useState<FilterState>({
+        category: '',
+        minPrice: 0,
+        maxPrice: Infinity,
+        minRating: 0
+    });
 
-export const useFilters = (initialFilters: Filters) => {
-    const [filters, setFilters] = useState<Filters>(initialFilters);
+    const [pagination, setPagination] = useState<PaginationState>({
+        currentPage: 1,
+        pageSize: 10,
+        totalItems: initialProducts.length
+    });
 
-    const updateFilter = (key: string, value: any) => {
-        setFilters((prev) => ({
-            ...prev,
-            [key]: value,
-            page: key === 'rating' ? 1 : prev.page, // Reset page to 1 when rating changes
-        }));
+    const filteredProducts = useMemo(() => {
+        return initialProducts.filter(product =>
+            (filters.category === '' || product.category === filters.category) &&
+
+            product.rating >= filters.minRating
+        );
+    }, [initialProducts, filters]);
+
+    const updateFilters = (newFilters: Partial<FilterState>) => {
+        setFilters(prev => ({ ...prev, ...newFilters }));
+
+        // Reset to first page when filters change
+        setPagination(prev => ({ ...prev, currentPage: 1 }));
     };
 
-    const clearFilters = () => {
-        setFilters({
-            category: 'all',
-            priceRange: [0, 1000],
-            status: 'all',
-            rating: 1,
-            page: 1,
-            limit: 10,
-        });
-    };
+    const paginatedProducts = useMemo(() => {
+        const startIndex = (pagination.currentPage - 1) * pagination.pageSize;
+        const endIndex = startIndex + pagination.pageSize;
 
-    return { filters, updateFilter, clearFilters };
+        return filteredProducts.slice(startIndex, endIndex);
+    }, [filteredProducts, pagination]);
+
+    return {
+        filteredProducts,
+        paginatedProducts,
+        filters,
+        pagination,
+        updateFilters,
+        setPagination
+    };
 };

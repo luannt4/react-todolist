@@ -9,11 +9,13 @@ export function AppProvider({ children }: React.PropsWithChildren) {
    
     return (
         <Provider store={store}>
+           
             <DrawerProvider>
             <ModalProvider>
                 {children}
             </ModalProvider>
             </DrawerProvider>
+          
         </Provider>
     );
   }

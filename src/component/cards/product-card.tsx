@@ -80,7 +80,7 @@ const ProductCard: React.FC<Props> = ({ product, variant }) => {
                     className="block ">
                         <ImageFill 
                             src={thumbnail} 
-                            height={230}   
+                            height={320}
                             alt={title} 
                         />
                 </Link>

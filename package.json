@@ -40,7 +40,8 @@
     "react-toastify": "^10.0.6",
     "react-use": "^17.5.1",
     "swiper": "^11.1.14",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "jotai": "^2.10.3"
   },
   "scripts": {
     "dev": "react-scripts start",
