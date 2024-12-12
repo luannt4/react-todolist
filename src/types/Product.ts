@@ -16,6 +16,7 @@ export interface Product {
   availabilityStatus?: string;
   quantity: number;
   rating:number;
+  images?:[];
   reviews?:Review[];
 }
 

@@ -2,6 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+import cn from "classnames";
 
 interface Props {
     variant?: string;
@@ -38,30 +39,42 @@ const Image : React.FC<Props>  = ({
     .join(', ');
 
     return (
-        <div style={{ width, position: 'relative' }} ref={ref}>
+        <div className="block w-full box-sizing" ref={ref}>
             {/* Placeholder Skeleton */}
-            {!isLoaded && <Skeleton containerClassName='w-full h-full' style={{"height" : height}} />}
+            {!isLoaded && <Skeleton containerClassName='absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full' style={{"height": height}}/>}
             
-             {/* Lazy Loaded Image */}
+            {/* Lazy Loaded Image */}
             {inView && (
-                <img
-                    src={src} // Default large image
-                    /*srcSet={srcSet}*/    // Responsive sources
-                    sizes="(max-width: 768px) 100vw, 100vw" // Responsive size hints
-                    alt={alt}
-                    width={width}      // Pass width to the image
-                    height={height}    // Pass height to the image
-                    style={{
-                        width: '100%',
-                        display: isLoaded ? 'block' : 'none',
-                    }}
-                    onLoad={() => setIsLoaded(true)} // Hide skeleton when image is loaded
-                />
+                <>
+                    <svg
+                        className="block max-w-full h-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={width}
+                        height={height}
+                        version="1.1"
+                    />
+                    <img
+                        src={src} // Default large image
+                        /*srcSet={srcSet}*/ // Responsive sources
+                        sizes="(max-width: 768px) 100vw, 100vw" // Responsive size hints
+                        alt={alt}
+                        width={0}
+                        height={0}
+                        style={{
+                            display: isLoaded ? 'block' : 'none',
+                        }}
+                        className={cn(
+                            'absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full object-cover',
+                            {
+                                'rounded-md': variant === 'rounded',
+                            },
+                        )}
+                        onLoad={() => setIsLoaded(true)} // Hide skeleton when image is loaded
+                    />
+                </>
             )}
         </div>
-        
-    );  
-
-   
+    
+    );
 }
 export default Image;

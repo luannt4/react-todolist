@@ -12,7 +12,6 @@ import WishlistButton from "../component/wishlist/wishlist-button";
 import Counter from "../component/ui/counter";
 import Button from "../component/ui/button";
 import CartIcon from "../component/icons/cart-icon";
-import { toast } from "react-toastify";
 import ImageFill from "../component/ui/image";
 import Container from "../component/ui/container";
 import { selectCartItemDetails } from "../features/cart/cartSlice";
@@ -21,6 +20,8 @@ import Breadcrumb from "../component/ui/breadcrumb";
 import {ROUTES} from "../utils/routes";
 import {addToCart} from "../features/cart/cartThunks";
 import {useModal} from "../contexts";
+import ThumbnailCarousel from "../component/ui/carousel/thumbnail-carousel";
+import ProductDetailsTab from "../component/product/product-details/product-tab";
 
 
 const ProductDetailsPage = () => {
@@ -39,8 +40,8 @@ const ProductDetailsPage = () => {
        
     });
     const [selectedQuantity, setSelectedQuantity] = useState(1);
-    const {id,title, category, price :productPrice,  discountPercentage, thumbnail,rating, reviews, description, stock }  = product  ?? {};
-   
+    const {title, category, price :productPrice,  discountPercentage, thumbnail, images, rating, reviews, description, stock }  = product  ?? {};
+    console.log('images',images);
     //productPriceOld
     let productPriceOld: number | undefined; // Declare `productPriceOld` outside the if block
     if(productPrice !== undefined && discountPercentage !== undefined){
@@ -97,11 +98,24 @@ const ProductDetailsPage = () => {
 
     return (
         <Container>
+            
             <Breadcrumb />
+            
             <div className="grid-cols-10 lg:grid gap-8">
                 <div className="col-span-5 mb-6 overflow-hidden">
-                   
-                    <ImageFill src={thumbnail|| 'Product Image'} height={530}   alt={title || 'Product Image'}/>
+                    
+                    {images?.length ? (
+                        <ThumbnailCarousel
+                            gallery={images}
+                            thumbnailClassName="xl:w-full"
+                            galleryClassName="xl:w-[100px]"
+                        />
+                    ) : (
+                        <div className="flex items-center justify-center w-auto">
+                            <ImageFill src={thumbnail|| 'Product Image'} height={30}   alt={title || 'Product Image'}/>
+                        </div>
+                    )}
+                    
                 </div>
                 <div className="col-span-5 shrink-0 ">
                 <h1 className="text-3xl font-bold mb-4">{title}</h1>
@@ -176,9 +190,10 @@ const ProductDetailsPage = () => {
                     </div>
                     
                 </div>
-            
-
             </div>
+            
+            <ProductDetailsTab />
+            
         </Container>
     );
     };

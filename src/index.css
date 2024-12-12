@@ -11,8 +11,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#productGalleryThumbs {
+  max-height: 560px;
 }
-
+#productGalleryThumbs .swiper-slide {
+  height: 100% !important;
+   &.swiper-slide-thumb-active{
+     @apply border-black;
+   }
+}

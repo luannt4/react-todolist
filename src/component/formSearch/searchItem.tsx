@@ -3,6 +3,7 @@ import React from "react";
 import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
 import usePrice from "../product/use-price";
+import {ROUTES} from "../../utils/routes";
 
 interface SearchItemProps {
     product : Product;
@@ -10,7 +11,7 @@ interface SearchItemProps {
 
 
 const SearchItem: React.FC<SearchItemProps> = ({ product }) => {
-    const {id,title,  price:productPrice, discountPercentage, thumbnail } = product;
+    const {id,title,  price:productPrice, discountPercentage, thumbnail, category } = product;
     // Create slug from title
     const slug = product.title.toLowerCase().replace(/\s+/g, '-');
     const productPriceOld = Number(Number(product?.price / (1 - (discountPercentage / 100))).toFixed(2));
@@ -22,8 +23,8 @@ const SearchItem: React.FC<SearchItemProps> = ({ product }) => {
 
     return (
     <Link 
-        key={id} 
-        to={`/product/${slug}-${id}`}
+        key={id}
+        to={`${ROUTES.CATEGORIES}/${category}/${slug}-${id}`}
         className="block py-2.5 ps-5 pe-10 border-b border-black/5 scroll-snap-align-start transition-colors duration-200 hover:bg-gray-100/80">
         <div className="flex items-center justify-start w-full h-auto group">
             <div className="relative w-20 rounded-md overflow-hidden flex-shrink-0 cursor-pointer me-4">
