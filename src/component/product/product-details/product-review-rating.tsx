@@ -1,7 +1,8 @@
-import type { FC } from 'react';
+import React, { FC } from 'react';
 
 
 import ReviewCard from "../../cards/review-card";
+import {Review} from "../../../types/Product";
 
 const data = [
   {
@@ -30,16 +31,16 @@ const data = [
   },
 ];
 
-const ProductReviewRating: FC = () => {
+interface Props {
+  reviews: Review[]| undefined;
+}
+const ProductReviewRating: React.FC<Props> = ({reviews}) => {
   return (
-    <div className="lg:flex">
-      <div className="pt-2">
-        {data?.map((item) => (
-          <ReviewCard item={item} key={`review-key-${item.id}`} />
+      <div className="block">
+        {reviews?.map((item: any, id: number) => (
+            <ReviewCard item={item} key={`review-key-${id}`}/>
         ))}
       </div>
-      
-    </div>
   );
 };
 

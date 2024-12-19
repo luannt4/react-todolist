@@ -72,7 +72,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
         >
           {gallery?.map((item: any, id :number ) => (
             <SwiperSlide
-              key={`product-gallery-${item.id}`}
+              key={`product-gallery-${id}`}
               className="flex items-center justify-center"
             >
               <Image

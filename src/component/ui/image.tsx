@@ -39,7 +39,7 @@ const Image : React.FC<Props>  = ({
     .join(', ');
 
     return (
-        <div className="block w-full box-sizing" ref={ref}>
+        <div className="block box-sizing relative overflow-hidden" ref={ref}>
             {/* Placeholder Skeleton */}
             {!isLoaded && <Skeleton containerClassName='absolute top-0 left-0 right-0 bottom-0 max-w-full max-h-full min-w-full min-h-full' style={{"height": height}}/>}
             

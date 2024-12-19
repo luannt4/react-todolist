@@ -66,12 +66,11 @@ const ProductsCarousel: React.FC<CarouselProps> = ({
                 <>
                     {(() => {
                         switch (variant) {
-                            case 'card-fur':
+                            case 'related':
                                 return (
                                     <SectionHeader
                                         sectionHeading={sectionHeading}
-                                        sectionSubHeading="text-shop-subheading"
-                                        headingPosition={"center"}
+                                        className={cn('py-3 uppercase mb-9 border-b border-border-base')}
                                     />
                                 );
                             case 'noHeading':

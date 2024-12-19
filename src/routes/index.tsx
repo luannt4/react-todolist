@@ -39,9 +39,9 @@ const routes = [
 		<AppProvider>
 			    <DefaultLayout />
 			    <ManagedModal />
-          <ManagedDrawer/>
-          <ManagedToaster/>
-          <CompareBotomPanel/>
+            <ManagedDrawer/>
+            <ManagedToaster/>
+            <CompareBotomPanel/>
 		</AppProvider>
 	),
     children: [

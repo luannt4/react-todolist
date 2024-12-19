@@ -4,6 +4,7 @@ import { Product } from "../../types/Product";
 import {  Link } from "react-router-dom";
 import Image from "../ui/image";
 import CloseIcon from "../icons/close-icon";
+import {ROUTES} from "../../utils/routes";
 
 interface Props {
     product : Product;
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const CompareCardPanel: React.FC<Props> = ({ product, removeCompare }) => {
-    const {id,title,  price,discountPercentage, thumbnail } = product;
+    const {id,title,  price,discountPercentage, thumbnail,category } = product;
 
     // Create slug from title
     const slug = product.title.toLowerCase().replace(/\s+/g, '-');
@@ -24,15 +25,15 @@ const CompareCardPanel: React.FC<Props> = ({ product, removeCompare }) => {
             >
                 <CloseIcon className="w-4 h-4"/>
         </div>
-        <div className="c-product-item__img">
+        <div className="c-product-item__img ">
             <Image src={thumbnail|| 'Product Image'} width={64} height={64}   alt={title || 'Product Image'}/>
         </div>
         <div className="c-product-item w-full pr-5">
             <p className={`w-full mb-1`}>
                 <Link 
-                    key={id} 
-                    to={`/product/${slug}-${id}`}
-                    className=""
+                    key={id}
+                    to={`${ROUTES.CATEGORIES}/${category}/${slug}-${id}`}
+                    className="text-sm font-medium hover:text-blue-500"
                     >
                     {title}
                 </Link>

@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useState } from 'react';
+import {useRef, useState} from 'react';
 
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../types/Product";
@@ -22,6 +22,8 @@ import {addToCart} from "../features/cart/cartThunks";
 import {useModal} from "../contexts";
 import ThumbnailCarousel from "../component/ui/carousel/thumbnail-carousel";
 import ProductDetailsTab from "../component/product/product-details/product-tab";
+import RelatedProductFeed from "../component/product-feeds/related-product-feed";
+import TopbarShowCart from "../component/common/topbar-showcart";
 
 
 const ProductDetailsPage = () => {
@@ -41,7 +43,10 @@ const ProductDetailsPage = () => {
     });
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const {title, category, price :productPrice,  discountPercentage, thumbnail, images, rating, reviews, description, stock }  = product  ?? {};
-    console.log('images',images);
+    
+    const [isCartVisible, setCartVisible] = useState<boolean>(false);
+    const targetButtonRef = useRef<HTMLButtonElement | null>(null);
+    
     //productPriceOld
     let productPriceOld: number | undefined; // Declare `productPriceOld` outside the if block
     if(productPrice !== undefined && discountPercentage !== undefined){
@@ -83,7 +88,6 @@ const ProductDetailsPage = () => {
         }
     }
 
-  
     if (isLoading) return (
         <div className="flex justify-center items-center min-h-[300px] bg-white">
             <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
@@ -95,106 +99,113 @@ const ProductDetailsPage = () => {
             <h3 className="text-lg ">Not Product found.</h3>
         </div>
     );
-
+    
     return (
-        <Container>
-            
-            <Breadcrumb />
-            
-            <div className="grid-cols-10 lg:grid gap-8">
-                <div className="col-span-5 mb-6 overflow-hidden">
-                    
-                    {images?.length ? (
-                        <ThumbnailCarousel
-                            gallery={images}
-                            thumbnailClassName="xl:w-full"
-                            galleryClassName="xl:w-[100px]"
-                        />
-                    ) : (
-                        <div className="flex items-center justify-center w-auto">
-                            <ImageFill src={thumbnail|| 'Product Image'} height={30}   alt={title || 'Product Image'}/>
-                        </div>
-                    )}
-                    
-                </div>
-                <div className="col-span-5 shrink-0 ">
-                <h1 className="text-3xl font-bold mb-4">{title}</h1>
-                    <div className="flex text-gray-500 space-x-1 mb-4">
-                        <div className="flex items-center">
-                        {rating !== undefined && [...Array(5)].map((_,idx) => (
-                            <StarIcon
-                            key={idx+1}
-                            color={idx + 1 < rating ? '#F3B81F' : '#DFE6ED'}
-                            className="w-3 h-3 mx-0.5"
-                            />
-                        ))}
-                        </div>
-                        
-                        {reviews !== undefined && (
-                            <span className="text-[13px] leading-4">
+       <>
+           <Container>
+               <Breadcrumb />
+               <div className="grid-cols-10 lg:grid gap-8 lg:mb-12">
+                   <div className="col-span-5  overflow-hidden">
+                       {images?.length ? (
+                           <ThumbnailCarousel
+                               gallery={images}
+                               thumbnailClassName="xl:w-full"
+                               galleryClassName="xl:w-[100px]"
+                           />
+                       ) : (
+                           <div className="flex items-center justify-center w-auto">
+                               <ImageFill src={thumbnail|| 'Product Image'} height={30}   alt={title || 'Product Image'}/>
+                           </div>
+                       )}
+                   
+                   </div>
+                   <div className="col-span-5 shrink-0 ">
+                       <h1 className="text-3xl font-bold mb-4">{title}</h1>
+                       <div className="flex text-gray-500 space-x-1 mb-4">
+                           <div className="flex items-center">
+                               {rating !== undefined && [...Array(5)].map((_,idx) => (
+                                   <StarIcon
+                                       key={idx+1}
+                                       color={idx + 1 < rating ? '#F3B81F' : '#DFE6ED'}
+                                       className="w-3 h-3 mx-0.5"
+                                   />
+                               ))}
+                           </div>
+                           
+                           {reviews !== undefined && (
+                               <span className="text-[13px] leading-4">
                             ({reviews.length} review)
                             </span>
-                        )}
-                    </div>
-                    
-                    <div className="text-gray-500 text-3xl  my-8">
-                        <div className="flex gap-x-2 ">
-                            <div className="text-black font-bold">{price}</div>
-                            {basePrice && (
-                            <div className="line-through text-gray-400">
-                                {basePrice}
-                            </div>
-                            )}
-                        </div>
-                        <div className="text-lg text-red-600">Save up to  {discount}</div>
-                    </div>
-                    <Link 
-                            key={category}
-                            to={`${ROUTES.CATEGORIES}/${category}`}
-                            className="inline-block bg-gray-100 px-3 py-1 rounded mb-4"
-                            >
-                            {category}
-                    </Link>
-                    <p className="text-gray-700 mb-5">{description}</p>
-                    
-
-                    <div className="pt-4 space-y-7">
-                        <Counter
-                            variant="single"
-                            value={selectedQuantity}
-                            onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
-                            onDecrement={() =>
-                                setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
-                            }
-                            disabled={
-                                cartItemDetails.isInCart
-                                ? cartItemDetails.quantity + selectedQuantity >= Number(stock)
-                                : selectedQuantity >= Number(stock)
-                            }
-                        />
-                        <div className="flex gap-2 ">
-                            <Button
-                                onClick={handleAddToCart}
-                                className=" w-64 px-1.5"
-                                loading={addToCartLoader}
-                            >
-                                <CartIcon color="#ffffff" className="mr-3" />
-                                Add To Cart
-                            </Button>
-
-                        
-                            <CompareButton product={product} className="w-14 flex items-center justify-center"/>
-                            <WishlistButton product={product} className="w-14 flex items-center justify-center"/>
-                    
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <ProductDetailsTab />
-            
-        </Container>
+                           )}
+                       </div>
+                       
+                       <div className="text-gray-500 text-3xl  my-8">
+                           <div className="flex gap-x-2 ">
+                               <div className="text-black font-bold">{price}</div>
+                               {basePrice && (
+                                   <div className="line-through text-gray-400">
+                                       {basePrice}
+                                   </div>
+                               )}
+                           </div>
+                           <div className="text-lg text-red-600">Save up to  {discount}</div>
+                       </div>
+                       <Link
+                           key={category}
+                           to={`${ROUTES.CATEGORIES}/${category}`}
+                           className="inline-block bg-gray-100 px-3 py-1 rounded mb-4"
+                       >
+                           {category}
+                       </Link>
+                       <p className="text-gray-700 mb-5">{description}</p>
+                       
+                       
+                       <div className="pt-4 space-y-7">
+                           <Counter
+                               variant="single"
+                               value={selectedQuantity}
+                               onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
+                               onDecrement={() =>
+                                   setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
+                               }
+                               disabled={
+                                   cartItemDetails.isInCart
+                                       ? cartItemDetails.quantity + selectedQuantity >= Number(stock)
+                                       : selectedQuantity >= Number(stock)
+                               }
+                           />
+                           <div className="flex gap-2 ">
+                               <Button
+                                   ref={targetButtonRef}
+                                   onClick={handleAddToCart}
+                                   className=" w-64 px-1.5"
+                                   loading={addToCartLoader}
+                               >
+                                   <CartIcon color="#ffffff" className="mr-3" />
+                                   Add To Cart
+                               </Button>
+                               
+                               
+                               <CompareButton product={product} className="w-14 flex items-center justify-center"/>
+                               <WishlistButton product={product} className="w-14 flex items-center justify-center"/>
+                           
+                           </div>
+                       
+                       </div>
+                   
+                   </div>
+               </div>
+               
+               <ProductDetailsTab description={description} reviews={reviews} />
+               
+               <RelatedProductFeed
+                   categoryName={category ?? "all"}
+                   uniqueKey="related-products"
+                   className="mb-8 lg:mb-12"
+               />
+           </Container>
+           <TopbarShowCart  product={product}  addToCartLoader={addToCartLoader} handleAddToCart={handleAddToCart} isCartVisible={isCartVisible} setCartVisible={setCartVisible} targetButtonRef={targetButtonRef}/>
+       </>
     );
     };
   

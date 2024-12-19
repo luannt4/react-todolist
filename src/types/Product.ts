@@ -7,7 +7,7 @@ export interface Todo {
 export interface Product {
   id: number ;
   title: string;
-  description: string;
+  description: string ;
   price: number;
   discountPercentage: number;
   category: string;
@@ -17,10 +17,10 @@ export interface Product {
   quantity: number;
   rating:number;
   images?:[];
-  reviews?:Review[];
+  reviews?:Review[]| undefined;
 }
 
-interface Review {
+export interface Review {
   rating: number;
   comment: string;
   date: string; // Use `Date` if you plan to convert this to a Date object in code
