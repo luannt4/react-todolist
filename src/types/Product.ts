@@ -44,6 +44,22 @@ export interface SearchResponse {
   limit: number;
 }
 
+export interface Post {
+  id: number ;
+  title: string;
+  body: string;
+  tags: [],
+  reactions: [],
+  views: number;
+  userId : number;
+}
+
+export interface BlogResponse {
+  posts: Post[];
+  total: number;
+  skip: number;
+  limit: number;
+}
 
 
 export type QueryOptionsType = {

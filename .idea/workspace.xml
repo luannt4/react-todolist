@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53022b20-59ed-4c86-b334-01cc4805548c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/fetchPosts.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/blog/blog-content.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/cards/review-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cards/review-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/compare/compare-cardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/compare/compare-cardPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product/product-details/product-review-rating.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/product-details/product-review-rating.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product/product-details/product-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/product-details/product-tab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/product/products-carousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/product/products-carousel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/back-to-top.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/back-to-top.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/carousel/thumbnail-carousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/carousel/thumbnail-carousel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/image.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/default/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/productDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/productDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/blogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blogs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/settings/limits.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/limits.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Product.ts" afterDir="false" />
     </list>
@@ -48,31 +36,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;redux&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/luannt4/work/React/zip/themeforest-fxXgtrs7-borobazar-grocery-food-store-react-template/BoroBazar - Grocery &amp; Food Store React Template/borobazar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "redux",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/luannt4/work/React/zip/todolist/src/component/blog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/luannt4/work/React/zip/todolist/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/component/blog" />
+      <recent name="$PROJECT_DIR$/src/api" />
       <recent name="$PROJECT_DIR$/src/component/product-feeds" />
       <recent name="$PROJECT_DIR$/src/component/common/form" />
       <recent name="$PROJECT_DIR$/src/component/cards" />
-      <recent name="$PROJECT_DIR$/src/component/product/product-details" />
-      <recent name="$PROJECT_DIR$/src/component/ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\NextJS\zip\react-todolist\src\features\cart" />
@@ -111,7 +99,8 @@
       <workItem from="1734488972232" duration="4833000" />
       <workItem from="1734494557610" duration="4036000" />
       <workItem from="1734507372938" duration="793000" />
-      <workItem from="1734574699891" duration="8056000" />
+      <workItem from="1734574699891" duration="9263000" />
+      <workItem from="1734663292897" duration="4466000" />
     </task>
     <servers />
   </component>
@@ -129,7 +118,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/pages/productDetails.tsx</url>
           <line>103</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
