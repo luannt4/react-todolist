@@ -31,6 +31,7 @@ import HomePage from "../pages/home";
 import { Provider } from 'react-redux';
 import store from "../component/todo-redux/redux/store";
 import CompareBotomPanel from "../component/compare/compare-bottomPanel";
+import BlogDetailPage from "../pages/blogDetails";
 
 const routes = [
   {
@@ -112,6 +113,10 @@ const routes = [
       {
         path: "blogs",
         element: <BlogsPage />,
+      },
+      {
+        path: "blogs/:slug",
+        element: <BlogDetailPage />,
       },
       {
         path: "contact",

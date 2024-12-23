@@ -23,7 +23,7 @@ const BlogCard: React.FC<BlogProps> = ({blog, className}) => {
         >
             <div className="relative flex-shrink-0 ">
                 <Link
-                    to={`/${ROUTES.BLOG}/${slug}-${id}`}
+                    to={`${ROUTES.BLOG}/${slug}-${id}`}
                     className="text-skin-base "
                 >
                     <div className="card-img-container flex overflow-hidden max-w-[420px] mx-auto relative ">

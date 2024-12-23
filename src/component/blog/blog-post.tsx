@@ -12,7 +12,7 @@ interface blogGridProps {
     className?: string;
 }
 
-export const BlogContent: FC<blogGridProps> = ({dataBlog, className = ''}) => {
+export const BlogPost: FC<blogGridProps> = ({dataBlog, className = ''}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [value, setValue] = useState('');

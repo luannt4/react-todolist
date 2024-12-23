@@ -49,7 +49,10 @@ export interface Post {
   title: string;
   body: string;
   tags: [],
-  reactions: [],
+  reactions: {
+    likes: number,
+    dislikes : number
+  },
   views: number;
   userId : number;
 }

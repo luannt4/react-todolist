@@ -1,5 +1,5 @@
 import Container from "../component/ui/container";
-import React, {Suspense, useEffect, useState} from "react";
+import React, {Suspense, useState} from "react";
 
 import {LIMITS} from "../settings/limits";
 import {useQuery} from "@tanstack/react-query";
@@ -19,7 +19,7 @@ const BlogsPage = () => {
     });
     
     // Gọi API lấy fetchAllCategories với useQuery
-    const {data, isLoading, error } = useQuery<BlogResponse>({
+    const {data, isLoading } = useQuery<BlogResponse>({
         queryKey: ['blogs',filters.limit, filters.page],
         queryFn: () => fetchPosts(filters.page,filters.limit)
     });
