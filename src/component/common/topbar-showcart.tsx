@@ -35,7 +35,7 @@ const TopbarShowCart: React.FC<Props> = ({product,addToCartLoader,handleAddToCar
     const checkScrollPosition = () => {
         const siteHeader  = document.getElementById('header');
         if (targetButtonRef.current && siteHeader) {
-            const headerHeight = siteHeader.offsetHeight; // Get the height of the header
+            const headerHeight = 150; // Get the height of the header
             // Get the position of the button relative to the top of the document
             const rectShowCart  = targetButtonRef.current.getBoundingClientRect();
            
